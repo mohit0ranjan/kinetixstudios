@@ -1,0 +1,121 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowUpRight, Copy, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#0A0A0A] pt-24 pb-12 relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#FF6A00]/5 blur-[150px] rounded-full pointer-events-none" />
+      
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20 border-b border-white/10 pb-20">
+          
+          {/* Brand Col */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5"
+          >
+            <Link href="/" className="text-4xl font-black tracking-tight flex items-center gap-0.5 mb-8">
+              <span className="text-white">Kinetix Studios</span>
+              <span className="text-[#FF6A00] text-5xl leading-none">.</span>
+            </Link>
+            <p className="text-white/50 max-w-sm text-lg leading-relaxed font-light mb-8">
+              The premier digital agency helping local businesses in India scale through modern marketing.
+            </p>
+            <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-2xl cursor-pointer hover:bg-white/10 hover:border-[#FF6A00]/30 transition-all duration-300">
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-sm font-semibold text-white/80">Available for new projects</span>
+            </div>
+          </motion.div>
+          
+          {/* Links Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-3"
+          >
+            <h4 className="text-white font-bold mb-6 text-lg">Sitemap</h4>
+            <ul className="space-y-4">
+              {[
+                { label: "Services", href: "/services" },
+                { label: "Our Work", href: "/work" },
+                { label: "Jalandhar", href: "/jalandhar" },
+                { label: "Ludhiana", href: "/ludhiana" },
+                { label: "Chandigarh", href: "/chandigarh" },
+                { label: "About Us", href: "/#about" },
+                { label: "Contact", href: "/contact" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-white/50 hover:text-[#FF6A00] transition-colors flex items-center gap-1 group w-max">
+                    {item.label}
+                    <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-4"
+          >
+            <h4 className="text-white font-bold mb-6 text-lg">Get in Touch</h4>
+            <div className="space-y-6">
+              <div>
+                <p className="text-white/40 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
+                  <Mail size={12} /> New Business
+                </p>
+                <div className="flex items-center gap-3 text-lg text-white hover:text-[#FF6A00] transition-colors cursor-pointer group w-max">
+                  hello@kinetixstudios.in
+                  <Copy size={16} className="text-white/20 group-hover:text-[#FF6A00] transition-colors" />
+                </div>
+              </div>
+              <div>
+                <p className="text-white/40 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
+                  <MapPin size={12} /> Location
+                </p>
+                <p className="text-white/60 text-sm">Punjab, India</p>
+              </div>
+              <div>
+                <p className="text-white/40 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
+                <div className="flex gap-4 text-white/50">
+                  <a
+                    href="https://wa.me/919876543210?text=Hi%20Kinetix%20Studios%2C%20I%20want%20a%20free%20audit"
+                    className="hover:text-[#FF6A00] transition-colors"
+                  >
+                    WhatsApp
+                  </a>
+                  <a href="#" className="hover:text-[#FF6A00] transition-colors">Twitter</a>
+                  <a href="#" className="hover:text-[#FF6A00] transition-colors">LinkedIn</a>
+                  <a href="#" className="hover:text-[#FF6A00] transition-colors">Instagram</a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+        
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-white/30 text-sm">
+            © {new Date().getFullYear()} Kinetix Studios. Building legacies since 2024.
+          </p>
+          <div className="flex gap-8 text-sm">
+            <Link href="/" className="text-white/30 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/" className="text-white/30 hover:text-white transition-colors">Terms of Service</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
