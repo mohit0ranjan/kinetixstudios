@@ -77,7 +77,7 @@ export default function Portfolio() {
           </div>
           <Link
             href="/work"
-            className="hidden md:flex items-center gap-2 text-text-secondary hover:text-brand font-bold text-[14px] transition-colors group"
+            className="hidden md:flex items-center gap-2 text-text-secondary hover:text-brand font-bold text-[14px] transition-colors group md:mb-2"
           >
             View All Work
             <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
@@ -140,7 +140,7 @@ export default function Portfolio() {
                 custom={0.08 + index * 0.06}
               >
                 <Link href={project.slug} className="group flex gap-4 items-start">
-                  <div className="relative w-28 h-20 md:w-36 md:h-24 rounded-lg overflow-hidden bg-surface-1 border border-black/5 shrink-0">
+                  <div className="relative w-32 h-24 md:w-48 md:h-32 rounded-xl overflow-hidden bg-surface-1 border border-black/5 shrink-0">
                     <Image
                       src={project.image}
                       alt={project.name}

@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import {
   heroContainer,
   heroItem,
@@ -23,158 +25,322 @@ const clientNames = [
   "FitZone Gym",
   "Smilecraft Dental",
 ];
-
-// Duplicate for seamless loop
 const marqueeItems = [...clientNames, ...clientNames];
 
-export default function Hero() {
-  return (
-    <section className="relative min-h-[calc(100svh-4rem)] md:min-h-[calc(100svh-5rem)] w-full bg-surface-1 text-text-primary flex flex-col justify-center overflow-hidden pt-4 md:pt-6 pb-8 md:pb-16">
+// Floating card data
+const floatingCards = [
+  {
+    title: "GlowNest Studio",
+    tag: "Web Design",
+    metric: "+180% Traffic",
+    image: "/portoflio/GlowWeb.png",
+    rotation: -6,
+    position: { top: "4%", right: "8%" },
+    size: "large" as const,
+    delay: 0.4,
+  },
+  {
+    title: "Apex Scholars",
+    tag: "Local SEO",
+    metric: "#1 Ranking",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rotation: 4,
+    position: { top: "38%", right: "-2%" },
+    size: "small" as const,
+    delay: 0.6,
+  },
+  {
+    title: "BrewBite Café",
+    tag: "Social Media",
+    metric: "450% ROI",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    rotation: -3,
+    position: { top: "62%", right: "16%" },
+    size: "small" as const,
+    delay: 0.8,
+  },
+];
 
-      {/* Layered gradient mesh background */}
+export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Smooth spring for parallax
+  const springConfig = { stiffness: 50, damping: 30, mass: 1 };
+  const px = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), springConfig);
+  const py = useSpring(useTransform(mouseY, [-0.5, 0.5], [-10, 10]), springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isMobile || !containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="relative min-h-[calc(100svh-4rem)] w-full bg-surface-1 text-text-primary flex flex-col overflow-hidden"
+    >
+      {/* Background gradients */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 70% 50% at 70% 15%, rgba(255,106,0,0.07), transparent),
-            radial-gradient(ellipse 50% 40% at 20% 80%, rgba(99,102,241,0.04), transparent),
-            radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255,106,0,0.03), transparent)
-          `
+            radial-gradient(ellipse 60% 50% at 75% 20%, rgba(255,106,0,0.06), transparent),
+            radial-gradient(ellipse 50% 40% at 15% 75%, rgba(99,102,241,0.04), transparent),
+            radial-gradient(ellipse 30% 25% at 50% 50%, rgba(255,106,0,0.025), transparent)
+          `,
         }}
       />
 
-      {/* Animated glow orb */}
+      {/* Animated orbs */}
       <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.35, 0.2],
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.18, 0.3, 0.18] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-8%] right-[-8%] w-[450px] h-[450px] md:w-[600px] md:h-[600px] bg-brand/12 rounded-full blur-[100px] md:blur-[140px] pointer-events-none"
+        className="absolute top-[-8%] right-[10%] w-[400px] h-[400px] md:w-[550px] md:h-[550px] bg-brand/10 rounded-full blur-[120px] pointer-events-none"
       />
       <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        className="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-indigo-400/8 rounded-full blur-[100px] pointer-events-none"
+        animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.15, 0.08] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+        className="absolute bottom-[5%] left-[-5%] w-[250px] h-[250px] bg-indigo-400/8 rounded-full blur-[100px] pointer-events-none"
       />
 
-      <div className="section-container relative z-10 flex-grow flex flex-col justify-center">
-        <motion.div
-          variants={heroContainer}
-          initial="hidden"
-          animate="visible"
-          className="max-w-5xl 2xl:max-w-6xl mx-auto text-center"
-        >
+      {/* ─── Main content ─── */}
+      <div className="section-container relative z-10 flex-grow flex items-center pt-20 md:pt-24 pb-8 md:pb-16">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-          {/* Eyebrow badge */}
+          {/* ── Left: Content ── */}
           <motion.div
-            variants={heroItem}
-            className="inline-flex items-center gap-2.5 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/5 mb-8 md:mb-10"
-          >
-            <span className="flex h-2 w-2 rounded-full bg-brand animate-pulse" />
-            <span className="text-[11px] md:text-[12px] font-bold text-text-secondary tracking-widest uppercase">Digital Marketing Agency</span>
-          </motion.div>
-
-          {/* Headline — word-by-word reveal with blur */}
-          <motion.h1
-            variants={heroWordReveal}
+            variants={heroContainer}
             initial="hidden"
             animate="visible"
-            className="text-[clamp(2.25rem,7.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em] font-sans font-black text-text-primary mb-6 md:mb-8"
+            className="max-w-xl"
           >
-            {headlineWords.map((word, i) => (
-              <motion.span key={i} variants={heroWord} className="inline-block mr-[0.25em]">
-                {word}
-              </motion.span>
-            ))}
-            <br className="sm:hidden" />
-            <motion.span
-              variants={heroWord}
-              className="inline-block font-display italic text-brand relative mr-[0.25em]"
-            >
-              invisible
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.9, ease: ease.out }}
-                className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-[3px] md:h-[4px] bg-brand/30 rounded-full origin-left"
-              />
-            </motion.span>
-            <motion.span variants={heroWord} className="inline-block">
-              online?
-            </motion.span>
-          </motion.h1>
-
-          {/* Subtext — delayed fade */}
-          <motion.p
-            variants={heroItem}
-            className="text-base md:text-xl lg:text-[1.35rem] font-medium text-text-secondary max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed"
-          >
-            Your local business deserves more local customers. We build websites, run ads, and boost local SEO to turn online searches into{" "}
-            <span className="text-text-primary font-bold">foot traffic</span>.
-          </motion.p>
-
-          {/* CTA row */}
-          <motion.div
-            variants={heroItem}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 md:mb-20"
-          >
-            <motion.a
-              href="/contact"
-              {...buttonPress}
-              className="group relative w-full sm:w-auto max-w-xs sm:max-w-none flex items-center justify-center gap-3 bg-surface-dark text-text-inverse px-8 py-4 md:px-10 md:py-5 font-bold text-base md:text-lg rounded-xl shadow-[0_8px_30px_rgba(10,10,10,0.3),inset_0_-4px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_15px_rgba(10,10,10,0.4),inset_0_-2px_0_rgba(0,0,0,0.4)] transition-shadow duration-200 overflow-hidden"
-            >
-              {/* Subtle hover shimmer */}
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
-              Book a Call
-              <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-            </motion.a>
-
+            {/* Eyebrow */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
-              className="flex items-center gap-2 text-sm font-semibold text-text-tertiary mt-2 sm:mt-0 sm:ml-4"
+              variants={heroItem}
+              className="inline-flex items-center gap-2.5 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/5 mb-7 md:mb-8"
             >
-              <CheckCircle2 size={18} className="text-green-500" />
-              Free Strategy Session
+              <span className="flex h-2 w-2 rounded-full bg-brand animate-pulse" />
+              <span className="text-[11px] font-bold text-text-secondary tracking-widest uppercase">
+                Digital Marketing Agency
+              </span>
             </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              variants={heroWordReveal}
+              initial="hidden"
+              animate="visible"
+              className="text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1] tracking-[-0.03em] font-sans font-black text-text-primary mb-6"
+            >
+              {headlineWords.map((word, i) => (
+                <motion.span key={i} variants={heroWord} className="inline-block mr-[0.25em]">
+                  {word}
+                </motion.span>
+              ))}
+              <br />
+              <motion.span
+                variants={heroWord}
+                className="inline-block font-display italic text-brand relative mr-[0.25em]"
+              >
+                invisible
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: 0.9, ease: ease.out }}
+                  className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-[3px] md:h-[4px] bg-brand/30 rounded-full origin-left"
+                />
+              </motion.span>
+              <motion.span variants={heroWord} className="inline-block">
+                online?
+              </motion.span>
+            </motion.h1>
+
+            {/* Subtext */}
+            <motion.p
+              variants={heroItem}
+              className="text-base md:text-lg font-medium text-text-secondary max-w-md mb-8 md:mb-10 leading-relaxed"
+            >
+              We help local businesses grow with high-converting websites, ads, and SEO systems that bring{" "}
+              <span className="text-text-primary font-bold">real customers</span>.
+            </motion.p>
+
+            {/* CTA row */}
+            <motion.div
+              variants={heroItem}
+              className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-4"
+            >
+              <motion.a
+                href="/contact"
+                {...buttonPress}
+                className="group relative flex items-center justify-center gap-3 bg-surface-dark text-text-inverse px-7 py-4 md:px-8 md:py-4 font-bold text-[15px] md:text-base rounded-xl shadow-[0_8px_30px_rgba(10,10,10,0.25),inset_0_-3px_0_rgba(0,0,0,0.4)] hover:shadow-[0_4px_15px_rgba(10,10,10,0.35),inset_0_-2px_0_rgba(0,0,0,0.4)] transition-shadow duration-200 overflow-hidden w-full sm:w-auto"
+              >
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
+                Book a Call
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+              </motion.a>
+
+              <motion.a
+                href="/work"
+                {...buttonPress}
+                className="flex items-center justify-center gap-2 text-text-secondary hover:text-brand px-5 py-4 font-bold text-[15px] transition-colors w-full sm:w-auto"
+              >
+                View Our Work
+                <ExternalLink size={15} />
+              </motion.a>
+            </motion.div>
+
+            {/* Trust badge - Removed the generic 'Free Strategy Session' for a more premium look. */}
           </motion.div>
 
-        </motion.div>
+          {/* ── Right: Floating Cards (desktop only) ── */}
+          <div className="hidden lg:block relative h-[500px] xl:h-[560px]">
+            {floatingCards.map((card, idx) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 30, rotate: 0 }}
+                animate={{ opacity: 1, y: 0, rotate: card.rotation }}
+                transition={{
+                  duration: 0.7,
+                  delay: card.delay,
+                  ease: ease.out,
+                }}
+                style={{
+                  position: "absolute",
+                  ...card.position,
+                  x: px,
+                  y: py,
+                }}
+                className="cursor-default"
+              >
+                {/* Continuous float */}
+                <motion.div
+                  animate={{ y: [0, idx % 2 === 0 ? -8 : 8, 0] }}
+                  transition={{
+                    duration: 4 + idx,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: idx * 0.5,
+                  }}
+                >
+                  <div
+                    className={`bg-white rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] border border-black/5 overflow-hidden ${
+                      card.size === "large" ? "w-[300px] xl:w-[340px]" : "w-[240px] xl:w-[270px]"
+                    }`}
+                  >
+                    {/* Image */}
+                    <div
+                      className={`relative w-full ${
+                        card.size === "large" ? "h-[180px] xl:h-[200px]" : "h-[130px] xl:h-[150px]"
+                      }`}
+                    >
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-cover"
+                        sizes="340px"
+                      />
+                    </div>
+
+                    {/* Card info */}
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-[10px] font-bold text-brand uppercase tracking-[0.15em]">
+                          {card.tag}
+                        </span>
+                        <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
+                          {card.metric}
+                        </span>
+                      </div>
+                      <h4 className="text-sm font-bold text-text-primary tracking-tight">
+                        {card.title}
+                      </h4>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* ── Mobile: Preview Cards Horizontal Scroll ── */}
+          <div className="lg:hidden w-full overflow-hidden relative mt-8">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.5, ease: ease.out }}
+              className="flex gap-4 overflow-x-auto pb-6 -mx-5 px-5 snap-x snap-mandatory no-scrollbar"
+            >
+              {Object.assign([...floatingCards], { length: floatingCards.length }).map((card, idx) => (
+                <div
+                  key={card.title}
+                  className="bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden shrink-0 w-[240px] snap-center flex flex-col items-start"
+                >
+                  <div className="relative w-full h-[140px]">
+                    <Image src={card.image} alt={card.title} fill className="object-cover" sizes="240px" />
+                  </div>
+                  <div className="p-4 w-full text-left">
+                    <span className="text-[10px] font-bold text-brand uppercase tracking-[0.12em] block mb-1">
+                      {card.tag}
+                    </span>
+                    <h4 className="text-sm font-bold text-text-primary mb-1">{card.title}</h4>
+                    <span className="text-[10px] font-bold text-green-600 block bg-green-50 inline-block px-2 py-0.5 rounded-full mt-1">{card.metric}</span>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Spacer at the end for proper scrolling padding */}
+              <div className="w-[20px] shrink-0" />
+            </motion.div>
+            
+            {/* Scroll Indication Gradient Overlay & Hint text */}
+            <div className="absolute right-0 top-0 bottom-6 w-12 bg-gradient-to-l from-surface-1 to-transparent pointer-events-none" />
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 0.8 }}
+              className="absolute bottom-0 right-5 flex items-center gap-2 text-xs font-semibold text-text-tertiary"
+            >
+              Swipe left to see work <ArrowRight size={12} />
+            </motion.div>
+          </div>
+
+        </div>
       </div>
 
-      {/* ─── Client Logo Marquee ─── */}
+      {/* ─── Logo Marquee ─── */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.0, duration: 0.6, ease: ease.out }}
-        className="relative z-10 w-full"
+        transition={{ delay: 1.2, duration: 0.6, ease: ease.out }}
+        className="relative z-10 w-full pb-6 md:pb-8"
       >
-        {/* Label */}
-        <p className="text-center text-[10px] md:text-[11px] font-bold text-text-tertiary/60 uppercase tracking-[0.2em] mb-4 md:mb-5">
+        <p className="text-center text-[10px] md:text-[11px] font-bold text-text-tertiary/50 uppercase tracking-[0.2em] mb-4">
           Trusted by local businesses
         </p>
-
-        {/* Marquee container */}
         <div className="relative overflow-hidden">
-          {/* Edge fades */}
-          <div className="absolute top-0 left-0 w-16 md:w-28 h-full bg-gradient-to-r from-surface-1 to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-16 md:w-28 h-full bg-gradient-to-l from-surface-1 to-transparent z-10 pointer-events-none" />
-
+          <div className="absolute top-0 left-0 w-16 md:w-24 h-full bg-gradient-to-r from-surface-1 to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-16 md:w-24 h-full bg-gradient-to-l from-surface-1 to-transparent z-10 pointer-events-none" />
           <div className="flex whitespace-nowrap">
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
               transition={{ duration: 40, ease: "linear", repeat: Infinity }}
-              className="flex items-center gap-10 md:gap-14 px-5 md:px-7"
+              className="flex items-center gap-10 md:gap-14 px-5"
             >
               {marqueeItems.map((name, i) => (
                 <span
                   key={i}
-                  className="text-[13px] md:text-[15px] font-bold text-text-tertiary/50 uppercase tracking-[0.12em] hover:text-text-secondary transition-colors duration-300 cursor-default select-none"
+                  className="text-[12px] md:text-[14px] font-bold text-text-tertiary/40 uppercase tracking-[0.12em] select-none"
                 >
                   {name}
                 </span>

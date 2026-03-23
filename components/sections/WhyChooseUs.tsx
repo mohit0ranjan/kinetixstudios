@@ -5,7 +5,15 @@ import { useRef, useState, useEffect } from "react";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { fadeUp, viewportOnce, ease, duration } from "@/lib/motion";
 
-const stats = [
+type StatItem = {
+  number: number;
+  suffix: string;
+  label: string;
+  description: string;
+  displayText?: string;
+};
+
+const stats: StatItem[] = [
   {
     number: 50,
     suffix: "+",
@@ -25,10 +33,9 @@ const stats = [
     description: "Crystal-clear dashboards and strategy calls. You will always know exactly where your money goes and what it produces.",
   },
   {
-    number: 0,
-    suffix: "",
-    displayText: "Local",
-    label: "Market Expertise",
+    number: 98,
+    suffix: "%",
+    label: "Client Retention",
     description: "Built in Punjab, for Punjab. We understand the cultural and purchasing nuances of your local consumer market deeply.",
   },
 ];
@@ -55,8 +62,8 @@ function useCountUp(target: number, inView: boolean, durationMs = 1200) {
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-padding relative bg-surface-dark overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[150px] pointer-events-none" />
+    <section className="section-padding relative bg-surface-1 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="section-container relative z-10">
 
@@ -69,10 +76,10 @@ export default function WhyChooseUs() {
           className="text-center mb-16 md:mb-24"
         >
           <SectionEyebrow label="Why Us" center />
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-inverse tracking-tight leading-[1.1] mb-6">
-            A Partner You Can<br className="hidden md:inline" /> Actually Trust.
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mb-6">
+            A Partner You Can<br className="hidden md:inline" /> <span className="font-display italic font-medium text-brand">Actually</span> Trust.
           </h2>
-          <p className="text-text-inverse/50 text-base md:text-lg font-medium max-w-xl mx-auto">
+          <p className="text-text-secondary text-base md:text-lg font-medium max-w-xl mx-auto">
             We act as your dedicated growth partner, focusing entirely on measurable revenue.
           </p>
         </motion.div>
@@ -102,17 +109,17 @@ function StatBlock({ stat, index }: { stat: typeof stats[number]; index: number 
       whileInView="visible"
       custom={index * 0.08}
       viewport={viewportOnce}
-      className="bg-surface-dark p-8 md:p-12 lg:p-16 group hover:bg-surface-dark-alt transition-colors duration-500"
+      className="bg-surface-0 border border-black/5 p-8 md:p-12 lg:p-16 group hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-500"
     >
       <div className="mb-6 md:mb-8">
         <span className="text-[clamp(3rem,6vw,5rem)] font-black text-brand leading-none tracking-tight block">
-          {stat.displayText ?? `${count}${stat.suffix}`}
+          {stat.displayText ? stat.displayText : `${count}${stat.suffix}`}
         </span>
-        <span className="text-[11px] font-bold text-text-inverse/40 uppercase tracking-widest mt-2 block">
+        <span className="text-[11px] font-bold text-text-tertiary uppercase tracking-widest mt-2 block">
           {stat.label}
         </span>
       </div>
-      <p className="text-text-inverse/50 text-[15px] md:text-base leading-relaxed font-medium max-w-sm group-hover:text-text-inverse/70 transition-colors duration-500">
+      <p className="text-text-secondary text-[15px] md:text-base leading-relaxed font-medium max-w-sm group-hover:text-text-primary transition-colors duration-500">
         {stat.description}
       </p>
     </motion.div>

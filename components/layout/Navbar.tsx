@@ -90,7 +90,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-black/5 md:hidden overflow-hidden"
+            className="absolute top-full left-0 w-full bg-white border-b border-black/5 md:hidden overflow-hidden"
           >
             <div className="flex flex-col p-5 gap-2">
               {navLinks.map((link, i) => (

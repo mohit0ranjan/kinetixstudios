@@ -8,7 +8,8 @@ import { fadeUp, scaleFade, viewportOnce, buttonPress } from "@/lib/motion";
 const plans = [
   {
     name: "Starter",
-    price: "Custom",
+    price: "$997",
+    period: "/mo",
     description: "For local businesses just getting started online and needing a proven foundation.",
     features: [
       "Custom 5-Page Website",
@@ -21,7 +22,8 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "Custom",
+    price: "$1,997",
+    period: "/mo",
     description: "Our most popular package. Aggressive lead gen for established businesses ready to scale.",
     features: [
       "Optimized Website",
@@ -35,7 +37,8 @@ const plans = [
   },
   {
     name: "Scale",
-    price: "Custom",
+    price: "$3,497",
+    period: "/mo",
     description: "The ultimate dominance package. For businesses ready to take over their market.",
     features: [
       "Custom Web App/Portal",
@@ -84,10 +87,10 @@ export default function Pricing({ hideHeader = false }: { hideHeader?: boolean }
               whileInView="visible"
               custom={index * 0.1}
               viewport={viewportOnce}
-              className={`relative flex flex-col rounded-2xl overflow-hidden border transition-all ${
+              className={`relative flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 ${
                 plan.highlight 
                   ? "bg-surface-dark border-brand/20 shadow-[0_20px_60px_-15px_rgba(255,106,0,0.2)] md:scale-105 z-10" 
-                  : "bg-surface-0 border-black/5 shadow-sm hover:shadow-md"
+                  : "bg-surface-0 border-black/5 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.08)] hover:-translate-y-1"
               }`}
             >
               {/* Subtle glow for highlight */}
@@ -110,6 +113,11 @@ export default function Pricing({ hideHeader = false }: { hideHeader?: boolean }
                   <span className={`text-4xl font-black tracking-tight ${plan.highlight ? "text-text-inverse" : "text-text-primary"}`}>
                     {plan.price}
                   </span>
+                  {plan.period && (
+                    <span className={`text-sm font-semibold ${plan.highlight ? "text-text-inverse/40" : "text-text-tertiary"}`}>
+                      {plan.period}
+                    </span>
+                  )}
                 </div>
                 <p className={`text-sm font-medium mb-6 pb-6 border-b ${
                   plan.highlight ? "text-text-inverse/50 border-white/10" : "text-text-secondary border-black/5"
