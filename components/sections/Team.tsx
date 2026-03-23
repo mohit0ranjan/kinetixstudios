@@ -5,6 +5,7 @@ import Image from "next/image";
 
 const team = [
   { name: "Mohit Ranjan", role: "Growth Strategist", image: "/team/Mohit Ranjan.png" },
+  { name: "Aryan", role: "System Architect & Developer", image: "/team/Aryan.jpeg" },
   { name: "Nishant", role: "Developer", image: "/team/nishant.png" },
   { name: "Nidhi Yadav", role: "Full Stack Developer", image: "/team/nidhi-yadav.png" },
   { name: "Saumya", role: "UI/UX Designer", image: "/team/saumya.png" }
@@ -22,10 +23,10 @@ const containerVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: "easeOut" } 
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
   },
 };
 
@@ -33,30 +34,30 @@ export default function Team() {
   return (
     <section className="py-24 bg-white font-sans selection:bg-[#FF6A00]/20">
       <div className="container mx-auto px-5 lg:px-8 max-w-7xl">
-        
+
         {/* Editorial Header */}
         <div className="mb-16 lg:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
           <div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-black tracking-tight">
-              The Collective
+              NIT Jalandhar<br className="hidden md:block" /> Curated Team
             </h2>
           </div>
           <p className="text-gray-500 text-sm md:text-base max-w-sm leading-relaxed">
-            A specialized team of strategists, engineers, and creatives working together to push the boundaries of digital growth.
+            A specialized team of strategists, engineers, and creatives from NIT Jalandhar, working together to push the boundaries of digital growth.
           </p>
         </div>
 
         {/* 
           STRICT GRID:
           Mobile: 2 columns (grid-cols-2)
-          Desktop: 4 columns (lg:grid-cols-4)
+          Desktop: 5 columns (lg:grid-cols-5)
         */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 lg:gap-x-8 md:gap-y-16"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-6 lg:gap-x-8 md:gap-y-16"
         >
           {team.map((member, index) => (
             <motion.div
@@ -90,7 +91,7 @@ export default function Team() {
             </motion.div>
           ))}
         </motion.div>
-        
+
       </div>
     </section>
   );

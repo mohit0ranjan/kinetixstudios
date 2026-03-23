@@ -2,15 +2,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { fadeUp, viewportOnce, ease, duration } from "@/lib/motion";
+import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
 type StatItem = {
   number: number;
   suffix: string;
   label: string;
   description: string;
-  displayText?: string;
 };
 
 const stats: StatItem[] = [
@@ -18,41 +16,32 @@ const stats: StatItem[] = [
     number: 50,
     suffix: "+",
     label: "Local Clients Served",
-    description: "Every single campaign is backed by precise local market analytics. We don't guess — we measure, test, and optimize relentlessly.",
+    description: "Built in Punjab, for Punjab. We understand the cultural and purchasing nuances of your local consumer market deeply.",
   },
   {
     number: 3,
-    suffix: "×",
+    suffix: "x",
     label: "Average Revenue Growth",
     description: "We optimize exclusively for qualified leads, phone calls, and people walking through your doors — not vanity metrics.",
-  },
-  {
-    number: 100,
-    suffix: "%",
-    label: "Transparent Reporting",
-    description: "Crystal-clear dashboards and strategy calls. You will always know exactly where your money goes and what it produces.",
   },
   {
     number: 98,
     suffix: "%",
     label: "Client Retention",
-    description: "Built in Punjab, for Punjab. We understand the cultural and purchasing nuances of your local consumer market deeply.",
+    description: "Crystal-clear dashboards, strategy calls, and relentless testing keep our clients scaling with us year after year.",
   },
 ];
 
-/** Animate a number from 0 to target */
-function useCountUp(target: number, inView: boolean, durationMs = 1200) {
+function useCountUp(target: number, inView: boolean, durationMs = 2000) {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (!inView || target === 0) return;
-    let start = 0;
     const startTime = performance.now();
     const step = (now: number) => {
       const progress = Math.min((now - startTime) / durationMs, 1);
-      // ease-out quad
-      const eased = 1 - (1 - progress) * (1 - progress);
-      const current = Math.round(eased * target);
-      setValue(current);
+      // ease-out expo
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * target));
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -60,68 +49,130 @@ function useCountUp(target: number, inView: boolean, durationMs = 1200) {
   return value;
 }
 
-export default function WhyChooseUs() {
-  return (
-    <section className="section-padding relative bg-surface-1 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[150px] pointer-events-none" />
-
-      <div className="section-container relative z-10">
-
-        {/* Header — single fadeUp */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="text-center mb-16 md:mb-24"
-        >
-          <SectionEyebrow label="Why Us" center />
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mb-6">
-            A Partner You Can<br className="hidden md:inline" /> <span className="font-display italic font-medium text-brand">Actually</span> Trust.
-          </h2>
-          <p className="text-text-secondary text-base md:text-lg font-medium max-w-xl mx-auto">
-            We act as your dedicated growth partner, focusing entirely on measurable revenue.
-          </p>
-        </motion.div>
-
-        {/* Stats Grid — each block has its own viewport trigger for counter */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/8 rounded-2xl overflow-hidden">
-          {stats.map((stat, index) => (
-            <StatBlock key={index} stat={stat} index={index} />
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-}
-
-function StatBlock({ stat, index }: { stat: typeof stats[number]; index: number }) {
+function StatRow({ stat, index }: { stat: StatItem; index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
   const count = useCountUp(stat.number, isInView);
 
   return (
     <motion.div
       ref={ref}
       variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      custom={index * 0.08}
-      viewport={viewportOnce}
-      className="bg-surface-0 border border-black/5 p-8 md:p-12 lg:p-16 group hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-500"
+      className={`group flex flex-col md:flex-row md:items-center py-10 lg:py-14 border-b border-gray-200/70 relative ${
+        index === 0 ? "pt-0" : ""
+      } ${index === stats.length - 1 ? "border-b-0 pb-0" : ""}`}
     >
-      <div className="mb-6 md:mb-8">
-        <span className="text-[clamp(3rem,6vw,5rem)] font-black text-brand leading-none tracking-tight block">
-          {stat.displayText ? stat.displayText : `${count}${stat.suffix}`}
-        </span>
-        <span className="text-[11px] font-bold text-text-tertiary uppercase tracking-widest mt-2 block">
-          {stat.label}
-        </span>
+      {/* Massive Number */}
+      <div className="md:w-[45%] shrink-0">
+        <div className="flex items-baseline overflow-hidden">
+          <span className="text-[5.5rem] lg:text-[8rem] font-sans font-black tracking-tighter leading-none text-[#1C1F2B] group-hover:text-[#FF6A00] transition-colors duration-500">
+            {count}
+          </span>
+          <span className="text-[3rem] lg:text-[4.5rem] font-bold text-[#FF6A00] leading-none ml-1">
+            {stat.suffix}
+          </span>
+        </div>
       </div>
-      <p className="text-text-secondary text-[15px] md:text-base leading-relaxed font-medium max-w-sm group-hover:text-text-primary transition-colors duration-500">
-        {stat.description}
-      </p>
+
+      {/* Description */}
+      <div className="md:w-[55%] flex flex-col mt-4 md:mt-0 lg:pl-8">
+        <h4 className="text-[20px] lg:text-[24px] font-bold text-[#1C1F2B] tracking-tight mb-2 md:mb-3">
+          {stat.label}
+        </h4>
+        <p className="text-[15px] lg:text-[17px] text-gray-500 font-medium leading-relaxed max-w-md transition-colors duration-500 group-hover:text-gray-700">
+          {stat.description}
+        </p>
+      </div>
+
+      {/* Subtle Absolute Decorative Line appearing on hover */}
+      <div className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#FF6A00] group-hover:w-full transition-all duration-700 ease-out opacity-0 group-hover:opacity-100" />
     </motion.div>
+  );
+}
+
+// Very Subtle Background Growth Graph
+const BackgroundGraph = () => (
+  <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.03] pointer-events-none overflow-hidden">
+    <svg viewBox="0 0 1000 500" className="w-full h-full object-cover min-w-[1200px]" preserveAspectRatio="none">
+      <path 
+        d="M0,450 C200,420 300,350 500,280 C700,210 800,100 1000,50" 
+        fill="none" 
+        stroke="#1C1F2B" 
+        strokeWidth="2" 
+      />
+      <path 
+        d="M0,450 C200,420 300,350 500,280 C700,210 800,100 1000,50 L1000,500 L0,500 Z" 
+        fill="url(#subtleGradient)" 
+      />
+      <defs>
+        <linearGradient id="subtleGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#1C1F2B" stopOpacity="1" />
+          <stop offset="100%" stopColor="#1C1F2B" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+);
+
+export default function WhyChooseUs() {
+  return (
+    <section className="py-24 lg:py-40 relative bg-gradient-to-b from-[#FAFAFA] to-[#F5F5F7] overflow-hidden">
+      <BackgroundGraph />
+      
+      <div className="container mx-auto px-5 lg:px-8 max-w-[1280px] relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          
+          {/* LEFT: Narrative / Storytelling */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-px w-8 bg-[#FF6A00]" />
+                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-[#FF6A00]">
+                  Why Us
+                </span>
+              </div>
+              
+              <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-[#1C1F2B] tracking-tight leading-[1.05] mb-6">
+                A Partner You Can<br />
+                <span className="font-serif italic font-medium text-[#FF6A00]">Actually</span> Trust.
+              </h2>
+              
+              <p className="text-gray-500 text-[17px] md:text-[19px] font-medium leading-relaxed mb-8">
+                We focus entirely on measurable growth, not vanity metrics. 
+              </p>
+
+              <div className="bg-white/60 border border-gray-200/60 p-6 lg:p-8 rounded-2xl shadow-[0_4px_24px_-8px_rgba(0,0,0,0.04)] backdrop-blur-sm relative overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#FF6A00]" />
+                <h4 className="text-xl font-bold text-[#1C1F2B] mb-2">We don't guess.</h4>
+                <p className="text-gray-500 font-medium leading-relaxed">
+                  Every decision we make is backed by hard data. We measure, test, and aggressively scale what works to drive qualified leads straight to your business.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT: Feature + Proof Split (No Cards) */}
+          <div className="lg:col-span-7">
+            <motion.div
+              variants={staggerContainer(0.15, 0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              className="flex flex-col"
+            >
+              {stats.map((stat, index) => (
+                <StatRow key={index} stat={stat} index={index} />
+              ))}
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }
