@@ -50,15 +50,32 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative group"
         >
+          <div className="absolute -inset-1 bg-white rounded-[20px] blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
           <motion.a
             href="/contact"
-            whileHover={{ scale: 0.97, y: 2 }}
-            whileTap={{ scale: 0.93, y: 4 }}
-            className="inline-flex items-center gap-3 bg-[#0A0A0A] text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-[0_10px_35px_rgba(0,0,0,0.3),inset_0_-4px_0_rgba(0,0,0,0.4)] hover:shadow-[0_5px_20px_rgba(0,0,0,0.4),inset_0_-2px_0_rgba(0,0,0,0.4)] transition-all duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative inline-flex items-center gap-3 bg-[#0A0A0A] text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-[0_10px_35px_rgba(0,0,0,0.3)] border border-white/10 transition-all overflow-hidden"
           >
-            Book Your Free Strategy Call
-            <ArrowRight size={20} />
+            <span className="relative z-10 flex items-center gap-3">
+              Book Your Free Strategy Call
+              <motion.div
+                initial={{ x: 0 }}
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <ArrowRight size={20} />
+              </motion.div>
+            </span>
+            {/* Shimmer effect */}
+            <motion.div 
+              className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
+              initial={{ left: "-100%" }}
+              whileHover={{ left: "200%" }}
+              transition={{ duration: 0.7, ease: "easeInOut" }}
+            />
           </motion.a>
         </motion.div>
       </div>

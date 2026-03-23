@@ -109,8 +109,8 @@ export default function Home() {
       <Services />
       <WhyChooseUs />
       <Portfolio />
-      <Pricing />
       <Testimonials />
+      <Pricing />
       <FAQ />
       <CTA />
     </>

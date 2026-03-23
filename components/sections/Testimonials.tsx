@@ -121,23 +121,39 @@ export default function Testimonials() {
           </AnimatePresence>
         </div>
 
-        {/* Custom Navigation Controls */}
-        <div className="flex justify-center md:justify-end gap-3 md:gap-4 mt-8 md:mt-12 relative z-20">
-          <button 
-            onClick={prevSlide}
-            aria-label="Previous Testimonial"
-            className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#FF6A00] hover:border-[#FF6A00] hover:bg-[#FF6A00]/5 transition-all shadow-sm active:scale-90"
-          >
-            <ArrowLeft size={20} />
-          </button>
+        {/* Custom Navigation Controls & Progress Dots */}
+        <div className="flex flex-col md:flex-row items-center justify-between mt-8 md:mt-12 relative z-20">
           
-          <button 
-            onClick={nextSlide}
-            aria-label="Next Testimonial"
-            className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#FF6A00] hover:border-[#FF6A00] hover:bg-[#FF6A00]/5 transition-all shadow-sm active:scale-90"
-          >
-            <ArrowRight size={20} />
-          </button>
+          {/* Progress Indicators */}
+          <div className="flex gap-2 mb-6 md:mb-0">
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  activeIndex === idx ? "w-8 bg-[#FF6A00]" : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex gap-3 md:gap-4">
+            <button 
+              onClick={prevSlide}
+              aria-label="Previous Testimonial"
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#FF6A00] hover:border-[#FF6A00] hover:bg-[#FF6A00]/5 transition-all shadow-sm active:scale-90"
+            >
+              <ArrowLeft size={20} />
+            </button>
+            <button 
+              onClick={nextSlide}
+              aria-label="Next Testimonial"
+              className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-400 hover:text-[#FF6A00] hover:border-[#FF6A00] hover:bg-[#FF6A00]/5 transition-all shadow-sm active:scale-90"
+            >
+              <ArrowRight size={20} />
+            </button>
+          </div>
         </div>
 
       </div>

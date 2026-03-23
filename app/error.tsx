@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { AlertCircle, RotateCcw } from "lucide-react";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -29,7 +30,7 @@ export default function Error({
         </div>
         <h2 className="text-2xl md:text-3xl font-black text-[#0A0A0A] mb-3">Something went wrong</h2>
         <p className="text-gray-500 mb-8 text-sm md:text-base leading-relaxed">
-          We encountered an unexpected error. Don't worry, our team has been notified. 
+          We encountered an unexpected error. Don&apos;t worry, our team has been notified. 
           Please try refreshing the page.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -40,12 +41,12 @@ export default function Error({
             <RotateCcw size={18} />
             Try again
           </button>
-          <a
+          <Link
             href="/"
             className="flex items-center justify-center gap-2 bg-gray-100 text-[#0A0A0A] px-6 py-3 rounded-xl font-bold hover:bg-gray-200 transition-colors"
           >
             Return Home
-          </a>
+          </Link>
         </div>
       </motion.div>
     </div>

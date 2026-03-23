@@ -67,40 +67,64 @@ export default function Services() {
           <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-8 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 no-scrollbar w-[100vw] md:w-full select-none cursor-grab active:cursor-grabbing scroll-smooth">
             
             {/* Social Media */}
-            <div className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-blue-50 border border-blue-100/50 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-blue-50 border border-blue-100/50 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"
+            >
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-[16px] md:rounded-[24px] bg-white text-blue-600 flex items-center justify-center shadow-sm mb-16 md:mb-32">
                 <Smartphone size={24} />
               </div>
               <h4 className="text-xl md:text-3xl font-black text-slate-900 mb-2 md:mb-4">Social Growth</h4>
               <p className="text-slate-600 text-sm md:text-base font-medium">Build an aggressive omnipresence on Instagram and Facebook that locals simply cannot ignore.</p>
-            </div>
+            </motion.div>
 
              {/* Meta Ads */}
-            <div className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-purple-50 border border-purple-100/50 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-purple-50 border border-purple-100/50 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"
+            >
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-[16px] md:rounded-[24px] bg-white text-purple-600 flex items-center justify-center shadow-sm mb-16 md:mb-32">
                 <Target size={24} />
               </div>
               <h4 className="text-xl md:text-3xl font-black text-slate-900 mb-2 md:mb-4">Paid Ads</h4>
               <p className="text-slate-600 text-sm md:text-base font-medium">Hyper-targeted Meta and Google campaigns that directly scale your lead volume predictably.</p>
-            </div>
+            </motion.div>
 
             {/* SEO */}
-            <div className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-green-50 border border-green-100/50 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-green-50 border border-green-100/50 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"
+            >
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-[16px] md:rounded-[24px] bg-white text-green-600 flex items-center justify-center shadow-sm mb-16 md:mb-32">
                 <Search size={24} />
               </div>
               <h4 className="text-xl md:text-3xl font-black text-slate-900 mb-2 md:mb-4">Local SEO</h4>
               <p className="text-slate-600 text-sm md:text-base font-medium">Dominate the Google Map Pack so you are the undisputed #1 choice when they search.</p>
-            </div>
+            </motion.div>
 
             {/* Branding */}
-            <div className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-[#FF6A00]/5 border border-[#FF6A00]/10 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="snap-center shrink-0 w-[88%] sm:w-[320px] md:w-[400px] bg-[#FF6A00]/5 border border-[#FF6A00]/10 p-6 md:p-10 rounded-[28px] md:rounded-[36px] flex flex-col h-full hover:-translate-y-2 transition-transform duration-300"
+            >
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-[16px] md:rounded-[24px] bg-white text-[#FF6A00] flex items-center justify-center shadow-sm mb-16 md:mb-32">
                 <PenTool size={24} />
               </div>
               <h4 className="text-xl md:text-3xl font-black text-slate-900 mb-2 md:mb-4">Branding</h4>
               <p className="text-slate-600 text-sm md:text-base font-medium">Premium logos, brand guidelines, and visual identities that scream undeniable trust.</p>
-            </div>
+            </motion.div>
 
           </div>
 

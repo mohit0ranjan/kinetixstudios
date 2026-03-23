@@ -85,13 +85,19 @@ export default function Portfolio() {
               {/* Tint Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
 
-              {/* Floating Mobile Mockup (Parallaxing up on hover) */}
-              <div className="absolute right-6 md:right-16 bottom-[-20%] w-[120px] md:w-[200px] aspect-[9/19] bg-white rounded-[24px] md:rounded-[36px] shadow-2xl p-1.5 md:p-2.5 z-20 group-hover:translate-y-[-100px] group-hover:rotate-[-5deg] transition-all duration-700 ease-[0.16,1,0.3,1] transform-gpu">
+              {/* Floating Mobile Mockup (Parallaxing up on hover & scroll) */}
+              <motion.div 
+                initial={{ y: "10%", rotate: 0 }}
+                whileInView={{ y: "-60%", rotate: -5 }}
+                transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}
+                viewport={{ margin: "-100px", amount: 0.3 }}
+                className="absolute right-6 md:right-16 bottom-[-20%] w-[120px] md:w-[200px] aspect-[9/19] bg-white rounded-[24px] md:rounded-[36px] shadow-2xl p-1.5 md:p-2.5 z-20 group-hover:translate-y-[-120px] group-hover:rotate-[-8deg] transition-all duration-700 ease-[0.16,1,0.3,1] transform-gpu"
+              >
                  <div className="absolute top-2.5 md:top-4 left-1/2 -translate-x-1/2 w-1/4 h-1 md:h-1.5 bg-black rounded-full z-30" />
                  <div className="w-full h-full relative rounded-[16px] md:rounded-[28px] overflow-hidden bg-slate-100">
                     <Image src={project.mobile} alt={project.name + " mobile"} fill className="object-cover" />
                  </div>
-              </div>
+              </motion.div>
 
               {/* Bottom Info Overlay */}
               <div className="absolute bottom-0 left-0 w-full p-8 md:p-12 z-30 flex flex-col md:flex-row md:items-end justify-between gap-6 pointer-events-none transform-gpu">

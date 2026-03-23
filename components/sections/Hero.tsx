@@ -122,9 +122,9 @@ export default function Hero() {
             variants={itemVariants}
             className="text-[clamp(1.75rem,8vw,8rem)] sm:text-[clamp(2.5rem,8vw,8rem)] lg:text-[8.5vw] leading-[1] lg:leading-[0.9] tracking-[-0.03em] font-sans font-black text-[#0A0A0A] mb-8 relative z-20"
           >
-            Growth that feels<br />
+            Great offline, but<br />
             <span className="text-[#FF6A00] text-[1.1em] inline-block relative mt-2 md:mt-4">
-              effortless.
+              invisible
               {/* Highlight vector squiggle */}
               <motion.svg 
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -138,6 +138,7 @@ export default function Hero() {
                 <path d="M5 25C85 5 215 -5 295 15" stroke="currentColor" strokeWidth="12" strokeLinecap="round"/>
               </motion.svg>
             </span>
+             {" "}online?
           </motion.h1>
 
           {/* ----- SUBTEXT ----- */}
@@ -145,7 +146,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-lg md:text-xl lg:text-2xl font-medium text-gray-600 max-w-2xl mx-auto mb-10 md:mb-14 relative z-20 leading-relaxed"
           >
-            We help local businesses in India grow faster with websites, ads, and branding that <span className="text-gray-900 font-bold decoration-[#FF6A00]/30 underline decoration-4 underline-offset-4 pointer-events-none">actually convert</span>.
+            Your local business deserves more local customers. We build websites, run ads, and boost local SEO to turn online searches into <span className="text-gray-900 font-bold decoration-[#FF6A00]/30 underline decoration-4 underline-offset-4 pointer-events-none">foot traffic</span>.
           </motion.p>
           
           {/* ----- CTA ----- */}
