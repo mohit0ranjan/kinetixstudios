@@ -1,100 +1,120 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Target, BarChart, Shield, Users } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { fadeUp, viewportOnce, ease, duration } from "@/lib/motion";
 
-const pillars = [
+const stats = [
   {
-    icon: <BarChart size={32} />,
-    title: "Data-Driven Decisions",
-    tag: "Analytics Based",
-    description: "Every single campaign is backed by precise local market analytics and rigorous A/B testing standards. We don't guess, we measure.",
+    number: 50,
+    suffix: "+",
+    label: "Local Clients Served",
+    description: "Every single campaign is backed by precise local market analytics. We don't guess — we measure, test, and optimize relentlessly.",
   },
   {
-    icon: <Target size={32} />,
-    title: "Focus on Foot Traffic",
-    tag: "Conversion First",
-    description: "We optimize exclusively for highly-qualified leads, phone calls, and actual people walking straight through your physical doors.",
+    number: 3,
+    suffix: "×",
+    label: "Average Revenue Growth",
+    description: "We optimize exclusively for qualified leads, phone calls, and people walking through your doors — not vanity metrics.",
   },
   {
-    icon: <Shield size={32} />,
-    title: "Total Transparency",
-    tag: "Live Reporting",
-    description: "Gain access to crystal-clear reporting and transparent strategy communication. You will always know exactly where your ad budget goes.",
+    number: 100,
+    suffix: "%",
+    label: "Transparent Reporting",
+    description: "Crystal-clear dashboards and strategy calls. You will always know exactly where your money goes and what it produces.",
   },
   {
-    icon: <Users size={32} />,
-    title: "Local Market Expertise",
-    tag: "Regional Insight",
-    description: "Built in Punjab, for Punjab. We profoundly understand the specific cultural and purchasing nuances of your local consumer market.",
-  }
+    number: 0,
+    suffix: "",
+    displayText: "Local",
+    label: "Market Expertise",
+    description: "Built in Punjab, for Punjab. We understand the cultural and purchasing nuances of your local consumer market deeply.",
+  },
 ];
+
+/** Animate a number from 0 to target */
+function useCountUp(target: number, inView: boolean, durationMs = 1200) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!inView || target === 0) return;
+    let start = 0;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / durationMs, 1);
+      // ease-out quad
+      const eased = 1 - (1 - progress) * (1 - progress);
+      const current = Math.round(eased * target);
+      setValue(current);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [inView, target, durationMs]);
+  return value;
+}
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative z-20 font-sans mt-0 bg-white">
-      
-      {/* Intro Header */}
-      <div className="pt-20 pb-10 px-6 text-center max-w-3xl mx-auto">
-         <h2 className="text-[#FF6A00] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-4 flex items-center justify-center gap-3">
-            <span className="w-8 h-[2px] bg-[#FF6A00] rounded-full" />
-            Why Work With Us
-            <span className="w-8 h-[2px] bg-[#FF6A00] rounded-full" />
-         </h2>
-         <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.05]">
-           A Partner You Can Actually Trust.
-         </h3>
-         <p className="text-slate-500 text-sm md:text-lg font-medium max-w-xl mx-auto">
-           We act as your dedicated growth partner, focusing entirely on measurable revenue and bottom-line stability.
-         </p>
-      </div>
+    <section className="section-padding relative bg-surface-dark overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/5 rounded-full blur-[150px] pointer-events-none" />
 
-      {/* Alternating Split Stacks Structure (No Cards) */}
-      <div className="flex flex-col">
-        {pillars.map((pillar, index) => {
-          const isEven = index % 2 === 0;
-          return (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className={`w-full py-16 md:py-24 px-6 md:px-12 ${isEven ? "bg-[#F8F9FA]" : "bg-white"}`}
-            >
-              <div className={`max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 lg:gap-20 ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                  
-                  {/* Graphic Block */}
-                  <div className="w-full md:w-1/2 flex justify-center">
-                    <motion.div 
-                      whileHover={{ scale: 1.05, rotate: isEven ? 2 : -2 }} 
-                      transition={{ duration: 0.4, type: "spring" }}
-                      className="w-32 h-32 md:w-48 md:h-48 rounded-[24px] md:rounded-[40px] bg-white border border-slate-100 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.08)] flex items-center justify-center text-slate-800 relative"
-                    >
-                      {/* Decorative backdrop blobs */}
-                      <div className={`absolute inset-0 rounded-[40px] opacity-[0.03] -z-10 ${isEven ? 'bg-[#FF6A00]' : 'bg-blue-600'}`}/>
-                      
-                      <div className="scale-125 md:scale-[2] text-slate-700">{pillar.icon}</div>
-                    </motion.div>
-                  </div>
-                  
-                  {/* Text Block */}
-                  <div className={`w-full md:w-1/2 text-center md:text-left ${!isEven && "md:text-right"}`}>
-                    <span className="text-[#FF6A00] font-bold text-[10px] md:text-xs tracking-widest uppercase mb-3 block">
-                      {pillar.tag}
-                    </span>
-                    <h4 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight lg:leading-[1.1] mb-4 md:mb-6">
-                      {pillar.title}
-                    </h4>
-                    <p className="text-slate-500 text-[14px] md:text-[17px] leading-relaxed font-medium max-w-lg mx-auto md:mx-0 ${!isEven && 'md:ml-auto'}">
-                      {pillar.description}
-                    </p>
-                  </div>
-              </div>
-            </motion.div>
-          );
-        })}
+      <div className="section-container relative z-10">
+
+        {/* Header — single fadeUp */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="text-center mb-16 md:mb-24"
+        >
+          <SectionEyebrow label="Why Us" center />
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-inverse tracking-tight leading-[1.1] mb-6">
+            A Partner You Can<br className="hidden md:inline" /> Actually Trust.
+          </h2>
+          <p className="text-text-inverse/50 text-base md:text-lg font-medium max-w-xl mx-auto">
+            We act as your dedicated growth partner, focusing entirely on measurable revenue.
+          </p>
+        </motion.div>
+
+        {/* Stats Grid — each block has its own viewport trigger for counter */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/8 rounded-2xl overflow-hidden">
+          {stats.map((stat, index) => (
+            <StatBlock key={index} stat={stat} index={index} />
+          ))}
+        </div>
+
       </div>
     </section>
+  );
+}
+
+function StatBlock({ stat, index }: { stat: typeof stats[number]; index: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const count = useCountUp(stat.number, isInView);
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      custom={index * 0.08}
+      viewport={viewportOnce}
+      className="bg-surface-dark p-8 md:p-12 lg:p-16 group hover:bg-surface-dark-alt transition-colors duration-500"
+    >
+      <div className="mb-6 md:mb-8">
+        <span className="text-[clamp(3rem,6vw,5rem)] font-black text-brand leading-none tracking-tight block">
+          {stat.displayText ?? `${count}${stat.suffix}`}
+        </span>
+        <span className="text-[11px] font-bold text-text-inverse/40 uppercase tracking-widest mt-2 block">
+          {stat.label}
+        </span>
+      </div>
+      <p className="text-text-inverse/50 text-[15px] md:text-base leading-relaxed font-medium max-w-sm group-hover:text-text-inverse/70 transition-colors duration-500">
+        {stat.description}
+      </p>
+    </motion.div>
   );
 }

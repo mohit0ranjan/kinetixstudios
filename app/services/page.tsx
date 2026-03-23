@@ -18,24 +18,28 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ServicesPage() {
   return (
-    <main className="pt-24 min-h-screen bg-[#F4F5F7]">
-      <div className="container mx-auto px-6 max-w-7xl pt-16 pb-8">
-        <h1 className="text-5xl md:text-7xl font-black text-[#0A0A0A] tracking-tight text-center mb-6">
-          Everything You Need <br/> to Dominate.
+    <main className="pt-24 min-h-screen bg-surface-1">
+      <div className="section-container pt-16 pb-8">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-8 h-[2px] bg-brand rounded-full" />
+          <span className="text-[11px] font-bold text-brand uppercase tracking-[0.2em]">Our Services</span>
+        </div>
+        <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black text-text-primary tracking-tight mb-6 leading-[1.05]">
+          Everything You Need <br className="hidden md:inline"/>to Dominate.
         </h1>
-        <p className="text-xl text-gray-500 text-center max-w-2xl mx-auto font-medium mb-12">
-          We don&apos;t sell disparate services. We build comprehensive growth engines customized for your exact market and audience.
+        <p className="text-lg md:text-xl text-text-secondary max-w-2xl font-medium mb-12">
+          We don&apos;t sell disparate services. We build comprehensive growth engines customized for your exact market.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
           <Link
             href="/services/seo-jalandhar"
-            className="rounded-full bg-white border border-black/10 px-5 py-2 text-sm font-bold text-slate-700 hover:text-[#FF6A00]"
+            className="rounded-xl bg-surface-0 border border-black/5 px-5 py-2.5 text-sm font-bold text-text-secondary hover:text-brand transition-colors"
           >
             SEO Services in Jalandhar
           </Link>
           <Link
             href="/services/social-media-punjab"
-            className="rounded-full bg-white border border-black/10 px-5 py-2 text-sm font-bold text-slate-700 hover:text-[#FF6A00]"
+            className="rounded-xl bg-surface-0 border border-black/5 px-5 py-2.5 text-sm font-bold text-text-secondary hover:text-brand transition-colors"
           >
             Social Media Marketing Punjab
           </Link>

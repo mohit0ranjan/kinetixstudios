@@ -13,12 +13,16 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function PricingPage() {
   return (
-    <main className="pt-24 min-h-screen bg-[#F4F5F7]">
-      <div className="container mx-auto px-6 max-w-7xl pt-8 md:pt-16 pb-0">
-        <h1 className="text-5xl md:text-7xl font-black text-[#0A0A0A] tracking-tight text-center mb-6">
+    <main className="pt-24 min-h-screen bg-surface-1">
+      <div className="section-container pt-8 md:pt-16 pb-0">
+        <div className="flex items-center gap-3 mb-6 justify-center">
+          <span className="w-8 h-[2px] bg-brand rounded-full" />
+          <span className="text-[11px] font-bold text-brand uppercase tracking-[0.2em]">Investment</span>
+        </div>
+        <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black text-text-primary tracking-tight text-center mb-6 leading-[1.05]">
           Simple Pricing.<br className="md:hidden"/> Massive ROI.
         </h1>
-        <p className="text-base md:text-xl text-gray-500 text-center max-w-2xl mx-auto font-medium mb-4">
+        <p className="text-base md:text-xl text-text-secondary text-center max-w-2xl mx-auto font-medium mb-4">
           Our packages are built to scale. You only pay for what you absolutely need to reach your next growth milestone.
         </p>
       </div>

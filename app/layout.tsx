@@ -6,7 +6,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyCTA from "@/components/ui/StickyCTA";
-import CustomCursor from "@/components/ui/CustomCursor";
 import { defaultKeywords, siteConfig } from "@/lib/seo";
 
 const dmSans = DM_Sans({
@@ -96,7 +95,6 @@ export default function RootLayout({
             </Script>
           </>
         ) : null}
-        <CustomCursor />
         <SmoothScroll>
           <Navbar />
           <main className="flex-grow flex flex-col min-h-screen">

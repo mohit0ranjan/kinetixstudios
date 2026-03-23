@@ -1,16 +1,13 @@
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
-import TrustLogos from "@/components/sections/TrustLogos";
 import { buildPageMetadata, siteConfig } from "@/lib/seo";
 
-const HowWeWork = dynamic(() => import("@/components/sections/HowWeWork"));
 const Services = dynamic(() => import("@/components/sections/Services"));
 const WhyChooseUs = dynamic(() => import("@/components/sections/WhyChooseUs"));
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 const Pricing = dynamic(() => import("@/components/sections/Pricing"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
-const FAQ = dynamic(() => import("@/components/sections/FAQ"));
 const CTA = dynamic(() => import("@/components/sections/CTA"));
 
 export const metadata: Metadata = buildPageMetadata({
@@ -104,14 +101,11 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
       <Hero />
-      <TrustLogos />
-      <HowWeWork />
       <Services />
-      <WhyChooseUs />
       <Portfolio />
+      <WhyChooseUs />
       <Testimonials />
       <Pricing />
-      <FAQ />
       <CTA />
     </>
   );
