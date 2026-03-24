@@ -9,28 +9,34 @@ import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
 const testimonials = [
   {
-    name: "Dr. Aman Gupta",
-    business: "Smilecraft Dental",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    review: "Our new patient bookings doubled in 30 days. The Google Ads strategy they implemented was extremely effective from the very first week.",
-  },
-  {
-    name: "Neha Verma",
-    business: "Urbanglow Salon",
-    image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    review: "They completely redefined our branding presence. We're now perceived universally as the top premium salon in our entire city.",
-  },
-  {
-    name: "Rohan Singh",
-    business: "Apex Academy",
+    name: "A. Singh",
+    business: "School Owner — Ludhiana",
     image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    review: "Built us a gorgeously fast website. Our student enrollments jumped 150% this season entirely due to their local SEO dominance.",
+    review: "Working with this team completely changed how we get customers online. The system they designed is powerful and easy to manage.",
   },
   {
-    name: "Simran Kaur",
-    business: "Brewbite Cafe",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    review: "Their approach to Instagram marketing is unmatched. We have a queue outside every weekend resulting from the viral reels they produced.",
+    name: "Vikram Sharma",
+    business: "Gym Owner — Jalandhar",
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    review: "Working with this team completely changed how we get customers online. The system they designed is powerful and easy to manage.",
+  },
+  {
+    name: "Dr. R. K. Arora",
+    business: "Clinic Owner — Chandigarh",
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    review: "Working with this team completely changed how we get customers online. The system they designed is powerful and easy to manage.",
+  },
+  {
+    name: "Sandeep Bhatia",
+    business: "Restaurant Owner — Jalandhar",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    review: "Working with this team completely changed how we get customers online. The system they designed is powerful and easy to manage.",
+  },
+  {
+    name: "Priya Kaur",
+    business: "Salon Owner — Goraya",
+    image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    review: "Working with this team completely changed how we get customers online. The system they designed is powerful and easy to manage.",
   }
 ];
 
