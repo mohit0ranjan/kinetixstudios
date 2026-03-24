@@ -60,17 +60,17 @@ const tools = [
 
 export default function Tools() {
   return (
-    <section className="py-20 md:py-24 relative bg-white font-sans border-t border-slate-100">
-      <div className="container mx-auto px-4 sm:px-6 max-w-[1400px]">
+    <section className="py-20 md:py-24 relative bg-surface-0 font-sans border-t border-black/5">
+      <div className="section-container">
         
         <div className="mb-12 md:mb-16">
           <div className="flex items-center gap-3 mb-3 md:mb-4">
-            <span className="w-8 h-[2px] bg-primary"></span>
-            <h2 className="text-[10px] md:text-[11px] font-black text-primary tracking-[0.2em] uppercase">
+            <span className="w-8 h-[2px] bg-brand"></span>
+            <h2 className="text-[10px] md:text-[11px] font-black text-brand tracking-[0.2em] uppercase">
               PLATFORMS & INTEGRATIONS
             </h2>
           </div>
-          <h3 className="text-3xl md:text-5xl lg:text-[44px] font-bold text-slate-900 tracking-tight">
+          <h3 className="text-3xl md:text-5xl lg:text-[44px] font-bold text-text-primary tracking-tight">
             Tools We Specialize In
           </h3>
         </div>
@@ -83,48 +83,48 @@ export default function Tools() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
-              className="bg-white border border-slate-200 shadow-sm md:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] rounded-[20px] overflow-hidden flex flex-col active:scale-[0.98] md:active:scale-100 md:hover:shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 group"
+              className="bg-surface-0 border border-black/5 shadow-sm md:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] rounded-[20px] overflow-hidden flex flex-col active:scale-[0.98] md:active:scale-100 md:hover:shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-300 group"
             >
               {/* Header Visual mimicking the Wordsometric header */}
-              <div className="relative h-[160px] md:h-[200px] w-full bg-[#F8F9FA] border-b border-slate-100 overflow-hidden flex items-center justify-center px-6 md:px-8 text-center bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px]">
+              <div className="relative h-[160px] md:h-[200px] w-full bg-surface-1 border-b border-black/5 overflow-hidden flex items-center justify-center px-6 md:px-8 text-center bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px]">
                 
                 {/* Visual Graphic representation inside the header */}
-                <h4 className="text-[17px] md:text-xl font-medium text-slate-800 leading-snug">
+                <h4 className="text-[17px] md:text-xl font-medium text-text-primary leading-snug">
                   {tool.headerVisual.split(' ').map((word, idx) => (
                     idx === 1 ? <span key={idx} className={`px-2 py-0.5 rounded-md ${tool.highlightColor} font-bold mr-1`}>{word}</span> : <span key={idx} className="mr-1">{word}</span>
                   ))}
                 </h4>
 
                 {/* Option dots */}
-                <div className="absolute top-3 right-3 md:top-4 md:right-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 cursor-pointer hover:bg-slate-50 shadow-sm">
+                <div className="absolute top-3 right-3 md:top-4 md:right-4 w-7 h-7 md:w-8 md:h-8 rounded-full bg-surface-0 border border-black/5 flex items-center justify-center text-text-tertiary cursor-pointer hover:bg-surface-1 shadow-sm">
                   <MoreVertical size={14} className="md:w-[16px] md:h-[16px]" />
                 </div>
 
                 {/* Overlapping Icon Block */}
-                <div className={`absolute -bottom-5 left-5 md:-bottom-6 md:left-6 w-[40px] h-[40px] md:w-[52px] md:h-[52px] rounded-[14px] md:rounded-2xl ${tool.iconBg} border border-slate-200 shadow-sm flex items-center justify-center ${tool.iconColor} z-10`}>
+                <div className={`absolute -bottom-5 left-5 md:-bottom-6 md:left-6 w-[40px] h-[40px] md:w-[52px] md:h-[52px] rounded-[14px] md:rounded-2xl ${tool.iconBg} border border-black/5 shadow-sm flex items-center justify-center ${tool.iconColor} z-10`}>
                   <div className="scale-[0.75] md:scale-100">{tool.icon}</div>
                 </div>
               </div>
 
               {/* Main Body */}
-              <div className="pt-8 md:pt-10 px-5 md:px-6 pb-5 md:pb-6 flex-1 bg-white">
+              <div className="pt-8 md:pt-10 px-5 md:px-6 pb-5 md:pb-6 flex-1 bg-surface-0">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <h4 className="font-bold text-slate-900 text-[15px] md:text-[17px] tracking-tight line-clamp-1">{tool.name}</h4>
-                  <span className="px-2 py-0.5 rounded-[6px] bg-slate-100 text-slate-500 text-[9px] md:text-[10px] font-semibold uppercase tracking-wider whitespace-nowrap">
+                  <h4 className="font-bold text-text-primary text-[15px] md:text-[17px] tracking-tight line-clamp-1">{tool.name}</h4>
+                  <span className="px-2 py-0.5 rounded-[6px] bg-surface-1 text-text-tertiary text-[9px] md:text-[10px] font-semibold uppercase tracking-wider whitespace-nowrap">
                     {tool.tag}
                   </span>
                 </div>
-                <p className="text-slate-500 text-[13px] md:text-[14px] font-medium leading-[1.6]">
+                <p className="text-text-secondary text-[13px] md:text-[14px] font-medium leading-[1.6]">
                   {tool.description}
                 </p>
               </div>
 
               {/* Footer Panel */}
-              <div className="border-t border-slate-100 px-5 md:px-6 py-3 md:py-4 flex items-center justify-between bg-white mt-auto">
-                <button className="px-3 md:px-4 py-1.5 md:py-2 border border-slate-200 rounded-lg text-[12px] md:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors bg-white shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+              <div className="border-t border-black/5 px-5 md:px-6 py-3 md:py-4 flex items-center justify-between bg-surface-0 mt-auto">
+                <button className="px-3 md:px-4 py-1.5 md:py-2 border border-black/5 rounded-lg text-[12px] md:text-sm font-semibold text-text-primary hover:bg-surface-1 transition-colors bg-surface-0 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
                   {tool.buttonText}
                 </button>
-                <div className="flex items-center gap-1 md:gap-1.5 text-slate-400">
+                <div className="flex items-center gap-1 md:gap-1.5 text-text-tertiary">
                   <Download size={12} className="md:w-[14px] md:h-[14px]" />
                   <span className="text-[10px] md:text-[12px] font-medium">{tool.installs}</span>
                 </div>

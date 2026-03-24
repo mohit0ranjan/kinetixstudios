@@ -90,7 +90,7 @@ export default function Footer() {
               <div>
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
                 <div className="flex gap-4 text-text-inverse/40">
-                  <a href="https://wa.me/919876543210" className="hover:text-brand transition-colors">WhatsApp</a>
+                  <a href="https://wa.me/917009073498" className="hover:text-brand transition-colors">WhatsApp</a>
                   <a href="https://instagram.com/kinetixstudios" className="hover:text-brand transition-colors">Instagram</a>
                   <a href="https://linkedin.com/company/kinetixstudios" className="hover:text-brand transition-colors">LinkedIn</a>
                 </div>
@@ -105,8 +105,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Kinetix Studios. Building legacies since 2024.
           </p>
           <div className="flex gap-8 text-sm">
-            <Link href="/" className="text-text-inverse/25 hover:text-text-inverse/50 transition-colors">Privacy Policy</Link>
-            <Link href="/" className="text-text-inverse/25 hover:text-text-inverse/50 transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-text-inverse/25 hover:text-text-inverse/50 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-text-inverse/25 hover:text-text-inverse/50 transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

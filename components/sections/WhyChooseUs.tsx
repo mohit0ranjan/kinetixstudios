@@ -58,17 +58,17 @@ function StatRow({ stat, index }: { stat: StatItem; index: number }) {
     <motion.div
       ref={ref}
       variants={fadeUp}
-      className={`group flex flex-col md:flex-row md:items-center py-10 lg:py-14 border-b border-gray-200/70 relative ${
+      className={`group flex flex-col md:flex-row md:items-center py-10 lg:py-14 border-b border-black/5 relative ${
         index === 0 ? "pt-0" : ""
       } ${index === stats.length - 1 ? "border-b-0 pb-0" : ""}`}
     >
       {/* Massive Number */}
       <div className="md:w-[45%] shrink-0">
         <div className="flex items-baseline overflow-hidden">
-          <span className="text-[5.5rem] lg:text-[8rem] font-sans font-black tracking-tighter leading-none text-[#1C1F2B] group-hover:text-[#FF6A00] transition-colors duration-500">
+          <span className="text-[5.5rem] lg:text-[8rem] font-sans font-black tracking-tighter leading-none text-text-primary group-hover:text-brand transition-colors duration-500">
             {count}
           </span>
-          <span className="text-[3rem] lg:text-[4.5rem] font-bold text-[#FF6A00] leading-none ml-1">
+          <span className="text-[3rem] lg:text-[4.5rem] font-bold text-brand leading-none ml-1">
             {stat.suffix}
           </span>
         </div>
@@ -76,16 +76,16 @@ function StatRow({ stat, index }: { stat: StatItem; index: number }) {
 
       {/* Description */}
       <div className="md:w-[55%] flex flex-col mt-4 md:mt-0 lg:pl-8">
-        <h4 className="text-[20px] lg:text-[24px] font-bold text-[#1C1F2B] tracking-tight mb-2 md:mb-3">
+        <h4 className="text-[20px] lg:text-[24px] font-bold text-text-primary tracking-tight mb-2 md:mb-3">
           {stat.label}
         </h4>
-        <p className="text-[15px] lg:text-[17px] text-gray-500 font-medium leading-relaxed max-w-md transition-colors duration-500 group-hover:text-gray-700">
+        <p className="text-[15px] lg:text-[17px] text-text-secondary font-medium leading-relaxed max-w-md transition-colors duration-500 group-hover:text-text-primary">
           {stat.description}
         </p>
       </div>
 
       {/* Subtle Absolute Decorative Line appearing on hover */}
-      <div className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#FF6A00] group-hover:w-full transition-all duration-700 ease-out opacity-0 group-hover:opacity-100" />
+      <div className="absolute left-0 bottom-0 w-0 h-[2px] bg-brand group-hover:w-full transition-all duration-700 ease-out opacity-0 group-hover:opacity-100" />
     </motion.div>
   );
 }
@@ -131,25 +131,25 @@ export default function WhyChooseUs() {
               viewport={viewportOnce}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-[#FF6A00]" />
-                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-[#FF6A00]">
+                <div className="h-px w-8 bg-brand" />
+                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-brand">
                   Why Us
                 </span>
               </div>
               
-              <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-[#1C1F2B] tracking-tight leading-[1.05] mb-6">
+              <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-text-primary tracking-tight leading-[1.05] mb-6">
                 A Partner You Can<br />
-                <span className="font-serif italic font-medium text-[#FF6A00]">Actually</span> Trust.
+                <span className="font-serif italic font-medium text-brand">Actually</span> Trust.
               </h2>
               
-              <p className="text-gray-500 text-[17px] md:text-[19px] font-medium leading-relaxed mb-8">
+              <p className="text-text-secondary text-[17px] md:text-[19px] font-medium leading-relaxed mb-8">
                 We focus entirely on measurable growth, not vanity metrics. 
               </p>
 
               <div className="bg-white/60 border border-gray-200/60 p-6 lg:p-8 rounded-2xl shadow-[0_4px_24px_-8px_rgba(0,0,0,0.04)] backdrop-blur-sm relative overflow-hidden">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#FF6A00]" />
-                <h4 className="text-xl font-bold text-[#1C1F2B] mb-2">We don't guess.</h4>
-                <p className="text-gray-500 font-medium leading-relaxed">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand" />
+                <h4 className="text-xl font-bold text-text-primary mb-2">We don&apos;t guess.</h4>
+                <p className="text-text-secondary font-medium leading-relaxed">
                   Every decision we make is backed by hard data. We measure, test, and aggressively scale what works to drive qualified leads straight to your business.
                 </p>
               </div>

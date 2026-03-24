@@ -1,329 +1,251 @@
 "use client";
 
-import { motion, useScroll, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Target, Star, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { ArrowUpRight, Upload } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { fadeUp, viewportOnce } from "@/lib/motion";
+
+const DotLottieReact = dynamic(
+  () => import("@lottiefiles/dotlottie-react").then((mod) => mod.DotLottieReact),
+  {
+    ssr: false,
+    loading: () => <div className="w-full h-full animate-pulse bg-brand/10 rounded-xl" />
+  }
+);
+import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
 const services = [
   {
     title: "High-Converting Websites",
-    description: "Wildly fast, premium storefronts engineered to turn visitors into paying customers without friction.",
+    description:
+      "Wildly fast, premium storefronts engineered to turn visitors into paying customers without friction.",
+    stat: "3× Bookings",
+    lottieUrl: "/lottie/Website.lottie",
   },
   {
     title: "Paid Advertising",
-    description: "Hyper-targeted Meta & Google campaigns that scale leads predictably and profitably.",
+    description:
+      "Hyper-targeted Meta & Google campaigns that scale leads predictably and profitably.",
+    stat: "4.5× ROAS",
+    lottieUrl: "/lottie/Marketing.lottie",
   },
   {
     title: "Local SEO Dominance",
-    description: "Dominate the Google Maps pack so you're the undeniable #1 choice locals find first.",
+    description:
+      "Dominate the Google Maps pack so you're the undeniable #1 choice locals find first.",
+    stat: "#1 Ranking",
+    lottieUrl: "/lottie/SEO.lottie",
   },
   {
     title: "Social Media Growth",
-    description: "Build omnipresence on Instagram & Facebook that captures attention and drives action.",
+    description:
+      "Build omnipresence on Instagram & Facebook that captures attention and drives action.",
+    stat: "+10k Followers",
+    lottieUrl: "/lottie/Social_Bubble.lottie",
   },
   {
     title: "Brand Identity",
-    description: "Premium visual systems, logos, and aesthetics that scream undeniable trust and authority.",
+    description:
+      "Premium visual systems, logos, and aesthetics that scream undeniable trust and authority.",
+    stat: "100% Rebrand",
+    lottieUrl: "/lottie/brand.lottie",
   },
 ];
 
-// ────────────────────────────────────────────────────────
-// Immersive Interactive Previews
-// ────────────────────────────────────────────────────────
-
-const WebPreview = ({ active }: { active: boolean }) => (
-  <div className="w-full h-full flex flex-col bg-[#F8F9FA] rounded-2xl border border-gray-200 overflow-hidden shadow-inner">
-    <div className="h-8 bg-white border-b border-gray-200 flex items-center px-4 gap-2">
-       <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-       <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-       <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-    </div>
-    <div className="flex-1 p-4 flex gap-4">
-       <motion.div 
-         initial={{ x: -20, opacity: 0 }} 
-         animate={active ? { x: 0, opacity: 1 } : {}} 
-         transition={{ duration: 0.6, ease: "easeOut" }}
-         className="w-1/4 h-full bg-white rounded-lg border border-gray-100 shadow-sm" 
-       />
-       <div className="flex-1 flex flex-col gap-4 relative">
-         <motion.div 
-           initial={{ scaleX: 0 }} 
-           animate={active ? { scaleX: 1 } : {}} 
-           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-           className="w-full h-12 bg-gradient-to-r from-[#FF6A00]/10 to-transparent rounded-lg origin-left" 
-         />
-         <motion.div 
-           initial={{ y: 20, opacity: 0 }} 
-           animate={active ? { y: 0, opacity: 1 } : {}} 
-           transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-           className="w-full flex-1 bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden relative" 
-         >
-           <motion.svg
-             xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             strokeWidth="2"
-             strokeLinecap="round"
-             strokeLinejoin="round"
-             className="absolute w-6 h-6 text-gray-900 z-10 drop-shadow-md"
-             animate={active ? { x: [200, 50, 150], y: [150, 30, 80] } : {}}
-             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-           >
-             <polygon points="3 3 10 21 14 14 21 10 3 3" fill="white" />
-           </motion.svg>
-         </motion.div>
-       </div>
-    </div>
-  </div>
-);
-
-const AdsPreview = ({ active }: { active: boolean }) => (
-  <div className="w-full h-full bg-[#111111] rounded-2xl overflow-hidden relative p-6 flex flex-col justify-end shadow-[inset_0_2px_20px_rgba(0,0,0,0.5)]">
-     <div className="absolute top-6 left-6 flex items-center gap-3">
-        <Target className="text-[#FF6A00]" size={24} />
-        <span className="text-white font-bold text-sm tracking-widest uppercase">Live Matrix</span>
-     </div>
-     <div className="flex justify-between items-end gap-2 h-1/2">
-       {[40, 70, 45, 90, 60, 100, 85].map((height, i) => (
-         <motion.div 
-           key={i}
-           initial={{ height: "0%" }}
-           animate={active ? { height: `${height}%` } : {}}
-           transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }}
-           className="flex-1 bg-gradient-to-t from-[#FF6A00] to-orange-400 rounded-t-sm"
-         />
-       ))}
-     </div>
-     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-20 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 flex flex-col items-center justify-center shadow-2xl">
-       <span className="text-[10px] text-white/70 font-bold uppercase tracking-[0.2em] mb-1">Avg ROAS</span>
-       <motion.span 
-         initial={{ scale: 0.5, opacity: 0 }}
-         animate={active ? { scale: 1, opacity: 1 } : {}}
-         transition={{ delay: 0.7, type: "spring" }}
-         className="text-3xl font-black text-white leading-none"
-       >
-         4.5x
-       </motion.span>
-     </div>
-  </div>
-);
-
-const SEOPreview = ({ active }: { active: boolean }) => (
-  <div className="w-full h-full bg-white rounded-2xl border border-gray-200/60 shadow-[inset_0_0_40px_rgba(0,0,0,0.02)] relative overflow-hidden flex items-center justify-center">
-     <motion.div 
-       initial={{ y: 50, opacity: 0 }}
-       animate={active ? { y: 0, opacity: 1 } : {}}
-       transition={{ duration: 0.6, ease: "easeOut" }}
-       className="w-[85%] bg-white rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,0.1)] border border-gray-100/80 p-6 flex flex-col sm:flex-row items-center gap-6 relative z-10"
-     >
-        <span className="text-6xl font-black text-[#1C1F2B] tracking-tighter">1st</span>
-        <div className="w-full sm:w-px h-px sm:h-12 bg-gray-200" />
-        <div className="flex flex-col gap-1.5 items-center sm:items-start">
-          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Google Local Rank</span>
-          <div className="flex gap-1 text-[#FFB800]">
-            {[1,2,3,4,5].map(i => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={active ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.4, type: "spring" }}
-              >
-                <Star fill="currentColor" size={18} strokeWidth={0} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-     </motion.div>
-     {/* Radar rings */}
-     <motion.div 
-        animate={active ? { scale: [1, 1.5, 1], opacity: [0.1, 0, 0.1] } : {}}
-        transition={{ repeat: Infinity, duration: 3 }}
-        className="absolute w-64 h-64 border border-[#FF6A00]/30 rounded-full pointer-events-none" 
-     />
-     <motion.div 
-        animate={active ? { scale: [1, 2, 1], opacity: [0.05, 0, 0.05] } : {}}
-        transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
-        className="absolute w-96 h-96 border border-[#FF6A00]/20 rounded-full pointer-events-none" 
-     />
-  </div>
-);
-
-const SocialPreview = ({ active }: { active: boolean }) => (
-  <div className="w-full h-full bg-gradient-to-tr from-indigo-50/50 via-purple-50/50 to-pink-50/50 rounded-2xl relative overflow-hidden flex flex-col justify-center items-center border border-gray-100">
-     <div className="flex -space-x-4 mb-6">
-       {[
-         "bg-gradient-to-br from-pink-400 to-rose-500",
-         "bg-gradient-to-br from-purple-400 to-indigo-500",
-         "bg-gradient-to-br from-blue-400 to-cyan-500",
-         "bg-gradient-to-br from-orange-400 to-amber-500"
-       ].map((bg, i) => (
-         <motion.div 
-           key={i}
-           initial={{ x: 40, opacity: 0 }}
-           animate={active ? { x: 0, opacity: 1 } : {}}
-           transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
-           className={`w-16 h-16 rounded-full border-[3px] border-white shadow-lg relative z-${40 - i * 10} ${bg}`}
-         />
-       ))}
-     </div>
-     <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={active ? { y: 0, opacity: 1 } : {}}
-        transition={{ delay: 0.6 }}
-        className="bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-sm border border-white/50 flex gap-3 items-center"
-     >
-        <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
-        <span className="text-[13px] font-bold text-gray-900 tracking-wide">+10k Followers MTD</span>
-     </motion.div>
-  </div>
-);
-
-const BrandPreview = ({ active }: { active: boolean }) => (
-  <div className="w-full h-full bg-[#0a0a0a] rounded-2xl overflow-hidden relative p-6 sm:p-8 flex items-center justify-center">
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px]" />
-    
-    <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-sm relative z-10">
-      <motion.div 
-        initial={{ rotateY: 90, opacity: 0 }}
-        animate={active ? { rotateY: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, type: "spring" }}
-        className="bg-[#FF6A00] h-24 rounded-2xl flex items-end p-4 shadow-xl"
-      >
-        <span className="text-white/90 text-[10px] font-bold tracking-widest">PRIMARY</span>
-      </motion.div>
-      <motion.div 
-        initial={{ rotateY: -90, opacity: 0 }}
-        animate={active ? { rotateY: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, type: "spring", delay: 0.1 }}
-        className="bg-[#1C1F2B] border border-white/10 h-24 rounded-2xl flex items-end p-4 shadow-xl"
-      >
-        <span className="text-white/60 text-[10px] font-bold tracking-widest">DARK</span>
-      </motion.div>
-      <motion.div 
-        initial={{ rotateX: 90, opacity: 0 }}
-        animate={active ? { rotateX: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, type: "spring", delay: 0.2 }}
-        className="bg-white h-20 sm:h-24 rounded-2xl flex items-end p-4 shadow-xl col-span-2"
-      >
-        <span className="text-gray-400 text-[10px] font-bold tracking-widest">LIGHT</span>
-      </motion.div>
-    </div>
-  </div>
-);
-
-
-// ────────────────────────────────────────────────────────
-// Main Component
-// ────────────────────────────────────────────────────────
-
-const ServiceBlock = ({ service, index }: { service: any, index: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: "-45% 0px -45% 0px" });
-
+// ── Shared Lottie Preview Component ──
+function LottiePreview({ url, fallbackText }: { url: string; fallbackText: string }) {
   return (
-    <div 
-      ref={ref} 
-      className={`relative py-16 lg:py-24 pl-6 md:pl-12 transition-all duration-700 ease-out ${
-        isInView ? "opacity-100 scale-100" : "opacity-30 scale-95"
-      }`}
-    >
-      {/* Scroll indicator blip (Desktop) */}
-      <div className={`absolute -left-[4px] top-24 w-2.5 h-2.5 rounded-full border-[2px] hidden lg:block transition-colors duration-500 z-20 ${
-        isInView ? "bg-[#FF6A00] border-[#FF6A00] shadow-[0_0_12px_rgba(255,106,0,0.5)]" : "bg-transparent border-gray-300"
-      }`} />
-
-      {/* Header Area */}
-      <div className="flex items-center gap-4 sm:gap-6 mb-6">
-        <span className={`text-xl lg:text-2xl font-black transition-colors duration-500 ${isInView ? "text-[#FF6A00]" : "text-gray-300"}`}>
-          0{index + 1}
-        </span>
-        <h3 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#1C1F2B] tracking-tight leading-tight">
-          {service.title}
-        </h3>
-      </div>
+    <div className="w-full h-full bg-surface-1 rounded-xl overflow-hidden flex items-center justify-center relative">
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-50 pointer-events-none" />
       
-      {/* Description */}
-      <p className="text-[16px] lg:text-[18px] text-gray-500 font-medium leading-relaxed max-w-lg mb-10">
-        {service.description}
-      </p>
-
-      {/* Immersive UI Preview Container */}
-      <div className="w-full aspect-[4/3] sm:aspect-video lg:aspect-[16/10] rounded-[24px] lg:rounded-[32px] bg-white/40 border border-gray-200/60 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.05)] overflow-hidden backdrop-blur-md relative p-3 sm:p-5 lg:p-6 group">
-        
-        {/* Renders the specific interactive mockup */}
-        {index === 0 && <WebPreview active={isInView} />}
-        {index === 1 && <AdsPreview active={isInView} />}
-        {index === 2 && <SEOPreview active={isInView} />}
-        {index === 3 && <SocialPreview active={isInView} />}
-        {index === 4 && <BrandPreview active={isInView} />}
-        
-        {/* Subtle explore CTA that floats in smoothly */}
-        <Link href="/services" className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10 bg-white/90 backdrop-blur-md px-5 py-3 rounded-full shadow-lg border border-gray-100 flex items-center gap-2 text-sm font-bold text-gray-900 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hover:text-[#FF6A00]">
-          Explore <ArrowUpRight size={16} />
-        </Link>
+      <div className="w-[85%] h-[85%] flex items-center justify-center relative z-10">
+        <DotLottieReact
+          src={url}
+          loop
+          autoplay
+          worker={false}
+          className="w-full h-full"
+        />
       </div>
-
     </div>
   );
-};
+}
 
+// ── Service Row ──
+function ServiceRow({
+  service,
+  index,
+  isActive,
+  onHover,
+}: {
+  service: (typeof services)[0];
+  index: number;
+  isActive: boolean;
+  onHover: () => void;
+}) {
+  return (
+    <motion.div
+      onMouseEnter={onHover}
+      onClick={onHover}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.4, delay: index * 0.08, ease: ease.out }}
+      className={`group cursor-pointer border-b border-black/5 last:border-b-0 transition-all duration-500 ${
+        isActive ? "py-7 md:py-8" : "py-5 md:py-6"
+      }`}
+    >
+      <div className="flex items-center gap-4 md:gap-6">
+        {/* Number */}
+        <span
+          className={`text-lg md:text-xl font-black tracking-tight transition-colors duration-400 shrink-0 w-8 ${
+            isActive ? "text-brand" : "text-text-tertiary/30"
+          }`}
+        >
+          0{index + 1}
+        </span>
+
+        {/* Title + Description */}
+        <div className="flex-1 min-w-0">
+          <h3
+            className={`text-lg md:text-2xl lg:text-[1.75rem] font-bold tracking-tight transition-colors duration-400 ${
+              isActive ? "text-text-primary" : "text-text-secondary"
+            }`}
+          >
+            {service.title}
+          </h3>
+
+          {/* Description — expands when active */}
+          <AnimatePresence>
+            {isActive && (
+              <motion.p
+                initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                animate={{ height: "auto", opacity: 1, marginTop: 8 }}
+                exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="text-text-secondary text-[14px] md:text-[15px] font-medium leading-relaxed max-w-lg overflow-hidden"
+              >
+                {service.description}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Stat badge */}
+        <span
+          className={`hidden sm:inline-flex items-center text-[11px] font-bold px-3 py-1.5 rounded-full transition-all duration-400 shrink-0 ${
+            isActive
+              ? "bg-brand/10 text-brand"
+              : "bg-surface-1 text-text-tertiary"
+          }`}
+        >
+          {service.stat}
+        </span>
+
+        {/* Arrow */}
+        <div
+          className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-400 ${
+            isActive
+              ? "border-brand/20 text-brand bg-brand/5"
+              : "border-black/5 text-text-tertiary"
+          }`}
+        >
+          <ArrowUpRight
+            size={14}
+            className={`transition-transform duration-400 ${isActive ? "rotate-0" : "-rotate-45"}`}
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Services() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  const [active, setActive] = useState(0);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  const activeService = services[active];
 
   return (
-    <section 
-      ref={containerRef} 
-      className="py-12 lg:py-24 bg-gradient-to-b from-[#FAFAFA] to-[#F2F4F7] relative overflow-hidden"
+    <section
+      ref={sectionRef}
+      className="py-16 md:py-24 bg-gradient-to-b from-surface-1 to-[#F2F4F7] relative overflow-hidden"
     >
-      <div className="container mx-auto px-5 lg:px-8 max-w-[1300px]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative">
-          
-          {/* Left Side: Sticky Narrative */}
-          <div className="lg:col-span-5 relative">
-            <div className="lg:sticky lg:top-40 mb-12 lg:mb-0">
-               <motion.div
-                 variants={fadeUp}
-                 initial="hidden"
-                 whileInView="visible"
-                 viewport={viewportOnce}
-               >
-                 <SectionEyebrow label="CAPABILITIES" />
-                 <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black text-[#1C1F2B] tracking-tight leading-[1.05] mt-6 mb-6">
-                   Everything you need to dominate online.
-                 </h2>
-                 <p className="text-gray-500 text-lg lg:text-[19px] font-medium leading-relaxed max-w-sm">
-                   We combine strategy, design, and performance marketing to drive real growth. No fluff, just results.
-                 </p>
-               </motion.div>
-            </div>
+      <div className="section-container relative z-10">
+        {/* Header */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mb-10 md:mb-14"
+        >
+          <SectionEyebrow label="CAPABILITIES" />
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mt-4 mb-4">
+            Everything you need to{" "}
+            <span className="text-brand font-display italic">dominate</span>{" "}
+            online.
+          </h2>
+          <p className="text-text-secondary text-base md:text-lg font-medium max-w-xl">
+            We combine strategy, design, and performance marketing to drive real
+            growth. No fluff, just results.
+          </p>
+        </motion.div>
+
+        {/* ── Split Layout: List + Preview ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          {/* LEFT: Interactive Service List */}
+          <div className="flex flex-col">
+            {services.map((service, i) => (
+              <ServiceRow
+                key={service.title}
+                service={service}
+                index={i}
+                isActive={active === i}
+                onHover={() => setActive(i)}
+              />
+            ))}
+
+            {/* Explore CTA */}
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-brand font-bold text-[14px] mt-6 group hover:gap-3 transition-all duration-300"
+            >
+              Explore All Services
+              <ArrowUpRight
+                size={15}
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+              />
+            </Link>
           </div>
 
-          {/* Right Side: Immersive Scroll Showcase */}
-          <div className="lg:col-span-7 relative">
-            {/* The Animated Vertical Progress Line */}
-            <div className="absolute left-[3px] top-6 bottom-6 w-[2px] bg-gray-200/60 hidden lg:block rounded-full" />
-            <motion.div 
-               style={{ scaleY: scrollYProgress }} 
-               className="absolute left-[3px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-[#FF6A00] to-orange-400 origin-top hidden lg:block rounded-full z-10" 
-            />
+          {/* RIGHT: Animated Visual Preview (Desktop: sticky, Mobile: static) */}
+          <div className="lg:sticky lg:top-28 order-first lg:order-last">
+            <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden bg-surface-1 border border-black/5 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.35, ease: ease.out }}
+                  className="absolute inset-0 p-3 md:p-4"
+                >
+                  <LottiePreview url={activeService.lottieUrl} fallbackText={activeService.title} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-            {/* Scrolling Blocks */}
-            <div className="flex flex-col">
-              {services.map((service, i) => (
-                 <ServiceBlock key={i} service={service} index={i} />
-              ))}
+            {/* Mobile stat badge */}
+            <div className="sm:hidden mt-4 flex justify-center">
+              <span className="inline-flex items-center text-[12px] font-bold px-4 py-2 rounded-full bg-brand/10 text-brand">
+                {services[active].stat}
+              </span>
             </div>
           </div>
-
         </div>
       </div>
     </section>

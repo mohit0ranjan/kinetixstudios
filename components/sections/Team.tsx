@@ -1,97 +1,182 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
 const team = [
-  { name: "Mohit Ranjan", role: "Growth Strategist", image: "/team/Mohit Ranjan.png" },
-  { name: "Aryan", role: "System Architect & Developer", image: "/team/Aryan.jpeg" },
-  { name: "Nishant", role: "Developer", image: "/team/nishant.png" },
-  { name: "Nidhi Yadav", role: "Full Stack Developer", image: "/team/nidhi-yadav.png" },
-  { name: "Saumya", role: "UI/UX Designer", image: "/team/saumya.png" }
+  {
+    name: "Mohit Ranjan",
+    role: "Growth Strategist",
+    image: "/team/Mohit Ranjan.png",
+    quote: "Strategy without execution is just a dream.",
+  },
+  {
+    name: "Aaryan",
+    role: "System Architect & Developer",
+    image: "/team/Aryan.jpeg",
+    quote: "Clean systems scale infinitely.",
+  },
+  {
+    name: "Nishant",
+    role: "Developer",
+    image: "/team/nishant.png",
+    quote: "Ship fast, iterate faster.",
+  },
+  {
+    name: "Nidhi Yadav",
+    role: "Full Stack Developer",
+    image: "/team/nidhi-yadav.png",
+    quote: "Pixel-perfect is the minimum.",
+  },
+  {
+    name: "Saumya",
+    role: "UI/UX Designer",
+    image: "/team/saumya.png",
+    quote: "Design is how it works.",
+  },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+function TeamMember({
+  member,
+  index,
+}: {
+  member: (typeof team)[0];
+  index: number;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
-  },
-};
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: ease.out }}
+      className="group relative"
+    >
+      {/* Portrait */}
+      <div className="relative w-full aspect-[3/4] overflow-hidden rounded-2xl bg-surface-1 mb-5">
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
+          className="object-cover object-center transition-transform duration-700 ease-out lg:group-hover:scale-105"
+        />
+
+        {/* Gradient overlay on hover — desktop */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+        {/* Quote — appears on hover, desktop only */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none">
+          <p className="text-white/90 text-[13px] font-medium italic leading-relaxed">
+            &ldquo;{member.quote}&rdquo;
+          </p>
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="flex flex-col">
+        <h3 className="text-[15px] md:text-base font-bold text-text-primary tracking-tight mb-0.5 lg:group-hover:text-brand transition-colors duration-300">
+          {member.name}
+        </h3>
+        <p className="text-[12px] md:text-[13px] text-text-tertiary font-medium">
+          {member.role}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Team() {
   return (
-    <section className="py-24 bg-white font-sans selection:bg-[#FF6A00]/20">
-      <div className="container mx-auto px-5 lg:px-8 max-w-7xl">
+    <section className="py-16 md:py-24 bg-surface-0 relative overflow-hidden">
+      {/* Subtle ambient glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 20% 50%, rgba(255,106,0,0.03), transparent)",
+        }}
+      />
 
-        {/* Editorial Header */}
-        <div className="mb-16 lg:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
+      <div className="section-container relative z-10">
+        {/* Header */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 md:mb-16"
+        >
           <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-black tracking-tight">
-              NIT Jalandhar<br className="hidden md:block" /> Curated Team
+            <SectionEyebrow label="The Team" />
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mt-4">
+              NIT Jalandhar&apos;s{" "}
+              <span className="text-brand font-display italic">Finest.</span>
             </h2>
           </div>
-          <p className="text-gray-500 text-sm md:text-base max-w-sm leading-relaxed">
-            A specialized team of strategists, engineers, and creatives from NIT Jalandhar, working together to push the boundaries of digital growth.
+          <p className="text-text-secondary text-sm md:text-base font-medium max-w-sm leading-relaxed md:text-right">
+            A specialized crew of strategists, engineers &amp; creatives
+            building the future of local business growth.
           </p>
-        </div>
-
-        {/* 
-          STRICT GRID:
-          Mobile: 2 columns (grid-cols-2)
-          Desktop: 5 columns (lg:grid-cols-5)
-        */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-10 md:gap-x-6 lg:gap-x-8 md:gap-y-16"
-        >
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileTap={{ scale: 0.98 }}
-              className="group cursor-pointer flex flex-col"
-            >
-              {/* Image focuses purely on the portrait */}
-              <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[8px] md:rounded-[12px] bg-gray-100 mb-4 md:mb-5">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover object-center lg:group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                {/* Subtle dark overlay on hover (desktop only) */}
-                <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
-              </div>
-
-              {/* Minimal Text Content */}
-              <div className="flex flex-col transform lg:group-hover:-translate-y-1.5 transition-transform duration-500 ease-out">
-                <h3 className="text-[13px] md:text-base font-semibold text-black mb-0.5 tracking-tight">
-                  {member.name}
-                </h3>
-                <p className="text-[11px] md:text-[13px] text-gray-500 leading-snug">
-                  {member.role}
-                </p>
-              </div>
-            </motion.div>
-          ))}
         </motion.div>
 
+        {/* ── Desktop: Offset Staggered Grid ── */}
+        <div className="hidden md:grid grid-cols-5 gap-x-6 lg:gap-x-8">
+          {team.map((member, index) => (
+            <div
+              key={member.name}
+              className={index % 2 === 1 ? "pt-12 lg:pt-16" : ""}
+            >
+              <TeamMember member={member} index={index} />
+            </div>
+          ))}
+        </div>
+
+        {/* ── Mobile: Horizontal Scroll Showcase ── */}
+        <div className="md:hidden relative">
+          <div className="flex gap-5 overflow-x-auto pb-6 -mx-5 px-5 snap-x snap-mandatory no-scrollbar">
+            {team.map((member, index) => (
+              <div
+                key={member.name}
+                className="shrink-0 w-[65vw] max-w-[260px] snap-center"
+              >
+                <TeamMember member={member} index={index} />
+              </div>
+            ))}
+            {/* End spacer */}
+            <div className="w-5 shrink-0" />
+          </div>
+
+          {/* Fade edge */}
+          <div className="absolute right-0 top-0 bottom-6 w-10 bg-gradient-to-l from-surface-0 to-transparent pointer-events-none" />
+        </div>
+
+        {/* NIT Jalandhar badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.5, ease: ease.out }}
+          className="mt-12 md:mt-16 pt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+        >
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center">
+              <span className="text-brand text-sm font-black">N</span>
+            </div>
+            <span className="text-text-primary text-sm font-bold tracking-tight">
+              Built by NIT Jalandhar talent
+            </span>
+          </div>
+          <span className="hidden sm:block w-1 h-1 rounded-full bg-text-tertiary/30" />
+          <span className="text-text-tertiary text-xs font-medium">
+            Engineering × Creativity × Growth
+          </span>
+        </motion.div>
       </div>
     </section>
   );
