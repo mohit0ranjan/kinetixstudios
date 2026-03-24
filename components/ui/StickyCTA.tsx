@@ -22,7 +22,7 @@ export default function StickyCTA() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
-        className="fixed z-[70] bottom-20 md:bottom-8 right-4 md:right-8 group"
+        className="hidden md:flex fixed z-[70] bottom-8 right-8 group"
       >
         <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-text-primary px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 whitespace-nowrap">
           Chat with us instantly
@@ -51,13 +51,24 @@ export default function StickyCTA() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed bottom-4 left-4 right-4 z-[60] md:hidden safe-bottom"
           >
-            <a
-              href="/contact"
-              className="w-full h-14 rounded-2xl bg-brand text-white font-bold text-base tracking-tight flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(255,106,0,0.3)] border border-white/10"
-            >
-              Book Call
-              <ArrowRight size={18} />
-            </a>
+            <div className="flex gap-2 w-full h-[3.5rem] bg-white/80 backdrop-blur-md p-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-black/5">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noreferrer"
+                className="w-[3rem] shrink-0 rounded-xl bg-[#25D366] text-white flex items-center justify-center transition-all"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle size={22} />
+              </a>
+              <a
+                href="/contact"
+                className="flex-1 h-full rounded-xl bg-brand text-white font-bold text-[15px] tracking-tight flex items-center justify-center gap-2 transition-all shadow-[0_4px_15px_rgba(255,106,0,0.3)]"
+              >
+                Book Call
+                <ArrowRight size={16} />
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

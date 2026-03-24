@@ -6,14 +6,14 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-surface-dark pt-24 pb-12 relative overflow-hidden">
+    <footer className="bg-surface-dark pt-16 md:pt-20 pb-28 md:pb-10 relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand/5 blur-[150px] rounded-full pointer-events-none" />
       {/* Top border gradient */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand/30 to-transparent" />
       
       <div className="section-container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20 border-b border-white/8 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-12 border-b border-white/8 pb-12">
           
           {/* Brand Col */}
           <motion.div

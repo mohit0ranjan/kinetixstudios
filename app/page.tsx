@@ -5,6 +5,7 @@ import { buildPageMetadata, siteConfig } from "@/lib/seo";
 
 const Team = dynamic(() => import("@/components/sections/Team"));
 const Services = dynamic(() => import("@/components/sections/Services"));
+const Tools = dynamic(() => import("@/components/sections/Tools"));
 const HowWeWork = dynamic(() => import("@/components/sections/HowWeWork"));
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
 const WhyChooseUs = dynamic(() => import("@/components/sections/WhyChooseUs"));
@@ -105,6 +106,7 @@ export default function Home() {
       <Hero />
       <Team />
       <Services />
+      <Tools />
       <HowWeWork />
       <Portfolio />
       <WhyChooseUs />

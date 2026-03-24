@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 type StatItem = {
   number: number;
@@ -130,16 +131,11 @@ export default function WhyChooseUs() {
               whileInView="visible"
               viewport={viewportOnce}
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-px w-8 bg-brand" />
-                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-brand">
-                  Why Us
-                </span>
-              </div>
+              <SectionEyebrow label="Why Us" />
               
-              <h2 className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-text-primary tracking-tight leading-[1.05] mb-6">
+              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold text-text-primary tracking-tight leading-[1.05] mb-6 mt-4">
                 A Partner You Can<br />
-                <span className="font-serif italic font-medium text-brand">Actually</span> Trust.
+                <span className="font-display italic font-medium text-brand">Actually</span> Trust.
               </h2>
               
               <p className="text-text-secondary text-[17px] md:text-[19px] font-medium leading-relaxed mb-8">

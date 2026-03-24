@@ -79,11 +79,11 @@ function TeamMember({
       </div>
 
       {/* Info */}
-      <div className="flex flex-col">
-        <h3 className="text-[15px] md:text-base font-bold text-text-primary tracking-tight mb-0.5 lg:group-hover:text-brand transition-colors duration-300">
+      <div className="flex flex-col mt-3.5 md:mt-5">
+        <h3 className="text-[14px] md:text-base font-bold text-text-primary tracking-tight mb-0.5 lg:group-hover:text-brand transition-colors duration-300 leading-tight">
           {member.name}
         </h3>
-        <p className="text-[12px] md:text-[13px] text-text-tertiary font-medium">
+        <p className="text-[11px] md:text-[13px] text-text-tertiary font-medium leading-tight line-clamp-2">
           {member.role}
         </p>
       </div>
@@ -137,23 +137,18 @@ export default function Team() {
           ))}
         </div>
 
-        {/* ── Mobile: Horizontal Scroll Showcase ── */}
-        <div className="md:hidden relative">
-          <div className="flex gap-5 overflow-x-auto pb-6 -mx-5 px-5 snap-x snap-mandatory no-scrollbar">
+        {/* ── Mobile: Staggered Masonry Grid ── */}
+        <div className="md:hidden relative mt-8">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-10">
             {team.map((member, index) => (
               <div
                 key={member.name}
-                className="shrink-0 w-[65vw] max-w-[260px] snap-center"
+                className={index % 2 === 1 ? "mt-12" : ""}
               >
                 <TeamMember member={member} index={index} />
               </div>
             ))}
-            {/* End spacer */}
-            <div className="w-5 shrink-0" />
           </div>
-
-          {/* Fade edge */}
-          <div className="absolute right-0 top-0 bottom-6 w-10 bg-gradient-to-l from-surface-0 to-transparent pointer-events-none" />
         </div>
 
         {/* NIT Jalandhar badge */}

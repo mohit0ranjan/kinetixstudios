@@ -11,6 +11,7 @@ import {
   heroWord,
   ease,
   buttonPress,
+  viewportOnce,
 } from "@/lib/motion";
 
 const headlineWords = ["Great", "offline,", "but"];
@@ -278,44 +279,42 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* ── Mobile: Preview Cards Horizontal Scroll ── */}
-          <div className="lg:hidden w-full overflow-hidden relative mt-8">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.5, ease: ease.out }}
-              className="flex gap-4 overflow-x-auto pb-6 -mx-5 px-5 snap-x snap-mandatory no-scrollbar"
-            >
-              {Object.assign([...floatingCards], { length: floatingCards.length }).map((card, idx) => (
-                <div
+          {/* ── Mobile: Vertical Stack Preview ── */}
+          <div className="lg:hidden w-full relative mt-12 pb-8 flex flex-col items-center">
+            {floatingCards.map((card, idx) => {
+              const isFirst = idx === 0;
+              return (
+                <motion.div
                   key={card.title}
-                  className="bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden shrink-0 w-[240px] snap-center flex flex-col items-start"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
+                  transition={{ delay: 0.3 + idx * 0.15, duration: 0.6, ease: ease.out }}
+                  className={`bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden w-[280px] max-w-full flex flex-col items-start ${
+                    !isFirst ? "-mt-[8rem]" : ""
+                  }`}
+                  style={{
+                    scale: 1 - idx * 0.04,
+                    zIndex: floatingCards.length - idx,
+                  }}
                 >
-                  <div className="relative w-full h-[140px] flex items-center justify-center bg-surface-1 overflow-hidden">
-                    <Image src={card.image} alt={card.title} fill className="object-cover" sizes="240px" />
+                  <div className="relative w-full h-[150px] flex items-center justify-center bg-surface-1 overflow-hidden">
+                    <Image src={card.image} alt={card.title} fill className="object-cover" sizes="280px" />
                   </div>
-                  <div className="p-4 w-full text-left">
-                    <span className="text-[10px] font-bold text-brand uppercase tracking-[0.12em] block mb-1">
-                      {card.tag}
-                    </span>
-                    <h4 className="text-sm font-bold text-text-primary mb-1">{card.title}</h4>
-                    <span className="text-[10px] font-bold text-green-600 block bg-green-50 inline-block px-2 py-0.5 rounded-full mt-1">{card.metric}</span>
+                  <div className="p-5 w-full text-left bg-white relative z-10 border-t border-black/5 flex flex-col gap-1.5 shadow-[0_-5px_20px_rgba(0,0,0,0.03)]">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-bold text-brand uppercase tracking-[0.15em]">
+                        {card.tag}
+                      </span>
+                      <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full inline-block shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)]">
+                        {card.metric}
+                      </span>
+                    </div>
+                    <h4 className="text-[15px] font-bold text-text-primary tracking-tight">{card.title}</h4>
                   </div>
-                </div>
-              ))}
-              
-              {/* Spacer at the end for proper scrolling padding */}
-              <div className="w-[20px] shrink-0" />
-            </motion.div>
-            
-            {/* Scroll Indication Gradient Overlay & Hint text */}
-            <div className="absolute right-0 top-0 bottom-6 w-12 bg-gradient-to-l from-surface-1 to-transparent pointer-events-none" />
-            <motion.div 
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 0.8 }}
-              className="absolute bottom-0 right-5 flex items-center gap-2 text-xs font-semibold text-text-tertiary"
-            >
-              Swipe left to see work <ArrowRight size={12} />
-            </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
 
         </div>

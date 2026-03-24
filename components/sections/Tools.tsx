@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MoreVertical, Download, BarChart3, ShoppingBag, LayoutTemplate, Palette } from "lucide-react";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 
 const tools = [
   {
@@ -64,13 +65,8 @@ export default function Tools() {
       <div className="section-container">
         
         <div className="mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-3 md:mb-4">
-            <span className="w-8 h-[2px] bg-brand"></span>
-            <h2 className="text-[10px] md:text-[11px] font-black text-brand tracking-[0.2em] uppercase">
-              PLATFORMS & INTEGRATIONS
-            </h2>
-          </div>
-          <h3 className="text-3xl md:text-5xl lg:text-[44px] font-bold text-text-primary tracking-tight">
+          <SectionEyebrow label="Platforms & Integrations" />
+          <h3 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight mt-4">
             Tools We Specialize In
           </h3>
         </div>
