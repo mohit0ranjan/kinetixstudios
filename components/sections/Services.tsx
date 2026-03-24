@@ -2,18 +2,9 @@
 
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ArrowUpRight, Upload } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-
-const DotLottieReact = dynamic(
-  () => import("@lottiefiles/dotlottie-react").then((mod) => mod.DotLottieReact),
-  {
-    ssr: false,
-    loading: () => <div className="w-full h-full animate-pulse bg-brand/10 rounded-xl" />
-  }
-);
 import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
 const services = [
@@ -22,56 +13,210 @@ const services = [
     description:
       "Wildly fast, premium storefronts engineered to turn visitors into paying customers without friction.",
     stat: "3× Bookings",
-    lottieUrl: "/lottie/Website.lottie",
+    visual: "web",
   },
   {
     title: "Paid Advertising",
     description:
       "Hyper-targeted Meta & Google campaigns that scale leads predictably and profitably.",
     stat: "4.5× ROAS",
-    lottieUrl: "/lottie/Marketing.lottie",
+    visual: "ads",
   },
   {
     title: "Local SEO Dominance",
     description:
       "Dominate the Google Maps pack so you're the undeniable #1 choice locals find first.",
     stat: "#1 Ranking",
-    lottieUrl: "/lottie/SEO.lottie",
+    visual: "seo",
   },
   {
     title: "Social Media Growth",
     description:
       "Build omnipresence on Instagram & Facebook that captures attention and drives action.",
     stat: "+10k Followers",
-    lottieUrl: "/lottie/Social_Bubble.lottie",
+    visual: "social",
   },
   {
     title: "Brand Identity",
     description:
       "Premium visual systems, logos, and aesthetics that scream undeniable trust and authority.",
     stat: "100% Rebrand",
-    lottieUrl: "/lottie/brand.lottie",
+    visual: "brand",
   },
 ];
 
-// ── Shared Lottie Preview Component ──
-function LottiePreview({ url, fallbackText }: { url: string; fallbackText: string }) {
-  return (
-    <div className="w-full h-full bg-surface-1 rounded-xl overflow-hidden flex items-center justify-center relative">
-      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-50 pointer-events-none" />
-      
-      <div className="w-[85%] h-[85%] flex items-center justify-center relative z-10">
-        <DotLottieReact
-          src={url}
-          loop
-          autoplay
-          worker={false}
-          className="w-full h-full"
+// ── Compact Visual Previews ──
+const WebVisual = () => (
+  <div className="w-full h-full flex flex-col bg-surface-1 rounded-xl overflow-hidden">
+    <div className="h-6 bg-surface-0 border-b border-black/5 flex items-center px-3 gap-1.5">
+      <div className="w-2 h-2 rounded-full bg-red-400" />
+      <div className="w-2 h-2 rounded-full bg-amber-400" />
+      <div className="w-2 h-2 rounded-full bg-green-400" />
+    </div>
+    <div className="flex-1 p-3 flex gap-2">
+      <motion.div
+        initial={{ x: -10, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="w-1/4 h-full bg-surface-0 rounded-lg border border-black/5"
+      />
+      <div className="flex-1 flex flex-col gap-2">
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="w-full h-8 bg-brand/8 rounded-lg origin-left"
+        />
+        <motion.div
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="w-full flex-1 bg-surface-0 rounded-lg border border-black/5"
         />
       </div>
     </div>
-  );
-}
+  </div>
+);
+
+const AdsVisual = () => (
+  <div className="w-full h-full bg-surface-dark rounded-xl overflow-hidden p-4 flex items-end gap-1.5">
+    {[35, 60, 40, 80, 55, 100, 75].map((h, i) => (
+      <motion.div
+        key={i}
+        initial={{ height: "0%" }}
+        animate={{ height: `${h}%` }}
+        transition={{ duration: 0.5, delay: i * 0.06 }}
+        className="flex-1 bg-gradient-to-t from-brand to-brand-light rounded-t-sm relative"
+      >
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-white/20" />
+      </motion.div>
+    ))}
+    <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
+      <span className="text-[11px] font-bold text-white">4.5× ROAS</span>
+    </div>
+  </div>
+);
+
+const SEOVisual = () => (
+  <div className="w-full h-full bg-surface-0 rounded-xl border border-black/5 flex items-center justify-center relative overflow-hidden">
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="flex items-center gap-4 z-10"
+    >
+      <span className="text-5xl font-black text-text-primary tracking-tighter drop-shadow-sm">
+        1st
+      </span>
+      <div className="w-px h-10 bg-black/10" />
+      <div>
+        <span className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest block">
+          Google Local
+        </span>
+        <div className="flex gap-0.5 mt-1">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <motion.div
+              key={i}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: i * 0.08, type: "spring" }}
+              className="text-amber-400 text-sm drop-shadow-sm"
+            >
+              ★
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+    <motion.div
+      animate={{
+        scale: [1, 1.3, 1],
+        opacity: [0.08, 0, 0.08],
+      }}
+      transition={{ repeat: Infinity, duration: 2.5 }}
+      className="absolute w-40 h-40 border-2 border-brand/20 rounded-full"
+    />
+  </div>
+);
+
+const SocialVisual = () => (
+  <div className="w-full h-full bg-gradient-to-br from-indigo-50/80 via-purple-50/80 to-pink-50/80 rounded-xl border border-black/5 flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+    <div className="absolute inset-0 bg-[radial-gradient(#ffffff77_1px,transparent_1px)] [background-size:16px_16px]" />
+    <div className="flex -space-x-3 z-10">
+      {[
+        "from-pink-400 to-rose-500",
+        "from-purple-400 to-indigo-500",
+        "from-blue-400 to-cyan-500",
+        "from-brand to-brand-light",
+      ].map((bg, i) => (
+        <motion.div
+          key={i}
+          initial={{ x: 30, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: i * 0.08, type: "spring", stiffness: 120 }}
+          className={`w-12 h-12 rounded-full border-[2px] border-white shadow-md bg-gradient-to-br ${bg}`}
+        />
+      ))}
+    </div>
+    <motion.div
+      initial={{ y: 10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.4 }}
+      className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/50 z-10"
+    >
+      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+      <span className="text-[12px] font-bold text-text-primary">
+        +10k Followers MTD
+      </span>
+    </motion.div>
+  </div>
+);
+
+const BrandVisual = () => (
+  <div className="w-full h-full bg-[#1A1A1A] rounded-xl overflow-hidden p-4 flex items-center justify-center relative">
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:16px_16px]" />
+    <div className="grid grid-cols-2 gap-2.5 w-full max-w-[200px] relative z-10">
+      <motion.div
+        initial={{ rotateY: 90 }}
+        animate={{ rotateY: 0 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="bg-brand h-16 rounded-xl flex items-end p-2.5 shadow-lg border border-white/10"
+      >
+        <span className="text-white/80 text-[9px] font-bold tracking-widest drop-shadow-sm">
+          PRIMARY
+        </span>
+      </motion.div>
+      <motion.div
+        initial={{ rotateY: -90 }}
+        animate={{ rotateY: 0 }}
+        transition={{ duration: 0.5, type: "spring", delay: 0.08 }}
+        className="bg-[#2D2D2D] border border-white/10 h-16 rounded-xl flex items-end p-2.5 shadow-lg"
+      >
+        <span className="text-white/50 text-[9px] font-bold tracking-widest">
+          DARK
+        </span>
+      </motion.div>
+      <motion.div
+        initial={{ rotateX: 90 }}
+        animate={{ rotateX: 0 }}
+        transition={{ duration: 0.5, type: "spring", delay: 0.15 }}
+        className="bg-white h-14 rounded-xl flex items-end p-2.5 col-span-2 shadow-lg"
+      >
+        <span className="text-text-tertiary text-[9px] font-bold tracking-widest">
+          LIGHT
+        </span>
+      </motion.div>
+    </div>
+  </div>
+);
+
+const visuals: Record<string, React.FC> = {
+  web: WebVisual,
+  ads: AdsVisual,
+  seo: SEOVisual,
+  social: SocialVisual,
+  brand: BrandVisual,
+};
 
 // ── Service Row ──
 function ServiceRow({
@@ -167,7 +312,7 @@ export default function Services() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  const activeService = services[active];
+  const VisualComponent = visuals[services[active].visual];
 
   return (
     <section
@@ -222,7 +367,7 @@ export default function Services() {
             </Link>
           </div>
 
-          {/* RIGHT: Animated Visual Preview (Desktop: sticky, Mobile: static) */}
+          {/* RIGHT: Animated Visual Preview */}
           <div className="lg:sticky lg:top-28 order-first lg:order-last">
             <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden bg-surface-1 border border-black/5 shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] relative">
               <AnimatePresence mode="wait">
@@ -234,7 +379,7 @@ export default function Services() {
                   transition={{ duration: 0.35, ease: ease.out }}
                   className="absolute inset-0 p-3 md:p-4"
                 >
-                  <LottiePreview url={activeService.lottieUrl} fallbackText={activeService.title} />
+                  <VisualComponent />
                 </motion.div>
               </AnimatePresence>
             </div>

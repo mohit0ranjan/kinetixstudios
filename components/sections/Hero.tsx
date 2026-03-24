@@ -4,12 +4,6 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-
-const DotLottieReact = dynamic(
-  () => import("@lottiefiles/dotlottie-react").then((mod) => mod.DotLottieReact),
-  { ssr: false }
-);
 import {
   heroContainer,
   heroItem,
@@ -58,13 +52,13 @@ const floatingCards = [
     delay: 0.6,
   },
   {
-    title: "Growth Engine",
-    tag: "Strategy",
-    metric: "Always On",
-    image: "/lottie/Marketing.lottie",
-    type: "lottie",
+    title: "BrewBite Café",
+    tag: "Social Media",
+    metric: "450% ROI",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    type: "image",
     rotation: -3,
-    position: { top: "68%", right: "12%" },
+    position: { top: "62%", right: "16%" },
     size: "small" as const,
     delay: 0.8,
   },
@@ -255,21 +249,13 @@ export default function Hero() {
                         card.size === "large" ? "h-[180px] xl:h-[200px]" : "h-[130px] xl:h-[150px]"
                       }`}
                     >
-                      {card.type === "lottie" ? (
-                        <div className="w-full h-full flex items-center justify-center bg-surface-dark bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:16px_16px]">
-                          <div className="w-[80%] h-[80%]">
-                            <DotLottieReact autoplay loop src={card.image} className="w-full h-full" />
-                          </div>
-                        </div>
-                      ) : (
-                        <Image
-                          src={card.image}
-                          alt={card.title}
-                          fill
-                          className="object-cover"
-                          sizes="340px"
-                        />
-                      )}
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-cover"
+                        sizes="340px"
+                      />
                     </div>
 
                     {/* Card info */}
@@ -306,15 +292,7 @@ export default function Hero() {
                   className="bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden shrink-0 w-[240px] snap-center flex flex-col items-start"
                 >
                   <div className="relative w-full h-[140px] flex items-center justify-center bg-surface-1 overflow-hidden">
-                    {card.type === "lottie" ? (
-                      <div className="w-full h-full flex items-center justify-center bg-surface-dark bg-[radial-gradient(#ffffff15_1px,transparent_1px)] [background-size:16px_16px]">
-                        <div className="w-[80%] h-[80%]">
-                          <DotLottieReact autoplay loop src={card.image} className="w-full h-full" />
-                        </div>
-                      </div>
-                    ) : (
-                      <Image src={card.image} alt={card.title} fill className="object-cover" sizes="240px" />
-                    )}
+                    <Image src={card.image} alt={card.title} fill className="object-cover" sizes="240px" />
                   </div>
                   <div className="p-4 w-full text-left">
                     <span className="text-[10px] font-bold text-brand uppercase tracking-[0.12em] block mb-1">
