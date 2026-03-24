@@ -53,7 +53,7 @@ const homeSchema = {
         ...siteConfig.primaryLocations,
         ...siteConfig.secondaryLocations,
       ],
-      priceRange: "$$",
+
     },
     {
       "@type": "Service",

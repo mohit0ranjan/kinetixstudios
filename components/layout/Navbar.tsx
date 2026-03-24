@@ -9,7 +9,7 @@ import { ease, buttonPress } from "@/lib/motion";
 const navLinks = [
   { name: "Services", href: "/services" },
   { name: "Work", href: "/work" },
-  { name: "Pricing", href: "/pricing" },
+  { name: "Solutions", href: "/pricing" },
   { name: "About", href: "/about" },
 ];
 

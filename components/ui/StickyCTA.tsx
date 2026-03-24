@@ -2,39 +2,65 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 export default function StickyCTA() {
-  const [show, setShow] = useState(false);
+  const [showMobileCTA, setShowMobileCTA] = useState(false);
+  const whatsappLink = "https://wa.me/9057680262";
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 520);
+    const onScroll = () => setShowMobileCTA(window.scrollY > 400);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 24 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed bottom-4 left-4 right-4 z-[60] md:hidden safe-bottom"
+    <>
+      {/* Global Floating WhatsApp Button */}
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }}
+        className="fixed z-[70] bottom-20 md:bottom-8 right-4 md:right-8 group"
+      >
+        <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-text-primary px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 whitespace-nowrap">
+          Chat with us instantly
+          <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-white rotate-45" />
+        </div>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noreferrer"
+          className="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_8px_30px_rgba(37,211,102,0.5)] transition-all duration-300 relative"
+          aria-label="Chat on WhatsApp"
         >
-          <Link
-            href="/contact"
-            className="w-full h-12 rounded-xl bg-[#0A0A0A] text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(10,10,10,0.28)]"
-            aria-label="Book free strategy call"
+          {/* Notification bubble pulse */}
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-surface-0 flex items-center justify-center animate-pulse" />
+          <MessageCircle size={28} />
+        </a>
+      </motion.div>
+
+      {/* Mobile Sticky Booking Bar */}
+      <AnimatePresence>
+        {showMobileCTA && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed bottom-4 left-4 right-4 z-[60] md:hidden safe-bottom"
           >
-            Book Free Strategy Call
-            <ArrowRight size={16} />
-          </Link>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <a
+              href="/contact"
+              className="w-full h-14 rounded-2xl bg-brand text-white font-bold text-base tracking-tight flex items-center justify-center gap-2 shadow-[0_8px_30px_rgba(255,106,0,0.3)] border border-white/10"
+            >
+              Book Call
+              <ArrowRight size={18} />
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

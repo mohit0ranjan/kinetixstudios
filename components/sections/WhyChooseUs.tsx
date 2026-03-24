@@ -116,10 +116,10 @@ const BackgroundGraph = () => (
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 lg:py-40 relative bg-gradient-to-b from-[#FAFAFA] to-[#F5F5F7] overflow-hidden">
+    <section className="py-24 lg:py-40 relative bg-gradient-to-b from-surface-1 to-surface-0 overflow-hidden">
       <BackgroundGraph />
       
-      <div className="container mx-auto px-5 lg:px-8 max-w-[1280px] relative z-10">
+      <div className="section-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           
           {/* LEFT: Narrative / Storytelling */}

@@ -35,6 +35,19 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+
+  /* ── Typography Scale ── */
+  --text-display: clamp(2.5rem, 5vw, 4.5rem);
+  --text-heading: clamp(2rem, 4vw, 3.5rem);
+  --text-subheading: clamp(1.5rem, 3vw, 2rem);
+  --text-title: clamp(1.125rem, 2vw, 1.5rem);
+
+  /* ── Elevation ── */
+  --shadow-card: 0 4px 24px -8px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 12px 40px -10px rgba(0, 0, 0, 0.1);
+  --shadow-button: 0 8px 25px rgba(10, 10, 10, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-button-hover: 0 4px 12px rgba(10, 10, 10, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 60px -15px rgba(255, 106, 0, 0.3);
 }
 
 @layer base {

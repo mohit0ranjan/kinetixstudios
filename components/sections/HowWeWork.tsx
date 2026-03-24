@@ -123,7 +123,7 @@ export default function HowWeWork() {
   return (
     <section
       id="how-we-work"
-      className="py-16 md:py-24 relative bg-surface-0 overflow-hidden"
+      className="py-20 md:py-32 relative bg-surface-0 overflow-hidden"
     >
       {/* Subtle background pattern */}
       <div

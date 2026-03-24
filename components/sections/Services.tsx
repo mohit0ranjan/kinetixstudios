@@ -317,7 +317,7 @@ export default function Services() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 md:py-24 bg-gradient-to-b from-surface-1 to-[#F2F4F7] relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-b from-surface-1 to-[#F2F4F7] relative overflow-hidden"
     >
       <div className="section-container relative z-10">
         {/* Header */}

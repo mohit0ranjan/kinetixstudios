@@ -11,7 +11,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function AboutPage() {
   return (
-    <main className="pt-24 bg-[#F4F5F7]">
+    <main className="pt-24 bg-surface-1">
       <About />
       <CTA />
     </main>

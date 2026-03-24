@@ -13,7 +13,7 @@ const allProjects = [
     oneliner: "Luxury beauty brand reimagined for the digital age.",
     result: "3× Bookings",
     image: "/portoflio/GlowWeb.png",
-    slug: "/work/glownest",
+    slug: "/work/glownest-studio",
     size: "large" as const,
   },
   {
@@ -22,7 +22,7 @@ const allProjects = [
     oneliner: "Immigration consultancy turned into a lead machine.",
     result: "+200% Leads",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/globalway",
+    slug: "/work/globalway-visa",
     size: "normal" as const,
   },
   {
@@ -31,7 +31,7 @@ const allProjects = [
     oneliner: "From zero to viral — local café's content transformation.",
     result: "450% ROI",
     image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/brewbite",
+    slug: "/work/brewbite-cafe",
     size: "normal" as const,
   },
   {
@@ -40,7 +40,7 @@ const allProjects = [
     oneliner: "Coaching institute dominating local search results.",
     result: "Max Enrollment",
     image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/apex",
+    slug: "/work/apex-scholars",
     size: "large" as const,
   },
   {
@@ -49,7 +49,7 @@ const allProjects = [
     oneliner: "Medical aesthetics clinic with a premium digital presence.",
     result: "5× Traffic",
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/pureglow",
+    slug: "/work/pureglow-derma",
     size: "normal" as const,
   },
   {
@@ -58,7 +58,7 @@ const allProjects = [
     oneliner: "Gym chain that went from empty to waitlisted memberships.",
     result: "2× Members",
     image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/fitzone",
+    slug: "/work/fitzone-gym",
     size: "normal" as const,
   },
 ];

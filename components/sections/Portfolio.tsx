@@ -21,7 +21,7 @@ const projects = [
     oneliner: "Luxury beauty brand reimagined for the digital age.",
     result: "3× Bookings",
     image: "/portoflio/GlowWeb.png",
-    slug: "/work/glownest",
+    slug: "/work/glownest-studio",
     featured: true,
   },
   {
@@ -30,7 +30,7 @@ const projects = [
     oneliner: "Immigration consultancy turned into a lead machine.",
     result: "+200% Leads",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/globalway",
+    slug: "/work/globalway-visa",
     featured: false,
   },
   {
@@ -39,7 +39,7 @@ const projects = [
     oneliner: "From zero to viral — a local café's content transformation.",
     result: "450% ROI",
     image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/brewbite",
+    slug: "/work/brewbite-cafe",
     featured: false,
   },
   {
@@ -48,7 +48,7 @@ const projects = [
     oneliner: "Coaching institute that now dominates local search.",
     result: "Max Enrollment",
     image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "/work/apex",
+    slug: "/work/apex-scholars",
     featured: false,
   },
 ];
@@ -58,7 +58,7 @@ export default function Portfolio() {
   const rest = projects.filter(p => !p.featured);
 
   return (
-    <section id="work" className="py-16 md:py-36 relative bg-surface-0 overflow-hidden">
+    <section id="work" className="py-20 md:py-32 relative bg-surface-0 overflow-hidden">
       <div className="section-container">
 
         {/* Header — single fadeUp */}

@@ -49,7 +49,7 @@ export default function Footer() {
               {[
                 { label: "Services", href: "/services" },
                 { label: "Our Work", href: "/work" },
-                { label: "Pricing", href: "/pricing" },
+                { label: "Solutions", href: "/pricing" },
                 { label: "About Us", href: "/about" },
                 { label: "Contact", href: "/contact" },
               ].map((item) => (
@@ -90,7 +90,7 @@ export default function Footer() {
               <div>
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
                 <div className="flex gap-4 text-text-inverse/40">
-                  <a href="https://wa.me/917009073498" className="hover:text-brand transition-colors">WhatsApp</a>
+                  <a href="https://wa.me/9057680262" className="hover:text-brand transition-colors">WhatsApp</a>
                   <a href="https://instagram.com/kinetixstudios" className="hover:text-brand transition-colors">Instagram</a>
                   <a href="https://linkedin.com/company/kinetixstudios" className="hover:text-brand transition-colors">LinkedIn</a>
                 </div>

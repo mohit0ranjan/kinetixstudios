@@ -93,7 +93,7 @@ function TeamMember({
 
 export default function Team() {
   return (
-    <section className="py-16 md:py-24 bg-surface-0 relative overflow-hidden">
+    <section className="py-20 md:py-32 bg-surface-0 relative overflow-hidden">
       {/* Subtle ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
