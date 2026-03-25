@@ -1,158 +1,139 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
+import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
-export type Project = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  image: string;
-  href: string;
-};
-
-export const DUMMY_PROJECTS: Project[] = [
+const projects = [
   {
-    id: "1",
-    title: "Luma Dental Flow",
-    description: "End-to-end patient acquisition funnel and brand identity for a multi-million dollar clinic.",
-    category: "Web + Ads",
-    image: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?q=80&w=1600&auto=format&fit=crop",
-    href: "/projects/luma",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png",
+    alt: "GlowNest Studio website",
   },
   {
-    id: "2",
-    title: "Apex Logistics",
-    description: "Regional search dominance and conversion optimization for a B2B firm.",
-    category: "Local SEO",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop",
-    href: "/projects/apex",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233702_w5a4eg.png",
+    alt: "Apex Scholars website",
   },
   {
-    id: "3",
-    title: "Aura Skincare",
-    description: "High-converting Shopify storefront with localized social scaling.",
-    category: "E-Commerce",
-    image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1600&auto=format&fit=crop",
-    href: "/projects/aura",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233625_qxpqni.png",
+    alt: "BrewBite Café website",
+  },
+  {
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465925/Screenshot_2026-03-25_233741_rqtxac.png",
+    alt: "PureGlow Derma website",
+  },
+  {
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465924/Screenshot_2026-03-25_233724_enp5xm.png",
+    alt: "FitZone Pro website",
+  },
+  {
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466352/a2882e3c-499b-401b-8785-3ed83116bd52.png",
+    alt: "Target Fitness Gym website",
+  },
+  {
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466403/d959544c-1775-4862-82ca-d89c5c957c0d.png",
+    alt: "Zenith Yoga Center website",
+  },
+  {
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466944/35713b8b-f7f2-4d7b-8690-ba476040f643.png",
+    alt: "Chak Bro Pub website",
   },
 ];
 
-interface ProjectCardProps {
-  project: Project;
-  layout: "featured" | "wide" | "tall";
-  index: number;
-}
-
-const ProjectCard = ({ project, layout, index }: ProjectCardProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  // Parallax effect for the image inside the card
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
-  const aspectClass = 
-    layout === "featured" ? "aspect-[16/9] md:aspect-[21/9]" : 
-    layout === "wide" ? "aspect-[4/3] md:aspect-[16/10]" : 
-    "aspect-[4/5] sm:aspect-square"; // tall
-
-  const containerClass = 
-    layout === "featured" ? "col-span-1 md:col-span-12" :
-    layout === "wide" ? "col-span-1 md:col-span-7" :
-    "col-span-1 md:col-span-5";
-
-  return (
-    <motion.div 
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className={`group flex flex-col ${containerClass}`}
-    >
-      <Link href={project.href} className={`relative w-full overflow-hidden block bg-gray-100 ${aspectClass}`}>
-        <motion.div style={{ y }} className="absolute inset-[-15%] w-[130%] h-[130%]">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 100vw"
-            className="object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-          />
-        </motion.div>
-        
-        {/* Minimal Dark Overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 z-10 pointer-events-none" />
-        
-        {/* Floating Reveal Button */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-           <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transform scale-50 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-             <ArrowUpRight size={24} />
-           </div>
-        </div>
-      </Link>
-      
-      {/* Editorial Metdata */}
-      <div className="flex flex-col md:flex-row md:items-baseline justify-between mt-6 gap-2">
-        <div>
-          <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight group-hover:text-[#5E29FF] transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-gray-500 text-sm md:text-base mt-2 max-w-sm font-medium">
-            {project.description}
-          </p>
-        </div>
-        <div className="hidden md:block text-[11px] font-bold uppercase tracking-widest text-gray-400">
-          {project.category}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+/* Double the list for infinite scroll effect */
+const scrollItems = [...projects, ...projects];
 
 export default function ProjectShowcase() {
   return (
-    <section className="py-24 md:py-40 bg-white font-sans">
-      <div className="container mx-auto px-6 max-w-7xl">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-24">
+    <section className="py-20 md:py-32 bg-surface-0 relative overflow-hidden">
+      <div className="section-container relative z-10 mb-10 md:mb-14">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div>
-            <h2 className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
-              <span className="w-6 h-[1px] bg-gray-400"></span>
-              Selected Work
+            <SectionEyebrow label="OUR WORK" />
+            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mt-4">
+              Projects that{" "}
+              <span className="text-brand font-display italic">perform</span>.
             </h2>
-            <h3 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tight leading-[1.05]">
-              Proof of <br className="hidden md:block"/> Performance.
-            </h3>
+            <p className="text-text-secondary text-base md:text-lg font-medium max-w-lg mt-3">
+              Real websites we built. Real businesses growing.
+            </p>
           </div>
-          <Link 
-            href="/projects" 
-            className="inline-flex items-center gap-2 group text-sm font-bold text-slate-900 pb-2 border-b-2 border-slate-900 hover:text-[#5E29FF] hover:border-[#5E29FF] transition-colors"
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-2 group text-sm font-bold text-text-primary hover:text-brand transition-colors border-b-2 border-text-primary hover:border-brand pb-1 shrink-0"
           >
-            View all case studies 
-            <ArrowUpRight size={16} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            View all projects
+            <ArrowUpRight
+              size={16}
+              className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+            />
           </Link>
-        </div>
+        </motion.div>
+      </div>
 
-        {/* Asymmetrical Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-y-32 md:gap-x-10">
-          
-          {/* Main Featured Project (Full Width) */}
-          <ProjectCard project={DUMMY_PROJECTS[0]} layout="featured" index={0} />
+      {/* ── Horizontal Scroll Marquee ── */}
+      <div className="relative w-full overflow-hidden">
+        {/* Left fade */}
+        <div className="absolute top-0 left-0 w-12 md:w-24 h-full bg-gradient-to-r from-surface-0 to-transparent z-20 pointer-events-none" />
+        {/* Right fade */}
+        <div className="absolute top-0 right-0 w-12 md:w-24 h-full bg-gradient-to-l from-surface-0 to-transparent z-20 pointer-events-none" />
 
-          {/* Offset Projects Row */}
-          <ProjectCard project={DUMMY_PROJECTS[1]} layout="tall" index={1} />
-          <ProjectCard project={DUMMY_PROJECTS[2]} layout="wide" index={2} />
+        <motion.div
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            duration: 45,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+          className="flex gap-5 md:gap-6 w-max px-4"
+        >
+          {scrollItems.map((project, i) => (
+            <Link
+              key={i}
+              href="/work"
+              className="group relative shrink-0 w-[320px] md:w-[420px] lg:w-[480px] rounded-2xl overflow-hidden border border-black/5 shadow-card hover:shadow-card-hover transition-all duration-500 bg-white"
+            >
+              {/* Browser chrome bar */}
+              <div className="h-7 md:h-8 bg-gradient-to-b from-[#f0f0f0] to-[#e4e4e4] border-b border-black/8 flex items-center px-3 gap-2 shrink-0">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                </div>
+                <div className="flex-1 h-3.5 bg-white/80 rounded ml-3 mr-8 shadow-inner border border-black/5" />
+              </div>
 
-        </div>
+              {/* Screenshot */}
+              <div className="relative w-full h-[220px] md:h-[280px] lg:h-[320px] overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.alt}
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  sizes="480px"
+                  unoptimized
+                />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/8 transition-colors duration-500 z-10 pointer-events-none" />
 
+                {/* Hover CTA */}
+                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transform scale-50 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <ArrowUpRight size={22} />
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

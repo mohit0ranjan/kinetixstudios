@@ -5,9 +5,10 @@ import { buildPageMetadata, siteConfig } from "@/lib/seo";
 
 const Team = dynamic(() => import("@/components/sections/Team"));
 const Services = dynamic(() => import("@/components/sections/Services"));
-const Tools = dynamic(() => import("@/components/sections/Tools"));
+const ProjectShowcase = dynamic(() => import("@/components/sections/ProjectShowcase"));
 const HowWeWork = dynamic(() => import("@/components/sections/HowWeWork"));
 const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
+const TransformationShowcase = dynamic(() => import("@/components/sections/TransformationShowcase"));
 const WhyChooseUs = dynamic(() => import("@/components/sections/WhyChooseUs"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
 const Pricing = dynamic(() => import("@/components/sections/Pricing"));
@@ -106,9 +107,10 @@ export default function Home() {
       <Hero />
       <Team />
       <Services />
-      <Tools />
+      <ProjectShowcase />
       <HowWeWork />
       <Portfolio />
+      <TransformationShowcase />
       <WhyChooseUs />
       <Testimonials />
       <Pricing />

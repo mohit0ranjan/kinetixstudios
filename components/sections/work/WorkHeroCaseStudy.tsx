@@ -147,19 +147,20 @@ export default function WorkHeroCaseStudy() {
                 <div className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
                 <div className="w-2 h-2 rounded-full bg-[#27C93F]" />
                 <div className="absolute left-1/2 -translate-x-1/2 bg-white rounded text-[8px] text-text-secondary/80 font-medium px-4 py-0.5 shadow-sm">
-                  targetfitnessjalandhar.com
+                  fitness-performance.in
                 </div>
               </div>
 
               {/* Mockup Image */}
               <div className="relative w-full h-[calc(100%-28px)] bg-surface-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200"
-                  alt="Target Fitness Gym Case Study"
+                  src="https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466352/a2882e3c-499b-401b-8785-3ed83116bd52.png"
+                  alt="Fitness Performance Case Study"
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
+                  unoptimized
                 />
               </div>
             </div>

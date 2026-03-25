@@ -20,11 +20,10 @@ export const metadata: Metadata = buildPageMetadata({
 const fitnessStudies = [
   {
     title: "Gym Lead Generation System",
-    business: "Target Fitness Gym",
     domain: "targetfitnessjalandhar.com",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466352/a2882e3c-499b-401b-8785-3ed83116bd52.png",
     bullets: [
       { label: "Problem", text: "Low local search visibility & stiff competition" },
       { label: "Solution", text: "Local SEO & High-intent Google Ads" },
@@ -33,11 +32,10 @@ const fitnessStudies = [
   },
   {
     title: "Yoga Studio Bookings",
-    business: "Zenith Yoga Center",
     domain: "zenithyoga.in",
     location: "Amritsar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466403/d959544c-1775-4862-82ca-d89c5c957c0d.png",
     bullets: [
       { label: "Problem", text: "Empty daytime classes despite great instructors" },
       { label: "Solution", text: "Hyper-local Meta Ads with free trial offers" },
@@ -49,11 +47,10 @@ const fitnessStudies = [
 const educationStudies = [
   {
     title: "School Admissions Engine",
-    business: "GSSS Jalandhar",
     domain: "gsss-jalandhar.edu.in",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466801/ba8516e9-0c1f-433e-af8d-697a78f92abc.png",
     bullets: [
       { label: "Problem", text: "Invisible online presence to modern parents" },
       { label: "Solution", text: "Trust-focused website & intent-based SEO" },
@@ -62,11 +59,10 @@ const educationStudies = [
   },
   {
     title: "Visa Consultancy System",
-    business: "GlobalWay Visa",
     domain: "globalwayvisa.in",
     location: "Ludhiana, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1510519138101-570d1dca3d66?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466790/76ebaadd-f5a4-4952-9971-186d5c9055c6.png",
     bullets: [
       { label: "Problem", text: "Paying high costs for low-quality shared leads" },
       { label: "Solution", text: "Exclusive lead funnel via Google Search Ads" },
@@ -78,11 +74,10 @@ const educationStudies = [
 const healthcareStudies = [
   {
     title: "Patient Acquisition Funnel",
-    business: "OHCC Dugri Clinic",
     domain: "ohccdugriclinic.com",
     location: "Ludhiana, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466848/9a5de1ea-09b8-480e-ad14-d74e5e548fb4.png",
     bullets: [
       { label: "Problem", text: "Relying purely on offline word-of-mouth" },
       { label: "Solution", text: "Medical SEO & seamless WhatsApp booking" },
@@ -91,11 +86,10 @@ const healthcareStudies = [
   },
   {
     title: "Dental Practice Growth",
-    business: "Smilecraft Dental",
     domain: "smilecraftdental.in",
     location: "Chandigarh, India",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466867/ff089954-6c93-49d4-b2e9-69de8701b61c.png",
     bullets: [
       { label: "Problem", text: "Zero visibility for high-ticket implants" },
       { label: "Solution", text: "Educational video ads & premium web design" },
@@ -107,11 +101,10 @@ const healthcareStudies = [
 const restaurantStudies = [
   {
     title: "Restaurant Footfall Flywheel",
-    business: "Chak Bro Pub",
     domain: "chakbropub.com",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466944/35713b8b-f7f2-4d7b-8690-ba476040f643.png",
     bullets: [
       { label: "Problem", text: "High reliance on aggregator platforms (Zomato)" },
       { label: "Solution", text: "Direct online ordering & Instagram Ad funnel" },
@@ -120,11 +113,10 @@ const restaurantStudies = [
   },
   {
     title: "Cafe Weekend Rush",
-    business: "BrewBite Café",
     domain: "brewbite.in",
     location: "Amritsar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466950/80f17170-55b3-4005-8106-0071df6cb487.png",
     bullets: [
       { label: "Problem", text: "Slow weekday afternoons, stagnant weekend growth" },
       { label: "Solution", text: "Viral influencer collabs & targeted offers" },
@@ -136,7 +128,6 @@ const restaurantStudies = [
 const localServiceStudies = [
   {
     title: "Premium Salon Branding",
-    business: "S7 Salon & Academy",
     domain: "s7salon.com",
     location: "Goraya, Punjab",
     type: "Concept Digital Growth System",
@@ -149,7 +140,6 @@ const localServiceStudies = [
   },
   {
     title: "Home Service Leads",
-    business: "Elite Plumbers",
     domain: "eliteplumber.in",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",

@@ -34,7 +34,7 @@ const floatingCards = [
     title: "GlowNest Studio",
     tag: "Web Design",
     metric: "+180% Traffic",
-    image: "/portoflio/GlowWeb.png",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png",
     type: "image",
     rotation: -6,
     position: { top: "4%", right: "8%" },
@@ -45,7 +45,7 @@ const floatingCards = [
     title: "Apex Scholars",
     tag: "Local SEO",
     metric: "#1 Ranking",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233702_w5a4eg.png",
     type: "image",
     rotation: 4,
     position: { top: "38%", right: "-2%" },
@@ -56,7 +56,7 @@ const floatingCards = [
     title: "BrewBite Café",
     tag: "Social Media",
     metric: "450% ROI",
-    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233625_qxpqni.png",
     type: "image",
     rotation: -3,
     position: { top: "62%", right: "16%" },
@@ -260,8 +260,8 @@ export default function Hero() {
                     </div>
 
                     {/* Card info */}
-                    <div className="p-4">
-                      <div className="flex items-center justify-between mb-1.5">
+                    <div className="p-3">
+                      <div className="flex items-center justify-between">
                         <span className="text-[10px] font-bold text-brand uppercase tracking-[0.15em]">
                           {card.tag}
                         </span>
@@ -269,9 +269,6 @@ export default function Hero() {
                           {card.metric}
                         </span>
                       </div>
-                      <h4 className="text-sm font-bold text-text-primary tracking-tight">
-                        {card.title}
-                      </h4>
                     </div>
                   </div>
                 </motion.div>
@@ -301,16 +298,13 @@ export default function Hero() {
                   <div className="relative w-full h-[150px] flex items-center justify-center bg-surface-1 overflow-hidden">
                     <Image src={card.image} alt={card.title} fill className="object-cover" sizes="280px" />
                   </div>
-                  <div className="p-5 w-full text-left bg-white relative z-10 border-t border-black/5 flex flex-col gap-1.5 shadow-[0_-5px_20px_rgba(0,0,0,0.03)]">
-                    <div className="flex items-center justify-between mb-1.5">
+                  <div className="p-4 w-full text-left bg-white relative z-10 border-t border-black/5 flex items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.03)]">
                       <span className="text-[10px] font-bold text-brand uppercase tracking-[0.15em]">
                         {card.tag}
                       </span>
                       <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full inline-block shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)]">
                         {card.metric}
                       </span>
-                    </div>
-                    <h4 className="text-[15px] font-bold text-text-primary tracking-tight">{card.title}</h4>
                   </div>
                 </motion.div>
               );

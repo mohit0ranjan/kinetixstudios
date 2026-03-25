@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
@@ -47,34 +48,15 @@ const services = [
 
 // ── Compact Visual Previews ──
 const WebVisual = () => (
-  <div className="w-full h-full flex flex-col bg-surface-1 rounded-xl overflow-hidden">
-    <div className="h-6 bg-surface-0 border-b border-black/5 flex items-center px-3 gap-1.5">
-      <div className="w-2 h-2 rounded-full bg-red-400" />
-      <div className="w-2 h-2 rounded-full bg-amber-400" />
-      <div className="w-2 h-2 rounded-full bg-green-400" />
-    </div>
-    <div className="flex-1 p-3 flex gap-2">
-      <motion.div
-        initial={{ x: -10, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="w-1/4 h-full bg-surface-0 rounded-lg border border-black/5"
-      />
-      <div className="flex-1 flex flex-col gap-2">
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="w-full h-8 bg-brand/8 rounded-lg origin-left"
-        />
-        <motion.div
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="w-full flex-1 bg-surface-0 rounded-lg border border-black/5"
-        />
-      </div>
-    </div>
+  <div className="w-full h-full rounded-xl overflow-hidden relative bg-surface-1">
+    <Image
+      src="https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465924/Screenshot_2026-03-25_233724_enp5xm.png"
+      alt="High-converting website by Kinetix"
+      fill
+      className="object-cover object-top"
+      sizes="600px"
+      unoptimized
+    />
   </div>
 );
 

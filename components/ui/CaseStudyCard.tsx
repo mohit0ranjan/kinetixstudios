@@ -7,7 +7,6 @@ import { viewportOnce, ease } from "@/lib/motion";
 
 export interface CaseStudyData {
   title: string;
-  business: string;
   domain: string;
   location: string;
   type: string;
@@ -56,6 +55,7 @@ export default function CaseStudyCard({ data, index }: CaseStudyCardProps) {
           className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
           sizes="(max-width: 768px) 100vw, 50vw"
           loading={index < 2 ? "eager" : "lazy"}
+          unoptimized
         />
         
         {/* Content Fade Overlay */}
@@ -82,28 +82,25 @@ export default function CaseStudyCard({ data, index }: CaseStudyCardProps) {
       {/* Content Body */}
       <div className="p-6 md:p-10 flex-1 flex flex-col justify-between relative z-10 bg-surface-0">
         <div>
-          <p className="text-sm font-bold text-brand uppercase tracking-widest mb-3">
-            {data.business}
-          </p>
           <h3 className="text-2xl md:text-3xl font-black text-text-primary mb-6 leading-tight tracking-tight">
             {data.title}
           </h3>
           
           {/* 3 Metric Bullets */}
-          <div className="flex flex-col gap-4 mb-8">
+          <div className="flex flex-col gap-3 md:gap-4 mb-8">
             {data.bullets.map((bullet, idx) => {
               // Same colors as WorkHeroCaseStudy for consistency
               const iconColors = ["text-red-500", "text-amber-500", "text-green-500"];
               return (
-                <div key={idx} className="flex items-start gap-4">
+                <div key={idx} className="flex items-start gap-3 md:gap-4">
                   <div className="mt-1 flex-shrink-0">
-                    <CheckCircle2 size={18} className={iconColors[idx % 3] || "text-brand"} />
+                    <CheckCircle2 size={16} className={`md:w-[18px] md:h-[18px] ${iconColors[idx % 3] || "text-brand"}`} />
                   </div>
                   <div>
-                    <span className="block text-[11px] font-bold text-text-tertiary uppercase tracking-wider mb-0.5">
+                    <span className="block text-[10px] md:text-[11px] font-bold text-text-tertiary uppercase tracking-wider mb-0.5">
                       {bullet.label}
                     </span>
-                    <p className="text-text-secondary font-medium leading-snug">
+                    <p className="text-sm md:text-base text-text-secondary font-medium leading-snug">
                       {bullet.text}
                     </p>
                   </div>
@@ -118,13 +115,13 @@ export default function CaseStudyCard({ data, index }: CaseStudyCardProps) {
           href="https://cal.com/kinetix-studios/strategy" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="mt-auto pt-6 border-t border-black/5 w-full flex justify-between items-center group-hover:border-brand/20 transition-colors duration-300 cursor-pointer block"
+          className="mt-auto pt-5 md:pt-6 border-t border-black/5 w-full flex justify-between items-center group-hover:border-brand/20 transition-colors duration-300 cursor-pointer"
         >
-          <span className="text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-brand transition-colors">
+          <span className="text-[12px] md:text-sm font-bold uppercase tracking-widest text-text-primary group-hover:text-brand transition-colors">
             Book a Strategy Call
           </span>
-          <div className="w-10 h-10 rounded-full bg-surface-1 border border-black/5 text-text-secondary flex items-center justify-center group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all transform group-hover:scale-110 shadow-sm">
-            <ArrowUpRight size={18} />
+          <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-surface-1 border border-black/5 text-text-secondary flex items-center justify-center group-hover:bg-brand group-hover:border-brand group-hover:text-white transition-all transform group-hover:scale-110 shadow-sm shrink-0 ml-2">
+            <ArrowUpRight size={16} className="md:w-[18px] md:h-[18px]" />
           </div>
         </a>
       </div>
