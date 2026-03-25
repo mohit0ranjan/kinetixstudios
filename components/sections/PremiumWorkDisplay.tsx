@@ -84,7 +84,7 @@ export default function PremiumWorkDisplay() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.5, delay: index * 0.1, ease: ease.out }}
-            className={`group relative flex flex-col bg-surface-0 rounded-[2rem] border border-black/5 shadow-xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ${
+            className={`group relative flex flex-col h-full bg-surface-0 rounded-[2rem] border border-black/5 shadow-xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500 ${
               index === 4 ? "lg:col-span-2 lg:max-w-3xl lg:mx-auto lg:w-full" : ""
             }`}
           >

@@ -26,7 +26,7 @@ export default function CaseStudyCard({ data, index }: CaseStudyCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewportOnce}
       transition={{ duration: 0.5, delay: index * 0.1, ease: ease.out }}
-      className={`group relative flex flex-col bg-surface-0 rounded-[2rem] border border-black/5 shadow-xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500`}
+      className={`group relative flex flex-col h-full bg-surface-0 rounded-[2rem] border border-black/5 shadow-xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500`}
     >
       {/* CSS Browser Frame Mockup */}
       <div className="w-full bg-[#E8E8E8] dark:bg-[#2D2D2D] px-4 py-2.5 flex items-center gap-2 border-b border-black/5 relative z-10">
