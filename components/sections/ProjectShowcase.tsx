@@ -119,7 +119,7 @@ export default function ProjectShowcase() {
                   fill
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                   sizes="480px"
-                  unoptimized
+                  
                 />
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/8 transition-colors duration-500 z-10 pointer-events-none" />

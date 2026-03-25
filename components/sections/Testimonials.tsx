@@ -11,31 +11,31 @@ const testimonials = [
   {
     name: "Arshdeep S.",
     business: "Institute Director — Ludhiana",
-    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Educational interior
     review: "Our admissions doubled within three months of launching the new site and ad funnel. They truly understand the local Punjab market parents' mindset.",
   },
   {
     name: "Vikram S.",
     business: "Fitness Founder — Jalandhar",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Gym interior
     review: "The automated lead system they built for my gym is like having a 24/7 sales team. We get high-quality inquiries even while we sleep.",
   },
   {
     name: "Dr. R. Arora",
     business: "Clinic Specialist — Chandigarh",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Clinic interior
     review: "Patient trust starts with a professional online presence. Kinetix delivered exactly that, along with a seamless booking flow that my patients love.",
   },
   {
     name: "Sandeep B.",
     business: "Restaurateur — Jalandhar",
-    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Premium restaurant
     review: "We moved away from zero-margin delivery apps to our own direct ordering system. It's been the best investment for our restaurant's bottom line.",
   },
   {
     name: "Priyanka K.",
     business: "Salon Studio — Goraya",
-    image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Salon interior
     review: "The premium aesthetic they gave our website perfectly matches our luxury salon vibe. Our bridal bookings have seen a massive surge.",
   }
 ];

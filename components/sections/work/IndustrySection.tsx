@@ -49,7 +49,7 @@ export default function IndustrySection({
         {/* Grid System (Same matching grid layout as PremiumWorkDisplay) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 w-full">
           {caseStudies.map((project, index) => (
-            <CaseStudyCard key={project.business} data={project} index={index} />
+            <CaseStudyCard key={project.domain} data={project} index={index} />
           ))}
         </div>
       </div>

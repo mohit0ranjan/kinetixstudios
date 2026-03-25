@@ -55,7 +55,7 @@ const WebVisual = () => (
       fill
       className="object-cover object-top"
       sizes="600px"
-      unoptimized
+      
     />
   </div>
 );

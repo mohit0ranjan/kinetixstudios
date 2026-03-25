@@ -55,7 +55,7 @@ export default function CaseStudyCard({ data, index }: CaseStudyCardProps) {
           className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out"
           sizes="(max-width: 768px) 100vw, 50vw"
           loading={index < 2 ? "eager" : "lazy"}
-          unoptimized
+          
         />
         
         {/* Content Fade Overlay */}

@@ -41,10 +41,10 @@ const badExamples = [
 ];
 
 const goodExamples = [
-  { src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80", alt: "Premium doctor consultation — modern healthcare branding" },
-  { src: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=600&q=80", alt: "Modern medical technology — premium clinic aesthetic" },
-  { src: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80", alt: "Warm healthcare interaction — trust-building imagery" },
-  { src: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80", alt: "Premium medical facility — Kinetix-level branding" },
+  { src: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465925/Screenshot_2026-03-25_233741_rqtxac.png", alt: "PureGlow Derma - Premium Clinic Website" },
+  { src: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466848/9a5de1ea-09b8-480e-ad14-d74e5e548fb4.png", alt: "OHCC Clinic - High-conversion digital presence" },
+  { src: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466867/ff089954-6c93-49d4-b2e9-69de8701b61c.png", alt: "Smilecraft Dental - Trust-building aesthetic" },
+  { src: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png", alt: "Aesthetic Studio - Luxury patient acquisition" },
 ];
 
 const approachSteps = [
@@ -264,7 +264,7 @@ function ImageCard({ src, alt, type }: { src: string; alt: string; type: "bad" |
   return (
     <div className="group relative rounded-2xl overflow-hidden border border-black/5 bg-white shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1">
       <div className="aspect-[3/4] relative">
-        <Image src={src} alt={alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 45vw, 22vw" unoptimized />
+        <Image src={src} alt={alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 45vw, 22vw"  />
         <div className={`absolute inset-0 ${isBad ? "bg-gradient-to-t from-red-950/60 via-red-950/10 to-transparent" : "bg-gradient-to-t from-emerald-950/40 via-transparent to-transparent"}`} />
         <div className={`absolute top-3 left-3 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider backdrop-blur-md border shadow-sm ${isBad ? "bg-red-500/30 border-red-400/40 text-white" : "bg-emerald-500/30 border-emerald-400/40 text-white"}`}>
           {isBad ? "❌ Problem" : "✅ Kinetix"}

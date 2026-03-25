@@ -139,7 +139,7 @@ function HeroSection() {
                 <div className="relative h-full">
                   <BrowserFrame url="🔒 coachingclasses-jee-neet.example.com" variant="bad">
                     <div className="relative w-full h-[340px] xl:h-[400px] overflow-hidden">
-                      <Image src={problemWebsites[0].src} alt={problemWebsites[0].alt} fill className="object-cover object-top" sizes="400px" unoptimized />
+                      <Image src={problemWebsites[0].src} alt={problemWebsites[0].alt} fill className="object-cover object-top" sizes="400px"  />
                     </div>
                   </BrowserFrame>
                   <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg border-2 border-white z-10">❌ {problemWebsites[0].name}</div>
@@ -151,7 +151,7 @@ function HeroSection() {
                 <div className="relative h-full">
                   <BrowserFrame url="🔒 apexscholars.edu.in" variant="good">
                     <div className="relative w-full h-[340px] xl:h-[400px] overflow-hidden">
-                      <Image src={solutionDesigns[0].src} alt={solutionDesigns[0].alt} fill className="object-cover object-top" sizes="400px" unoptimized />
+                      <Image src={solutionDesigns[0].src} alt={solutionDesigns[0].alt} fill className="object-cover object-top" sizes="400px"  />
                     </div>
                   </BrowserFrame>
                   <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg border-2 border-white z-10">✅ {solutionDesigns[0].name}</div>
@@ -165,7 +165,7 @@ function HeroSection() {
             <div className="relative">
               <BrowserFrame url="coaching.example.com" variant="bad">
                 <div className="relative w-full h-[180px] sm:h-[220px] overflow-hidden">
-                  <Image src={problemWebsites[0].src} alt={problemWebsites[0].alt} fill className="object-cover object-top" sizes="200px" unoptimized />
+                  <Image src={problemWebsites[0].src} alt={problemWebsites[0].alt} fill className="object-cover object-top" sizes="200px"  />
                 </div>
               </BrowserFrame>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[8px] font-black px-2.5 py-0.5 rounded-full border border-white shadow-md z-10">❌ {problemWebsites[0].name}</div>
@@ -173,7 +173,7 @@ function HeroSection() {
             <div className="relative">
               <BrowserFrame url="apexscholars.edu.in" variant="good">
                 <div className="relative w-full h-[180px] sm:h-[220px] overflow-hidden">
-                  <Image src={solutionDesigns[0].src} alt={solutionDesigns[0].alt} fill className="object-cover object-top" sizes="200px" unoptimized />
+                  <Image src={solutionDesigns[0].src} alt={solutionDesigns[0].alt} fill className="object-cover object-top" sizes="200px"  />
                 </div>
               </BrowserFrame>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-[8px] font-black px-2.5 py-0.5 rounded-full border border-white shadow-md z-10">✅ {solutionDesigns[0].name}</div>
@@ -207,7 +207,7 @@ function PosterShowcase() {
           {problemGraphics.map((img, i) => (
             <motion.div key={i} variants={scaleFade} className="group relative rounded-2xl overflow-hidden border border-black/5 bg-white shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1">
               <div className="relative aspect-[3/4] overflow-hidden">
-                <Image src={img.src} alt={img.alt} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" unoptimized />
+                <Image src={img.src} alt={img.alt} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw"  />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute top-3 left-3 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider backdrop-blur-md bg-red-500/30 border border-red-400/40 text-white shadow-sm">
                   ❌ Problem
@@ -264,7 +264,7 @@ function WebsiteComparison() {
                 </div>
                 <BrowserFrame url={`coaching-website-${i + 1}.example.com`} variant="bad">
                   <div className="relative w-full h-[240px] md:h-[300px] overflow-hidden">
-                    <Image src={problem.src} alt={problem.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 50vw" unoptimized />
+                    <Image src={problem.src} alt={problem.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 50vw"  />
                   </div>
                 </BrowserFrame>
               </motion.div>
@@ -280,7 +280,7 @@ function WebsiteComparison() {
                 </div>
                 <BrowserFrame url="kinetix-redesign.com" variant="good">
                   <div className="relative w-full h-[240px] md:h-[300px] overflow-hidden">
-                    <Image src={solutionDesigns[i].src} alt={solutionDesigns[i].alt} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 50vw" unoptimized />
+                    <Image src={solutionDesigns[i].src} alt={solutionDesigns[i].alt} fill className="object-cover object-top" sizes="(max-width: 768px) 100vw, 50vw"  />
                   </div>
                 </BrowserFrame>
               </motion.div>

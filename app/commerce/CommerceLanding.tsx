@@ -242,7 +242,7 @@ function ImageCard({ src, alt, type }: { src: string; alt: string; type: "bad" |
   return (
     <div className="group relative rounded-2xl overflow-hidden border border-black/5 bg-white shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1">
       <div className="aspect-[3/4] relative">
-        <Image src={src} alt={alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 45vw, 22vw" unoptimized />
+        <Image src={src} alt={alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 45vw, 22vw"  />
         <div className={`absolute inset-0 ${isBad ? "bg-gradient-to-t from-red-950/60 via-red-950/10 to-transparent" : "bg-gradient-to-t from-emerald-950/40 via-transparent to-transparent"}`} />
         <div className={`absolute top-3 left-3 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider backdrop-blur-md border shadow-sm ${isBad ? "bg-red-500/30 border-red-400/40 text-white" : "bg-emerald-500/30 border-emerald-400/40 text-white"}`}>
           {isBad ? "❌ Problem" : "✅ Kinetix"}

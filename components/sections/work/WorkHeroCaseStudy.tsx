@@ -160,7 +160,7 @@ export default function WorkHeroCaseStudy() {
                   className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
-                  unoptimized
+                  
                 />
               </div>
             </div>

@@ -12,7 +12,7 @@ const conceptStudies = [
     domain: "targetfitnessjalandhar.com",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466352/a2882e3c-499b-401b-8785-3ed83116bd52.png",
     bullets: [
       { label: "Problem", text: "No proper website or local lead funnel" },
       { label: "Solution", text: "High-converting landing page & Ads funnel" },
@@ -25,7 +25,7 @@ const conceptStudies = [
     domain: "gsss-jalandhar.edu.in",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466801/ba8516e9-0c1f-433e-af8d-697a78f92abc.png",
     bullets: [
       { label: "Problem", text: "Invisible online presence to modern parents" },
       { label: "Solution", text: "Trust-focused website & intent-based SEO" },
@@ -38,7 +38,7 @@ const conceptStudies = [
     domain: "ohccdugriclinic.com",
     location: "Ludhiana, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466848/9a5de1ea-09b8-480e-ad14-d74e5e548fb4.png",
     bullets: [
       { label: "Problem", text: "Relying purely on offline word-of-mouth" },
       { label: "Solution", text: "Medical SEO & seamless WhatsApp booking" },
@@ -51,7 +51,7 @@ const conceptStudies = [
     domain: "chakbropub.com",
     location: "Jalandhar, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466944/35713b8b-f7f2-4d7b-8690-ba476040f643.png",
     bullets: [
       { label: "Problem", text: "High reliance on aggregator platforms (Zomato)" },
       { label: "Solution", text: "Direct online ordering & Instagram Ad funnel" },
@@ -64,7 +64,7 @@ const conceptStudies = [
     domain: "s7salon.com",
     location: "Goraya, Punjab",
     type: "Concept Digital Growth System",
-    image: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=800",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png",
     bullets: [
       { label: "Problem", text: "Premium services but outdated digital footprint" },
       { label: "Solution", text: "Luxury web design & bridal local targeting" },

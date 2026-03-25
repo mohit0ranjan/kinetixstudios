@@ -95,7 +95,7 @@ export default function Portfolio() {
                     className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     sizes="(max-width: 768px) 100vw, 58vw"
                     priority
-                    unoptimized
+                    
                   />
                   <div className="absolute top-3 right-3 md:top-4 md:right-4 opacity-0 group-hover:opacity-100 -translate-y-1 group-hover:translate-y-0 transition-all duration-400">
                     <span className="px-3 py-1.5 rounded-full bg-brand text-white text-[10px] font-bold tracking-wider uppercase shadow-md">
@@ -136,7 +136,7 @@ export default function Portfolio() {
                       className="object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       sizes="144px"
                       loading="lazy"
-                      unoptimized
+                      
                     />
                   </div>
                   <div className="flex-grow min-w-0 py-0.5">
