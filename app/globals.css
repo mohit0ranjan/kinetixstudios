@@ -1,95 +1,164 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Surfaces ── */
-  --color-surface-0:        #FFFFFF;
-  --color-surface-1:        #F4F5F7;
-  --color-surface-dark:     #0A0A0A;
-  --color-surface-dark-alt: #141414;
+  /* ── PRIMARY COLORS ── */
+  --color-primary:          #0A0A0A;      /* Charcoal for text */
+  --color-primary-light:    #1F1F1F;      /* Lighter charcoal */
+  --color-accent:           #FF6A00;      /* Energetic Orange */
+  --color-accent-light:     #FF8C3A;      /* Lighter orange */
+  --color-accent-dark:      #E05500;      /* Darker orange */
 
-  /* ── Brand ── */
-  --color-brand:            #FF6A00;
-  --color-brand-dark:       #E05500;
-  --color-brand-light:      #FF8C3A;
-  --color-brand-glow:       rgba(255,106,0,0.15);
+  /* ── NEUTRAL PALETTE ── */
+  --color-surface-0:        #FFFFFF;      /* Pure white */
+  --color-surface-1:        #F9FAFB;      /* Off-white (bg) */
+  --color-surface-2:        #F3F4F6;      /* Light gray */
+  --color-surface-3:        #E5E7EB;      /* Medium gray */
+  
+  /* ── SECONDARY COLORS ── */
+  --color-success:          #10B981;      /* Emerald */
+  --color-warning:          #F59E0B;      /* Amber */
+  --color-error:            #EF4444;      /* Red */
+  --color-info:             #3B82F6;      /* Blue */
 
-  /* ── Text ── */
+  /* ── DARK MODE ── */
+  --color-dark-bg:          #0A0A0A;      /* Deep black */
+  --color-dark-bg-alt:      #141414;      /* Slightly lighter */
+  --color-dark-surface:     #1F1F1F;      /* Elevated surface */
+  --color-dark-text:        #FFFFFF;      /* White text */
+  --color-dark-text-muted:  #A3A3A3;      /* Muted text */
+
+  /* ── TEXT COLORS ── */
   --color-text-primary:     #0A0A0A;
   --color-text-secondary:   #6B7280;
   --color-text-tertiary:    #9CA3AF;
   --color-text-inverse:     #FFFFFF;
 
-  /* ── Legacy aliases (for Tailwind classes) ── */
-  --color-background: #F4F5F7;
-  --color-foreground: #0A0A0A;
-  --color-primary: #FF6A00;
-  --color-primary-dark: #E05500;
-  --color-primary-light: #FF8C3A;
+  /* ── BACKGROUND & SURFACES ── */
+  --color-background:       #FFFFFF;
+  --color-foreground:       #0A0A0A;
 
-  /* ── Typography ── */
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-playfair), serif;
+  /* ── SEMANTIC SHADOWS ── */
+  --shadow-none:            none;
+  --shadow-xs:              0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm:              0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md:              0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+  --shadow-lg:              0 12px 32px -8px rgba(0, 0, 0, 0.12), 0 4px 8px -4px rgba(0, 0, 0, 0.08);
+  --shadow-xl:              0 20px 48px -12px rgba(0, 0, 0, 0.16), 0 8px 16px -8px rgba(0, 0, 0, 0.1);
+  --shadow-2xl:             0 32px 64px -16px rgba(0, 0, 0, 0.2);
+  --shadow-inner:           inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --shadow-brand:           0 8px 24px -6px rgba(255, 106, 0, 0.25);
+  --shadow-brand-hover:     0 16px 40px -12px rgba(255, 106, 0, 0.35);
 
-  /* ── Radii ── */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* ── GLOW EFFECTS ── */
+  --glow-accent:            rgba(255, 106, 0, 0.1);
+  --glow-accent-strong:     rgba(255, 106, 0, 0.15);
 
-  /* ── Typography Scale ── */
-  --text-display: clamp(2.5rem, 5vw, 4.5rem);
-  --text-heading: clamp(2rem, 4vw, 3.5rem);
-  --text-subheading: clamp(1.5rem, 3vw, 2rem);
-  --text-title: clamp(1.125rem, 2vw, 1.5rem);
+  /* ── TYPOGRAPHY ── */
+  --font-sans:              var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display:           var(--font-playfair), serif;
+  --font-mono:              ui-monospace, SFMono-Regular, "SF Mono", "Segoe UI Mono", Roboto Mono, sans-serif;
 
-  /* ── Elevation ── */
-  --shadow-card: 0 4px 24px -8px rgba(0, 0, 0, 0.06);
-  --shadow-card-hover: 0 12px 40px -10px rgba(0, 0, 0, 0.1);
-  --shadow-button: 0 8px 25px rgba(10, 10, 10, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.3);
-  --shadow-button-hover: 0 4px 12px rgba(10, 10, 10, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 60px -15px rgba(255, 106, 0, 0.3);
+  /* ── BORDER RADIUS ── */
+  --radius-xs:              4px;
+  --radius-sm:              8px;
+  --radius-md:              12px;
+  --radius-lg:              16px;
+  --radius-xl:              24px;
+  --radius-2xl:             32px;
+  --radius-full:            9999px;
+
+  /* ── RESPONSIVE TYPOGRAPHY SCALE ── */
+  --text-display:           clamp(2.25rem, 6vw, 5rem);
+  --text-heading-lg:        clamp(2rem, 5vw, 4rem);
+  --text-heading:           clamp(1.75rem, 4vw, 3rem);
+  --text-subheading:        clamp(1.25rem, 3vw, 2rem);
+  --text-title:             clamp(1.125rem, 2vw, 1.5rem);
+  --text-base:              clamp(0.95rem, 1vw, 1rem);
+  --text-sm:                clamp(0.875rem, 0.9vw, 0.95rem);
+  --text-xs:                clamp(0.75rem, 0.8vw, 0.875rem);
+
+  /* ── TRANSITIONS ── */
+  --duration-faster:        150ms;
+  --duration-fast:          200ms;
+  --duration-normal:        300ms;
+  --duration-slow:          500ms;
+  --duration-slower:        700ms;
+  
+  --easing-out:             cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-in-out:          cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-bounce:          cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @layer base {
   :root {
-    --background: #F4F5F7;
+    --background: #FFFFFF;
     --foreground: #0A0A0A;
+  }
+
+  /* ── GLOBAL TEXT STYLING ── */
+  body {
+    @apply bg-white text-slate-900;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── SMOOTH SCROLL ── */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* ── FOCUS STATES ── */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+
+  button:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+
+  a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500 rounded;
   }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ── SCROLLBAR STYLING ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar {
-  width: 6px;
-}
 ::-webkit-scrollbar-track {
   background: var(--color-surface-1);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #D1D5DB;
   border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand);
+  transition: background 200ms ease;
 }
 
-/* ── Utilities ── */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ── NO SCROLLBAR UTILITY ── */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+/* ── ACCESSIBILITY: REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

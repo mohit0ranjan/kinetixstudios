@@ -57,33 +57,35 @@ function TeamMember({
       transition={{ duration: 0.6, delay: index * 0.1, ease: ease.out }}
       className="group relative"
     >
-      {/* Portrait */}
-      <div className="relative w-full aspect-[3/4] overflow-hidden rounded-2xl bg-surface-1 mb-5">
+      {/* Portrait Card */}
+      <div className="relative w-full aspect-[3/4] overflow-hidden rounded-xl bg-slate-100 mb-4 md:mb-6 shadow-md hover:shadow-lg transition-shadow duration-300">
         <Image
           src={member.image}
           alt={member.name}
           fill
           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
-          className="object-cover object-center transition-transform duration-700 ease-out lg:group-hover:scale-105"
+          className="object-cover object-center transition-transform duration-500 ease-out lg:group-hover:scale-105"
+          priority={index < 2}
+          loading={index < 2 ? "eager" : "lazy"}
         />
 
-        {/* Gradient overlay on hover — desktop */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        {/* Gradient overlay on hover — desktop only */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
         {/* Quote — appears on hover, desktop only */}
-        <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none">
-          <p className="text-white/90 text-[13px] font-medium italic leading-relaxed">
+        <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-5 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <p className="text-white/95 text-xs md:text-sm font-medium italic leading-relaxed">
             &ldquo;{member.quote}&rdquo;
           </p>
         </div>
       </div>
 
       {/* Info */}
-      <div className="flex flex-col mt-3.5 md:mt-5">
-        <h3 className="text-[14px] md:text-base font-bold text-text-primary tracking-tight mb-0.5 lg:group-hover:text-brand transition-colors duration-300 leading-tight">
+      <div className="flex flex-col">
+        <h3 className="text-sm md:text-base font-bold text-slate-900 tracking-tight mb-1 lg:group-hover:text-orange-600 transition-colors duration-300 line-clamp-1">
           {member.name}
         </h3>
-        <p className="text-[11px] md:text-[13px] text-text-tertiary font-medium leading-tight line-clamp-2">
+        <p className="text-xs md:text-sm text-slate-600 font-medium leading-tight line-clamp-1">
           {member.role}
         </p>
       </div>
@@ -93,85 +95,59 @@ function TeamMember({
 
 export default function Team() {
   return (
-    <section className="py-20 md:py-32 bg-surface-0 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Subtle ambient glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
+      <div className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 20% 50%, rgba(255,106,0,0.03), transparent)",
+            "radial-gradient(ellipse 80% 50% at 20% 50%, rgba(255,106,0,0.04), transparent)",
         }}
       />
 
-      <div className="section-container relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 md:mb-16"
+          className="flex flex-col gap-6 mb-12 md:mb-16 lg:mb-20"
         >
           <div>
             <SectionEyebrow label="The Team" />
-            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mt-4">
-              NIT Jalandhar&apos;s{" "}
-              <span className="text-brand font-display italic">Finest.</span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight mt-3 mb-3">
+              Building the future of{" "}
+              <span className="text-orange-600">local business growth.</span>
             </h2>
+            <p className="text-base md:text-lg text-slate-600 font-medium max-w-2xl leading-relaxed">
+              A specialized crew of strategists, engineers, and creative minds from NIT Jalandhar working to solve real business problems.
+            </p>
           </div>
-          <p className="text-text-secondary text-sm md:text-base font-medium max-w-sm leading-relaxed md:text-right">
-            A specialized crew of strategists, engineers &amp; creatives
-            building the future of local business growth.
-          </p>
         </motion.div>
 
         {/* ── Desktop: Offset Staggered Grid ── */}
-        <div className="hidden md:grid grid-cols-5 gap-x-6 lg:gap-x-8">
+        <div className="hidden md:grid grid-cols-5 gap-x-6 gap-y-12">
           {team.map((member, index) => (
             <div
               key={member.name}
-              className={index % 2 === 1 ? "pt-12 lg:pt-16" : ""}
+              className={index % 2 === 1 ? "pt-12" : ""}
             >
               <TeamMember member={member} index={index} />
             </div>
           ))}
         </div>
 
-        {/* ── Mobile: Staggered Masonry Grid ── */}
-        <div className="md:hidden relative mt-8">
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10">
-            {team.map((member, index) => (
-              <div
-                key={member.name}
-                className={index % 2 === 1 ? "mt-12" : ""}
-              >
-                <TeamMember member={member} index={index} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* NIT Jalandhar badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.5, ease: ease.out }}
-          className="mt-12 md:mt-16 pt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-        >
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center">
-              <span className="text-brand text-sm font-black">N</span>
+        {/* ── Mobile: 2-Column Grid ── */}
+        <div className="md:hidden grid grid-cols-2 gap-x-3 gap-y-8">
+          {team.map((member, index) => (
+            <div
+              key={member.name}
+              className={index % 2 === 1 ? "mt-8" : ""}
+            >
+              <TeamMember member={member} index={index} />
             </div>
-            <span className="text-text-primary text-sm font-bold tracking-tight">
-              Built by NIT Jalandhar talent
-            </span>
-          </div>
-          <span className="hidden sm:block w-1 h-1 rounded-full bg-text-tertiary/30" />
-          <span className="text-text-tertiary text-xs font-medium">
-            Engineering × Creativity × Growth
-          </span>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
