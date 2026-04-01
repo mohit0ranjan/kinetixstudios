@@ -1,17 +1,13 @@
 import dynamic from "next/dynamic";
 import type { Metadata } from "next";
-import Hero from "@/components/sections/Hero";
+import HeroBanner from "@/components/sections/home/HeroBanner";
+import About from "@/components/sections/home/About";
 import { buildPageMetadata, siteConfig } from "@/lib/seo";
 
 const Team = dynamic(() => import("@/components/sections/Team"));
-const Services = dynamic(() => import("@/components/sections/Services"));
 const ProjectShowcase = dynamic(() => import("@/components/sections/ProjectShowcase"));
 const HowWeWork = dynamic(() => import("@/components/sections/HowWeWork"));
-const Portfolio = dynamic(() => import("@/components/sections/Portfolio"));
-const TransformationShowcase = dynamic(() => import("@/components/sections/TransformationShowcase"));
-const WhyChooseUs = dynamic(() => import("@/components/sections/WhyChooseUs"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
-const Pricing = dynamic(() => import("@/components/sections/Pricing"));
 const CTA = dynamic(() => import("@/components/sections/CTA"));
 
 export const metadata: Metadata = buildPageMetadata({
@@ -104,16 +100,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
-      <Hero />
+      <HeroBanner />
       <Team />
-      <Services />
+      <About />
       <ProjectShowcase />
       <HowWeWork />
-      <Portfolio />
-      <TransformationShowcase />
-      <WhyChooseUs />
       <Testimonials />
-      <Pricing />
       <CTA />
     </>
   );

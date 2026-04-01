@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, CheckCircle2, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -13,8 +13,6 @@ import {
   buttonPress,
   viewportOnce,
 } from "@/lib/motion";
-
-const headlineWords = ["Great", "offline,", "but"];
 
 const clientNames = [
   "GlowNest Studio",
@@ -28,40 +26,62 @@ const clientNames = [
 ];
 const marqueeItems = [...clientNames, ...clientNames];
 
-// Floating card data
+// Fan-spread card positions: percentage-based to stay within container
 const floatingCards = [
   {
-    title: "GlowNest Studio",
+    title: "GlobalWay Visa",
+    tag: "Brand Identity",
+    metric: "Full Rebrand",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465924/Screenshot_2026-03-25_233724_enp5xm.png",
+    rotation: -12,
+    top: "2%",
+    left: "-4%",
+    zIndex: 2,
+    delay: 0.7,
+  },
+  {
+    title: "PureGlow Derma",
     tag: "Web Design",
-    metric: "+180% Traffic",
-    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png",
-    type: "image",
+    metric: "+210% Traffic",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465925/Screenshot_2026-03-25_233741_rqtxac.png",
     rotation: -6,
-    position: { top: "4%", right: "8%" },
-    size: "large" as const,
-    delay: 0.4,
+    top: "52%",
+    left: "-2%",
+    zIndex: 3,
+    delay: 0.6,
   },
   {
     title: "Apex Scholars",
     tag: "Local SEO",
     metric: "#1 Ranking",
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233702_w5a4eg.png",
-    type: "image",
-    rotation: 4,
-    position: { top: "38%", right: "-2%" },
-    size: "small" as const,
-    delay: 0.6,
+    rotation: 8,
+    top: "0%",
+    left: "54%",
+    zIndex: 3,
+    delay: 0.65,
   },
   {
     title: "BrewBite Café",
     tag: "Social Media",
     metric: "450% ROI",
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233625_qxpqni.png",
-    type: "image",
-    rotation: -3,
-    position: { top: "62%", right: "16%" },
-    size: "small" as const,
-    delay: 0.8,
+    rotation: 10,
+    top: "55%",
+    left: "52%",
+    zIndex: 4,
+    delay: 0.55,
+  },
+  {
+    title: "GlowNest Studio",
+    tag: "Web Design",
+    metric: "+180% Traffic",
+    image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png",
+    rotation: 0,
+    top: "14%",
+    left: "16%",
+    zIndex: 5,
+    delay: 0.4,
   },
 ];
 
@@ -69,10 +89,11 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -147,19 +168,19 @@ export default function Hero() {
               variants={heroWordReveal}
               initial="hidden"
               animate="visible"
-              className="text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1] tracking-[-0.03em] font-sans font-black text-text-primary mb-6"
+              className="text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] font-sans font-black text-text-primary mb-6"
             >
-              {headlineWords.map((word, i) => (
-                <motion.span key={i} variants={heroWord} className="inline-block mr-[0.25em]">
-                  {word}
-                </motion.span>
-              ))}
+              <motion.span variants={heroWord} className="inline-block mr-[0.25em]">Great</motion.span>
+              <motion.span variants={heroWord} className="inline-block mr-[0.25em]">offline.</motion.span>
               <br />
+              <motion.span variants={heroWord} className="inline-block mr-[0.25em]">Let&apos;s</motion.span>
+              <motion.span variants={heroWord} className="inline-block mr-[0.25em]">make</motion.span>
+              <motion.span variants={heroWord} className="inline-block mr-[0.25em]">you</motion.span>
               <motion.span
                 variants={heroWord}
                 className="inline-block font-display italic text-brand relative mr-[0.25em]"
               >
-                invisible
+                unstoppable
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -168,7 +189,7 @@ export default function Hero() {
                 />
               </motion.span>
               <motion.span variants={heroWord} className="inline-block">
-                online?
+                online.
               </motion.span>
             </motion.h1>
 
@@ -206,66 +227,83 @@ export default function Hero() {
               </motion.a>
             </motion.div>
 
-            {/* Trust badge - Removed the generic 'Free Strategy Session' for a more premium look. */}
+            {/* Trust badge */}
+            <motion.div
+              variants={heroItem}
+              className="mt-8 flex items-center justify-center sm:justify-start gap-5"
+            >
+              <div className="flex -space-x-3">
+                {['A', 'S', 'P', 'G'].map((initial, i) => (
+                  <div key={i} style={{ zIndex: 10 - i }} className={`relative w-9 h-9 rounded-full border-[3px] border-surface-1 bg-gradient-to-br flex items-center justify-center text-[10px] font-bold text-white shadow-sm overflow-hidden`} >
+                    <span className="absolute inset-0 bg-brand/90 pointer-events-none" />
+                    <span className="relative z-10">{initial}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col items-start gap-1">
+                <div className="flex items-center gap-0.5 text-[#FFB800]">
+                  {[1, 2, 3, 4, 5].map((_, i) => (
+                    <svg key={i} className="w-[14px] h-[14px] fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                  ))}
+                </div>
+                <span className="text-[12px] font-bold text-text-secondary/80">Trusted by <span className="text-text-primary">50+</span> businesses</span>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* ── Right: Floating Cards (desktop only) ── */}
+          {/* ── Right: Floating Cards Fan (desktop only) ── */}
           <div className="hidden lg:block relative h-[500px] xl:h-[560px]">
             {floatingCards.map((card, idx) => (
               <motion.div
                 key={card.title}
-                initial={{ opacity: 0, y: 30, rotate: 0 }}
-                animate={{ opacity: 1, y: 0, rotate: card.rotation }}
+                initial={{ opacity: 0, y: 40, rotate: 0, scale: 0.85 }}
+                animate={{ opacity: 1, y: 0, rotate: card.rotation, scale: 1 }}
                 transition={{
-                  duration: 0.7,
+                  duration: 0.8,
                   delay: card.delay,
-                  ease: ease.out,
+                  ease: [0.23, 1, 0.32, 1],
                 }}
                 style={{
                   position: "absolute",
-                  ...card.position,
-                  x: px,
-                  y: py,
+                  top: card.top,
+                  left: card.left,
+                  zIndex: card.zIndex,
                 }}
-                className="cursor-default"
+                className="cursor-pointer group"
               >
                 {/* Continuous float */}
                 <motion.div
-                  animate={{ y: [0, idx % 2 === 0 ? -8 : 8, 0] }}
+                  animate={{ y: [0, idx % 2 === 0 ? -6 : 6, 0] }}
                   transition={{
-                    duration: 4 + idx,
+                    duration: 5 + idx * 0.7,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: idx * 0.5,
+                    delay: idx * 0.4,
                   }}
+                  style={{ x: px, y: py }}
                 >
                   <div
-                    className={`bg-white rounded-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] border border-black/5 overflow-hidden ${
-                      card.size === "large" ? "w-[300px] xl:w-[340px]" : "w-[240px] xl:w-[270px]"
-                    }`}
+                    className="bg-white rounded-[18px] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-black/[0.06] overflow-hidden transition-all duration-500 group-hover:shadow-[0_25px_65px_-10px_rgba(0,0,0,0.22)] group-hover:scale-[1.03] w-[220px] xl:w-[250px]"
                   >
-                    {/* Media */}
-                    <div
-                      className={`relative w-full overflow-hidden flex items-center justify-center bg-surface-1 ${
-                        card.size === "large" ? "h-[180px] xl:h-[200px]" : "h-[130px] xl:h-[150px]"
-                      }`}
-                    >
+                    {/* Screenshot */}
+                    <div className="relative w-full h-[140px] xl:h-[155px] overflow-hidden bg-surface-1">
                       <Image
                         src={card.image}
                         alt={card.title}
                         fill
-                        className="object-cover"
-                        sizes="340px"
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        sizes="280px"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
                     </div>
 
                     {/* Card info */}
-                    <div className="p-3">
+                    <div className="px-3 py-2.5 bg-white">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-brand uppercase tracking-[0.15em]">
+                        <span className="text-[9px] xl:text-[10px] font-bold text-brand uppercase tracking-[0.15em]">
                           {card.tag}
                         </span>
-                        <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
+                        <span className="text-[9px] xl:text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
                           {card.metric}
                         </span>
                       </div>
@@ -276,24 +314,17 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* ── Mobile: Vertical Stack Preview ── */}
-          <div className="lg:hidden w-full relative mt-12 pb-8 flex flex-col items-center">
-            {floatingCards.map((card, idx) => {
-              const isFirst = idx === 0;
-              return (
+          {/* ── Mobile: Horizontal Scroll Preview ── */}
+          <div className="lg:hidden w-full relative mt-12 pb-8 flex flex-col items-center overflow-hidden">
+            <div className="w-full flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-6 pt-2 scrollbar-hide" style={{ WebkitOverflowScrolling: "touch" }}>
+              {floatingCards.map((card, idx) => (
                 <motion.div
                   key={card.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={viewportOnce}
-                  transition={{ delay: 0.3 + idx * 0.15, duration: 0.6, ease: ease.out }}
-                  className={`bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden w-[280px] max-w-full flex flex-col items-start ${
-                    !isFirst ? "-mt-[8rem]" : ""
-                  }`}
-                  style={{
-                    scale: 1 - idx * 0.04,
-                    zIndex: floatingCards.length - idx,
-                  }}
+                  transition={{ delay: 0.1 + idx * 0.1, duration: 0.5, ease: ease.out }}
+                  className="snap-center shrink-0 bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-black/5 overflow-hidden w-[280px] max-w-[85vw] flex flex-col items-start"
                 >
                   <div className="relative w-full h-[150px] flex items-center justify-center bg-surface-1 overflow-hidden">
                     <Image src={card.image} alt={card.title} fill className="object-cover" sizes="280px" />
@@ -307,8 +338,11 @@ export default function Hero() {
                       </span>
                   </div>
                 </motion.div>
-              );
-            })}
+              ))}
+            </div>
+            {/* Gradient indicator for scroll */}
+            <div className="absolute top-0 right-0 w-8 md:w-16 h-full bg-gradient-to-l from-surface-1 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 w-8 md:w-16 h-full bg-gradient-to-r from-surface-1 to-transparent pointer-events-none" />
           </div>
 
         </div>
@@ -330,16 +364,18 @@ export default function Hero() {
           <div className="flex whitespace-nowrap">
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+              transition={{ duration: 45, ease: "linear", repeat: Infinity }}
               className="flex items-center gap-10 md:gap-14 px-5"
             >
               {marqueeItems.map((name, i) => (
-                <span
-                  key={i}
-                  className="text-[12px] md:text-[14px] font-bold text-text-tertiary/40 uppercase tracking-[0.12em] select-none"
-                >
-                  {name}
-                </span>
+                <div key={i} className="flex items-center gap-2.5 opacity-60 hover:opacity-100 transition-opacity whitespace-nowrap group">
+                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-surface-2 border border-black/5 flex items-center justify-center text-[12px] md:text-[14px] font-black text-brand tracking-tighter group-hover:bg-brand/10 transition-colors">
+                    {name.charAt(0)}
+                  </div>
+                  <span className="text-[12px] md:text-[14px] font-bold text-text-tertiary capitalize tracking-tight">
+                    {name}
+                  </span>
+                </div>
               ))}
             </motion.div>
           </div>

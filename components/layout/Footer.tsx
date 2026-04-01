@@ -1,10 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Copy, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Copy, Check, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("hello@kinetixstudios.in");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* fallback: do nothing */ }
+  };
+
   return (
     <footer className="bg-surface-dark pt-16 md:pt-20 pb-28 md:pb-10 relative overflow-hidden">
       {/* Ambient glow */}
@@ -76,10 +87,14 @@ export default function Footer() {
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
                   <Mail size={12} /> New Business
                 </p>
-                <div className="flex items-center gap-3 text-lg text-text-inverse hover:text-brand transition-colors cursor-pointer group w-max">
+                <button onClick={handleCopyEmail} className="flex items-center gap-3 text-lg text-text-inverse hover:text-brand transition-colors cursor-pointer group w-max">
                   hello@kinetixstudios.in
-                  <Copy size={16} className="text-text-inverse/20 group-hover:text-brand transition-colors" />
-                </div>
+                  {copied ? (
+                    <Check size={16} className="text-green-400 transition-colors" />
+                  ) : (
+                    <Copy size={16} className="text-text-inverse/20 group-hover:text-brand transition-colors" />
+                  )}
+                </button>
               </div>
               <div>
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
@@ -90,9 +105,9 @@ export default function Footer() {
               <div>
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
                 <div className="flex gap-4 text-text-inverse/40">
-                  <a href="https://wa.me/9057680262" className="hover:text-brand transition-colors">WhatsApp</a>
-                  <a href="https://instagram.com/kinetixstudios" className="hover:text-brand transition-colors">Instagram</a>
-                  <a href="https://linkedin.com/company/kinetixstudios" className="hover:text-brand transition-colors">LinkedIn</a>
+                  <a href="https://wa.me/919057680262" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors">WhatsApp</a>
+                  <a href="https://instagram.com/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors">Instagram</a>
+                  <a href="https://linkedin.com/company/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors">LinkedIn</a>
                 </div>
               </div>
             </div>

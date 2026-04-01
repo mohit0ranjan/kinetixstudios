@@ -1,162 +1,116 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Star, ArrowRight, ArrowLeft } from "lucide-react";
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { fadeUp, viewportOnce, ease } from "@/lib/motion";
+import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 
 const testimonials = [
   {
     name: "Arshdeep S.",
     business: "Institute Director — Ludhiana",
-    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Educational interior
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800",
     review: "Our admissions doubled within three months of launching the new site and ad funnel. They truly understand the local Punjab market parents' mindset.",
   },
   {
     name: "Vikram S.",
     business: "Fitness Founder — Jalandhar",
-    image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Gym interior
+    image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=800",
     review: "The automated lead system they built for my gym is like having a 24/7 sales team. We get high-quality inquiries even while we sleep.",
   },
   {
     name: "Dr. R. Arora",
     business: "Clinic Specialist — Chandigarh",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Clinic interior
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800",
     review: "Patient trust starts with a professional online presence. Kinetix delivered exactly that, along with a seamless booking flow that my patients love.",
   },
   {
     name: "Sandeep B.",
-    business: "Restaurateur — Jalandhar",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Premium restaurant
+    business: "Restaurant Owner — Jalandhar",
+    image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=800",
     review: "We moved away from zero-margin delivery apps to our own direct ordering system. It's been the best investment for our restaurant's bottom line.",
   },
   {
     name: "Priyanka K.",
     business: "Salon Studio — Goraya",
-    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Salon interior
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800",
     review: "The premium aesthetic they gave our website perfectly matches our luxury salon vibe. Our bridal bookings have seen a massive surge.",
   }
 ];
 
-/** Cross-fade slide variants */
-const slideVariants = {
-  enter: { opacity: 0, y: 12 },
-  center: { opacity: 1, y: 0, transition: { duration: 0.45, ease: ease.out } },
-  exit: { opacity: 0, y: -12, transition: { duration: 0.3, ease: ease.inOut } },
-};
-
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const nextSlide = () => setActiveIndex((prev) => (prev + 1) % testimonials.length);
-  const prevSlide = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section className="section-padding relative bg-surface-0 overflow-hidden">
-
-      {/* Decorative quote */}
-      <div className="absolute top-12 md:top-20 left-1/2 -translate-x-1/2 md:left-[10%] md:translate-x-0 text-[20rem] md:text-[30rem] font-display italic text-black/[0.02] leading-none pointer-events-none select-none z-0">
-        &ldquo;
-      </div>
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-black/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="section-container relative z-10">
-
-        {/* Header — single fadeUp */}
+        {/* Header */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="text-center mb-12 md:mb-20"
+          className="text-center mb-16 md:mb-24 flex flex-col items-center"
         >
-          <SectionEyebrow label="Client Success" center />
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1]">
-            What Our Clients Say
+          <SectionEyebrow label="Client Success Stories" center />
+          <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] max-w-2xl mt-4">
+            Trusted by Punjab's top local businesses.
           </h2>
         </motion.div>
 
-        {/* Carousel — AnimatePresence cross-fade */}
-        <div className="relative w-full min-h-[550px] sm:min-h-[500px] md:min-h-[420px]">
-          <AnimatePresence mode="wait">
+        {/* Testimonials Grid */}
+        <motion.div 
+          variants={staggerContainer()}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          {testimonials.map((testimonial, idx) => (
             <motion.div
-              key={activeIndex}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="absolute inset-0 flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full"
+              key={idx}
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 border border-black/[0.04] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-out group relative overflow-hidden"
             >
-              {/* Portrait */}
-              <div className="w-full md:w-5/12 h-[260px] sm:h-[300px] md:h-full relative rounded-2xl overflow-hidden shadow-2xl shrink-0">
-                <Image
-                  src={testimonials[activeIndex].image}
-                  alt={testimonials[activeIndex].name}
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  loading="lazy"
-                />
-                <div className="absolute top-4 right-4 md:top-5 md:right-5 flex bg-white/95 px-3 py-1.5 rounded-full items-center gap-1.5 shadow-md">
-                  <Star size={12} fill="currentColor" className="text-brand" strokeWidth={0} />
-                  <span className="text-sm font-bold text-text-primary">5.0</span>
+              {/* Subtle gradient hover effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              <div className="relative z-10">
+                {/* Star Ratings */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" className="text-yellow-400" strokeWidth={0} />
+                  ))}
                 </div>
-              </div>
 
-              {/* Quote */}
-              <div className="w-full md:w-7/12 flex flex-col justify-center text-center md:text-left">
-                <p className="text-text-primary text-xl md:text-3xl lg:text-[2.25rem] leading-[1.35] font-bold tracking-tight mb-10 md:mb-14">
-                  &ldquo;{testimonials[activeIndex].review}&rdquo;
+                {/* Review Text */}
+                <p className="text-text-secondary text-lg leading-[1.6] mb-8 font-medium">
+                  "{testimonial.review}"
                 </p>
-                <div>
-                  <h5 className="text-text-primary text-lg md:text-xl font-black">{testimonials[activeIndex].name}</h5>
-                  <p className="text-brand text-sm font-bold uppercase tracking-widest mt-1">{testimonials[activeIndex].business}</p>
+
+                {/* Client Info */}
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-black/[0.04]">
+                    <Image
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      fill
+                      className="object-cover"
+                      sizes="48px"
+                    />
+                  </div>
+                  <div>
+                    <h5 className="text-text-primary font-bold">{testimonial.name}</h5>
+                    <p className="text-text-tertiary text-sm font-medium mt-0.5">{testimonial.business}</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Navigation */}
-        <div className="flex flex-col md:flex-row items-center justify-between mt-8 md:mt-12 relative z-20">
-          <div className="flex gap-2 mb-6 md:mb-0">
-            {testimonials.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  activeIndex === idx ? "w-8 bg-brand" : "w-2 bg-black/10 hover:bg-black/20"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex gap-3">
-            <button
-              onClick={prevSlide}
-              aria-label="Previous Testimonial"
-              className="w-12 h-12 rounded-xl border border-black/10 flex items-center justify-center text-text-tertiary hover:text-brand hover:border-brand transition-all active:scale-90"
-            >
-              <ArrowLeft size={18} />
-            </button>
-            <button
-              onClick={nextSlide}
-              aria-label="Next Testimonial"
-              className="w-12 h-12 rounded-xl border border-black/10 flex items-center justify-center text-text-tertiary hover:text-brand hover:border-brand transition-all active:scale-90"
-            >
-              <ArrowRight size={18} />
-            </button>
-          </div>
-        </div>
-
+          ))}
+        </motion.div>
       </div>
     </section>
   );

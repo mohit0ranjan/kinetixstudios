@@ -1,227 +1,193 @@
-"use client";
+﻿"use client";
 
-import { motion, useInView } from "framer-motion";
-import { Search, Map, Zap, TrendingUp, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { Search, LayoutGrid, Zap, TrendingUp } from "lucide-react";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { fadeUp, viewportOnce, ease } from "@/lib/motion";
 
 const steps = [
   {
     number: "01",
-    title: "Discovery",
+    title: "Discovery & Research",
     description:
       "Deep dive into your business, local market, competitors, and growth bottlenecks.",
     icon: Search,
-    color: "from-orange-500/10 to-orange-500/5",
-    iconBg: "bg-orange-500/10 text-brand",
+    gradient: "from-orange-500 to-orange-600",
+    accent: "#ff6a00",
   },
   {
     number: "02",
-    title: "Strategy",
+    title: "Strategy Development",
     description:
       "Custom blueprint: websites, ads, and SEO tactics designed exclusively for ROI.",
-    icon: Map,
-    color: "from-blue-500/10 to-blue-500/5",
-    iconBg: "bg-blue-500/10 text-blue-600",
+    icon: LayoutGrid,
+    gradient: "from-blue-500 to-blue-600",
+    accent: "#3b82f6",
   },
   {
     number: "03",
-    title: "Execute",
+    title: "Design & Execution",
     description:
       "Deploy campaigns, launch web assets, and set the growth systems live.",
     icon: Zap,
-    color: "from-emerald-500/10 to-emerald-500/5",
-    iconBg: "bg-emerald-500/10 text-emerald-600",
+    gradient: "from-emerald-500 to-emerald-600",
+    accent: "#10b981",
   },
   {
     number: "04",
-    title: "Scale",
+    title: "Launch & Optimization",
     description:
       "Continuous optimization, A/B testing, and scaling to dominate your market.",
     icon: TrendingUp,
-    color: "from-purple-500/10 to-purple-500/5",
-    iconBg: "bg-purple-500/10 text-purple-600",
+    gradient: "from-purple-500 to-purple-600",
+    accent: "#a855f7",
   },
 ];
-
-function StepCard({
-  step,
-  index,
-  isLast,
-}: {
-  step: (typeof steps)[0];
-  index: number;
-  isLast: boolean;
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const IconComponent = step.icon;
-
-  return (
-    <div ref={ref} className="relative flex flex-col items-center flex-1">
-      {/* Step Node */}
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.9 }}
-        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-        transition={{ duration: 0.5, delay: index * 0.15, ease: ease.out }}
-        className="group relative w-full"
-      >
-        {/* Card */}
-        <div
-          className={`relative bg-gradient-to-br ${step.color} border border-black/5 rounded-2xl p-6 lg:p-7 overflow-hidden transition-all duration-500 lg:hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.08)] lg:hover:-translate-y-1`}
-        >
-          {/* Step number watermark */}
-          <span className="absolute top-3 right-4 text-[4rem] font-black text-black/[0.03] leading-none tracking-tighter select-none pointer-events-none">
-            {step.number}
-          </span>
-
-          {/* Icon */}
-          <div
-            className={`w-11 h-11 rounded-xl ${step.iconBg} flex items-center justify-center mb-5 transition-transform duration-500 lg:group-hover:scale-110`}
-          >
-            <IconComponent size={20} strokeWidth={2.2} />
-          </div>
-
-          {/* Content */}
-          <h3 className="text-lg lg:text-xl font-bold text-text-primary tracking-tight mb-2">
-            {step.title}
-          </h3>
-          <p className="text-text-secondary text-[14px] lg:text-[15px] font-medium leading-relaxed">
-            {step.description}
-          </p>
-        </div>
-      </motion.div>
-
-      {/* ── Arrow connector (desktop only, not on last) ── */}
-      {!isLast && (
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
-          transition={{
-            duration: 0.4,
-            delay: index * 0.15 + 0.3,
-            ease: ease.out,
-          }}
-          className="hidden lg:flex absolute top-1/2 -right-[22px] xl:-right-[26px] -translate-y-1/2 z-20 origin-left"
-        >
-          <div className="flex items-center">
-            <div className="w-6 xl:w-8 h-[2px] bg-gradient-to-r from-text-tertiary/30 to-text-tertiary/50" />
-            <ChevronRight
-              size={14}
-              className="text-text-tertiary/50 -ml-1.5"
-              strokeWidth={2.5}
-            />
-          </div>
-        </motion.div>
-      )}
-    </div>
-  );
-}
 
 export default function HowWeWork() {
   return (
     <section
       id="how-we-work"
-      className="py-20 md:py-32 relative bg-surface-0 overflow-hidden"
+      className="py-24 md:py-40 relative bg-white overflow-hidden"
     >
-      {/* Subtle background pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-30"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+      {/* Subtle animated background elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Animated gradient orbs */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "2s" }} />
+      </div>
 
-      <div className="section-container relative z-10">
-        {/* Header */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Header Section */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="text-center mb-12 md:mb-16 max-w-2xl mx-auto"
+          className="text-center mb-24 max-w-4xl mx-auto relative z-20"
         >
-          <SectionEyebrow label="Our Process" center />
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] mb-4 mt-4">
-            From Discovery to{" "}
-            <span className="text-brand font-display italic">Dominance.</span>
+          <div className="inline-block mb-6">
+            <SectionEyebrow label="Work Process" center />
+          </div>
+          
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
+            Our Solution Process
           </h2>
-          <p className="text-text-secondary text-base md:text-lg font-medium max-w-xl mx-auto">
-            A proven 4-step framework that turns struggling local businesses
-            into undeniable market leaders.
+          <div className="w-20 h-1 bg-gradient-to-r from-orange-500 via-orange-400 to-transparent mx-auto mb-8 rounded-full" />
+          
+          <p className="text-lg md:text-xl text-gray-600 font-medium max-w-2xl mx-auto leading-relaxed">
+            From Discovery to Dominance. A proven 4-step framework that transforms struggling local businesses into undeniable market leaders.
           </p>
         </motion.div>
 
-        {/* ── Desktop: Horizontal Arrow Flow ── */}
-        <div className="hidden md:grid grid-cols-4 gap-6 lg:gap-10 relative">
-          {steps.map((step, index) => (
-            <StepCard
-              key={step.number}
-              step={step}
-              index={index}
-              isLast={index === steps.length - 1}
-            />
-          ))}
-        </div>
+        {/* Main Process Display */}
+        <div className="relative">
+          {/* Central Hub */}
+          <div className="flex justify-center mb-16 md:mb-20 relative z-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.6, ease: ease.out }}
+              className="relative"
+            >
+              <div className="relative group">
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Main Button */}
+                <div className="relative bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl px-12 py-7 shadow-2xl hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
+                  <span className="font-black text-white text-xl tracking-wider uppercase drop-shadow-lg">
+                    Kinetix Approach
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
-        {/* ── Mobile: Vertical Connected Steps ── */}
-        <div className="md:hidden relative pl-10">
-          {/* Vertical track line */}
-          <div className="absolute left-[15px] top-2 bottom-2 w-[2px] bg-black/5 rounded-full" />
-          <motion.div
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="absolute left-[15px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-brand via-blue-500 to-purple-500 rounded-full origin-top"
-          />
+          {/* Connection Lines SVG (Desktop) */}
+          <div className="hidden lg:flex justify-center mb-12 relative z-10">
+            <svg className="w-full h-24 max-w-5xl" viewBox="0 0 1000 100" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="flowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(255,106,0,0.8)" />
+                  <stop offset="100%" stopColor="rgba(255,106,0,0.2)" />
+                </linearGradient>
+              </defs>
+              
+              {/* Center vertical line */}
+              <path d="M 500 0 L 500 30" stroke="url(#flowGrad)" strokeWidth="2" />
+              
+              {/* Horizontal connector */}
+              <path d="M 125 30 L 875 30" stroke="url(#flowGrad)" strokeWidth="2" />
+              
+              {/* Down connections to cards */}
+              <path d="M 125 30 L 125 100" stroke="url(#flowGrad)" strokeWidth="2" opacity="0.6" />
+              <path d="M 375 30 L 375 100" stroke="url(#flowGrad)" strokeWidth="2" opacity="0.6" />
+              <path d="M 625 30 L 625 100" stroke="url(#flowGrad)" strokeWidth="2" opacity="0.6" />
+              <path d="M 875 30 L 875 100" stroke="url(#flowGrad)" strokeWidth="2" opacity="0.6" />
+              
+              {/* Intersection dots */}
+              <circle cx="500" cy="30" r="4" fill="#ff6a00" />
+              <circle cx="125" cy="30" r="3" fill="#ff6a00" opacity="0.5" />
+              <circle cx="375" cy="30" r="3" fill="#ff6a00" opacity="0.5" />
+              <circle cx="625" cy="30" r="3" fill="#ff6a00" opacity="0.5" />
+              <circle cx="875" cy="30" r="3" fill="#ff6a00" opacity="0.5" />
+            </svg>
+          </div>
 
-          <div className="flex flex-col gap-8">
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5 relative z-20">
             {steps.map((step, index) => {
-              const IconComponent = step.icon;
+              const Icon = step.icon;
               return (
                 <motion.div
                   key={step.number}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
                   transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
+                    duration: 0.6,
+                    delay: 0.1 + index * 0.12,
                     ease: ease.out,
                   }}
-                  className="relative"
+                  className="group relative"
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[41px] top-2 w-6 h-6 rounded-full bg-surface-0 border-[3px] border-brand shadow-[0_0_10px_rgba(255,106,0,0.15)] flex items-center justify-center z-10">
-                    <div className="w-1.5 h-1.5 bg-brand rounded-full" />
-                  </div>
-
-                  {/* Mobile card */}
-                  <div
-                    className={`bg-gradient-to-br ${step.color} border border-black/5 rounded-xl p-5`}
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div
-                        className={`w-9 h-9 rounded-lg ${step.iconBg} flex items-center justify-center`}
-                      >
-                        <IconComponent size={18} strokeWidth={2.2} />
-                      </div>
-                      <div>
-                        <span className="text-[10px] font-bold text-text-tertiary uppercase tracking-[0.15em] block">
-                          Step {step.number}
-                        </span>
-                        <h3 className="text-base font-bold text-text-primary tracking-tight leading-tight">
-                          {step.title}
-                        </h3>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
+                  
+                  <div className="relative flex flex-col h-full bg-white rounded-2xl p-8 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    
+                    {/* Gradient accent bar on hover */}
+                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${step.gradient} transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500`} />
+                    
+                    {/* Step Number Badge */}
+                    <div className="inline-flex items-center justify-center mb-6">
+                      <div className={`relative w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br ${step.gradient} text-white font-black text-lg shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                        <span>{step.number}</span>
+                        <div className="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                       </div>
                     </div>
-                    <p className="text-text-secondary text-[14px] font-medium leading-relaxed">
+
+                    {/* Icon Container */}
+                    <div className="mb-6 inline-flex">
+                      <div className="p-3 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors duration-300">
+                        <Icon className="w-6 h-6 text-gray-700 group-hover:text-gray-900 transition-colors duration-300" strokeWidth={2} />
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-black text-gray-900 mb-3 tracking-tight leading-tight group-hover:text-gray-800 transition-colors">
+                      {step.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-base leading-relaxed font-medium flex-grow group-hover:text-gray-700 transition-colors duration-300">
                       {step.description}
                     </p>
+
+                    {/* Bottom accent line */}
+                    <div className="mt-6 pt-6 border-t border-gray-100 group-hover:border-gray-200 transition-colors duration-300" />
+                    <div className={`h-0.5 bg-gradient-to-r ${step.gradient} rounded-full mt-4 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500`} />
                   </div>
                 </motion.div>
               );

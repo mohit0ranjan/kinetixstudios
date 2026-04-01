@@ -139,7 +139,7 @@ export default function WhyChooseUs() {
               </h2>
               
               <p className="text-text-secondary text-[17px] md:text-[19px] font-medium leading-relaxed mb-8">
-                We focus entirely on measurable growth, not vanity metrics. 
+                We focus entirely on measurable growth, not vanity metrics, so every campaign has a clear business outcome.
               </p>
 
               <div className="bg-white/60 border border-gray-200/60 p-6 lg:p-8 rounded-2xl shadow-[0_4px_24px_-8px_rgba(0,0,0,0.04)] backdrop-blur-sm relative overflow-hidden">

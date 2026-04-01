@@ -35,11 +35,11 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 md:py-28 bg-[#F8F9FA]" aria-labelledby="faq-title">
+    <section className="py-20 md:py-28 bg-surface-1" aria-labelledby="faq-title">
       <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
         <div className="text-center mb-12 md:mb-14">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF6A00] mb-3">Frequently Asked Questions</p>
-          <h2 id="faq-title" className="text-3xl md:text-5xl font-black tracking-tight text-[#0A0A0A]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand mb-3">Frequently Asked Questions</p>
+          <h2 id="faq-title" className="text-3xl md:text-5xl font-black tracking-tight text-text-primary">
             Answers Before You Ask
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                   aria-controls={`faq-panel-${index}`}
                 >
-                  <span className="text-base md:text-xl font-bold text-[#0A0A0A]">{item.q}</span>
+                  <span className="text-base md:text-xl font-bold text-text-primary">{item.q}</span>
                   <ChevronDown
                     className={`shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                     size={20}
@@ -73,7 +73,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeOut" }}
                     >
-                      <p className="px-5 md:px-7 pb-6 text-sm md:text-base text-slate-600 leading-relaxed">
+                      <p className="px-5 md:px-7 pb-6 text-sm md:text-base text-text-secondary leading-relaxed">
                         {item.a}
                       </p>
                     </motion.div>

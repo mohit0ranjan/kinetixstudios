@@ -6,7 +6,7 @@ import { ArrowRight, MessageCircle, Calendar, ShieldCheck, Zap, Target, X, Check
 import { fadeUp, viewportOnce, buttonPress, ease } from "@/lib/motion";
 
 export default function CTA() {
-  const whatsappLink = "https://wa.me/9057680262";
+  const whatsappLink = "https://wa.me/919057680262";
 
   return (
     <section id="contact" className="relative bg-surface-1 py-16 md:py-24 font-sans">
@@ -16,7 +16,7 @@ export default function CTA() {
            initial="hidden"
            whileInView="visible"
            viewport={viewportOnce}
-           className="relative max-w-5xl mx-auto bg-surface-dark rounded-[2rem] md:rounded-[3rem] p-10 md:p-16 lg:p-20 overflow-hidden shadow-2xl border border-white/10 text-center"
+           className="relative max-w-5xl mx-auto bg-surface-dark rounded-[2rem] p-10 md:p-16 lg:p-20 overflow-hidden shadow-2xl border border-white/10 text-center"
         >
           {/* Ambient glows inside the floating box */}
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand/15 blur-[100px] rounded-full pointer-events-none" />
@@ -47,7 +47,7 @@ export default function CTA() {
             </h2>
 
             <p className="text-base md:text-xl text-text-inverse/70 max-w-2xl mx-auto mb-10 md:mb-12 font-medium leading-relaxed">
-              Book a free 30-minute strategy call and get a customized plan designed to dominate your local market.
+              Tell us your revenue goal — we&apos;ll show you the exact system to hit it. No fluff, just a roadmap built for your market.
             </p>
             
             {/* CTAs */}

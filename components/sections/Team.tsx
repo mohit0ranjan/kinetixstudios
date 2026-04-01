@@ -10,13 +10,13 @@ const team = [
   {
     name: "Mohit Ranjan",
     role: "Growth Strategist",
-    image: "/team/Mohit Ranjan.png",
+    image: "/team/mohit-ranjan.png",
     quote: "Strategy without execution is just a dream.",
   },
   {
     name: "Aaryan",
     role: "System Architect & Developer",
-    image: "/team/Aryan.jpeg",
+    image: "/team/aryan.jpeg",
     quote: "Clean systems scale infinitely.",
   },
   {

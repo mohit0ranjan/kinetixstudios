@@ -66,6 +66,9 @@ export default function Portfolio() {
             <h2 className="font-sans text-[clamp(2rem,4vw,3.25rem)] font-extrabold text-text-primary tracking-tight leading-[1.1]">
               Case Studies
             </h2>
+            <p className="mt-2 text-text-secondary text-base md:text-lg font-medium max-w-xl">
+              Why your ads don&apos;t convert.
+            </p>
           </div>
           <Link
             href="/work"
@@ -86,11 +89,12 @@ export default function Portfolio() {
         >
           {/* Featured */}
           {featured && (
-              <Link href="/work" className="group block">
-                <div className="relative aspect-[3/2] md:aspect-[16/10] rounded-xl overflow-hidden bg-surface-1 border border-black/5">
+            <motion.div variants={scaleFade} custom={0.05} className="md:col-span-7">
+              <Link href="/work" className="group block h-full">
+                <div className="relative h-full min-h-[240px] md:min-h-[400px] rounded-xl overflow-hidden bg-surface-1 border border-black/5">
                   <Image
                     src={featured.image}
-                    alt={featured.category}
+                    alt="Case study showing 3x bookings increase for a high-converting platform"
                     fill
                     className="object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     sizes="(max-width: 768px) 100vw, 58vw"
@@ -102,6 +106,8 @@ export default function Portfolio() {
                       {featured.result}
                     </span>
                   </div>
+                  {/* Overlay gradient for text readability if we placed text inside, but here text is below. 
+                      Let's keep the image clean. */}
                 </div>
                 <div className="mt-4 md:mt-5 flex items-start justify-between gap-4">
                   <div className="flex-1">
@@ -117,6 +123,7 @@ export default function Portfolio() {
                   </div>
                 </div>
               </Link>
+            </motion.div>
           )}
 
           {/* Compact rows */}
@@ -131,7 +138,7 @@ export default function Portfolio() {
                   <div className="relative w-32 h-24 md:w-48 md:h-32 rounded-xl overflow-hidden bg-surface-1 border border-black/5 shrink-0">
                     <Image
                       src={project.image}
-                      alt={project.category}
+                      alt={`${project.category} case study showing Kinetix client work`}
                       fill
                       className="object-cover group-hover:scale-[1.04] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       sizes="144px"

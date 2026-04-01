@@ -11,34 +11,50 @@ const projects = [
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465928/Screenshot_2026-03-25_233644_jyxhtc.png",
     alt: "GlowNest Studio website",
+    title: "GlowNest Studio",
+    result: "+210% Bookings",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233702_w5a4eg.png",
     alt: "Apex Scholars website",
+    title: "Apex Scholars",
+    result: "+150% Leads",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465926/Screenshot_2026-03-25_233625_qxpqni.png",
     alt: "BrewBite Café website",
+    title: "BrewBite Café",
+    result: "+85% Footfall",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465925/Screenshot_2026-03-25_233741_rqtxac.png",
     alt: "PureGlow Derma website",
+    title: "PureGlow Derma",
+    result: "3x Online Sales",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774465924/Screenshot_2026-03-25_233724_enp5xm.png",
     alt: "FitZone Pro website",
+    title: "FitZone Pro",
+    result: "+120% Members",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466352/a2882e3c-499b-401b-8785-3ed83116bd52.png",
     alt: "Target Fitness Gym website",
+    title: "Target Fitness",
+    result: "Full Capacity",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466403/d959544c-1775-4862-82ca-d89c5c957c0d.png",
     alt: "Zenith Yoga Center website",
+    title: "Zenith Yoga",
+    result: "+180% Trials",
   },
   {
     image: "https://res.cloudinary.com/dnv3wq7ga/image/upload/v1774466944/35713b8b-f7f2-4d7b-8690-ba476040f643.png",
     alt: "Chak Bro Pub website",
+    title: "Chak Bro Pub",
+    result: "2x Weekend Reservations",
   },
 ];
 
@@ -99,35 +115,49 @@ export default function ProjectShowcase() {
             <Link
               key={i}
               href="/work"
-              className="group relative shrink-0 w-[320px] md:w-[420px] lg:w-[480px] rounded-2xl overflow-hidden border border-black/5 shadow-card hover:shadow-card-hover transition-all duration-500 bg-white"
+              className="group relative shrink-0 w-[320px] md:w-[420px] lg:w-[480px] rounded-2xl overflow-hidden border border-black/5 shadow-sm hover:shadow-2xl transition-all duration-500 bg-[#f8f9fa] block"
             >
               {/* Browser chrome bar */}
-              <div className="h-7 md:h-8 bg-gradient-to-b from-[#f0f0f0] to-[#e4e4e4] border-b border-black/8 flex items-center px-3 gap-2 shrink-0">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+              <div className="h-7 md:h-8 bg-gradient-to-b from-[#f0f0f0] to-[#e4e4e4] border-b border-black/8 flex items-center px-3 gap-2 shrink-0 relative z-30">
+                <div className="flex gap-1.5 opacity-60">
+                  <div className="w-2.5 h-2.5 rounded-full bg-black/30" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-black/20" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-black/10" />
                 </div>
                 <div className="flex-1 h-3.5 bg-white/80 rounded ml-3 mr-8 shadow-inner border border-black/5" />
               </div>
 
-              {/* Screenshot */}
-              <div className="relative w-full h-[220px] md:h-[280px] lg:h-[320px] overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.alt}
-                  fill
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                  sizes="480px"
-                  
-                />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/8 transition-colors duration-500 z-10 pointer-events-none" />
+              {/* Image Container */}
+              <div className="relative w-full h-[220px] md:h-[280px] lg:h-[320px] overflow-hidden bg-white">
+                <motion.div
+                  className="w-full h-full relative origin-center transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-95"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="480px"
+                  />
+                  {/* Subtle border to frame the scaled down image */}
+                  <div className="absolute inset-0 border border-black/5 pointer-events-none rounded-sm transition-opacity duration-500 opacity-0 group-hover:opacity-100" />
+                </motion.div>
+                
+                {/* Dark gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
 
-                {/* Hover CTA */}
-                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white transform scale-50 group-hover:scale-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                    <ArrowUpRight size={22} />
+                {/* Project Info appearing on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-end justify-between">
+                  <div>
+                    <h3 className="text-white text-xl md:text-2xl font-bold mb-1 tracking-tight">
+                      {project.title}
+                    </h3>
+                    <p className="text-brand font-medium text-sm md:text-base">
+                      {project.result}
+                    </p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-white shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-500 delay-100">
+                    <ArrowUpRight size={20} />
                   </div>
                 </div>
               </div>

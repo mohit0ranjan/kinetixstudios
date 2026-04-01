@@ -113,7 +113,7 @@ function IndustryTabs({
           <button
             key={ind.id}
             onClick={() => onChange(i)}
-            className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-bold transition-colors duration-300 cursor-pointer ${
+            className={`relative flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-[13px] font-bold transition-colors duration-300 cursor-pointer ${
               isActive
                 ? "text-text-primary"
                 : "text-text-tertiary hover:text-text-secondary"
@@ -130,8 +130,8 @@ function IndustryTabs({
                 }}
               />
             )}
-            <Icon size={15} className="relative z-10" />
-            <span className="relative z-10 hidden sm:inline">{ind.label}</span>
+            <Icon size={14} className="relative z-10 sm:w-[15px] sm:h-[15px]" />
+            <span className="relative z-10">{ind.label}</span>
           </button>
         );
       })}

@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import Link from "next/link";
 
 export default function StickyCTA() {
   const [showMobileCTA, setShowMobileCTA] = useState(false);
-  const whatsappLink = "https://wa.me/9057680262";
+  const whatsappLink = "https://wa.me/919057680262";
 
   useEffect(() => {
     const onScroll = () => setShowMobileCTA(window.scrollY > 400);
@@ -36,7 +37,7 @@ export default function StickyCTA() {
           aria-label="Chat on WhatsApp"
         >
           {/* Notification bubble pulse */}
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-surface-0 flex items-center justify-center animate-pulse" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center animate-pulse" />
           <MessageCircle size={28} />
         </a>
       </motion.div>
@@ -61,13 +62,13 @@ export default function StickyCTA() {
               >
                 <MessageCircle size={22} />
               </a>
-              <a
+              <Link
                 href="/contact"
                 className="flex-1 h-full rounded-xl bg-brand text-white font-bold text-[15px] tracking-tight flex items-center justify-center gap-2 transition-all shadow-[0_4px_15px_rgba(255,106,0,0.3)]"
               >
                 Book Call
                 <ArrowRight size={16} />
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
