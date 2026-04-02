@@ -4,9 +4,14 @@
   /* ── PRIMARY COLORS ── */
   --color-primary:          #0A0A0A;      /* Charcoal for text */
   --color-primary-light:    #1F1F1F;      /* Lighter charcoal */
+  --color-surface-dark:     #0A0A0A;      /* Alias used across components */
+  --color-surface-dark-alt: #141414;      /* Alternate dark surface alias */
   --color-accent:           #FF6A00;      /* Energetic Orange */
   --color-accent-light:     #FF8C3A;      /* Lighter orange */
   --color-accent-dark:      #E05500;      /* Darker orange */
+  --color-brand:            #FF6A00;      /* Legacy alias used by components */
+  --color-brand-light:      #FF8C3A;      /* Legacy alias used by gradients */
+  --color-brand-dark:       #E05500;      /* Legacy alias for hover/darker states */
 
   /* ── NEUTRAL PALETTE ── */
   --color-surface-0:        #FFFFFF;      /* Pure white */
@@ -48,6 +53,10 @@
   --shadow-inner:           inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
   --shadow-brand:           0 8px 24px -6px rgba(255, 106, 0, 0.25);
   --shadow-brand-hover:     0 16px 40px -12px rgba(255, 106, 0, 0.35);
+  --shadow-card:            0 12px 32px -16px rgba(0, 0, 0, 0.18);
+  --shadow-card-hover:      0 22px 52px -20px rgba(0, 0, 0, 0.22);
+  --shadow-button:          0 8px 26px rgba(10, 10, 10, 0.24), inset 0 -3px 0 rgba(0, 0, 0, 0.35);
+  --shadow-button-hover:    0 10px 30px rgba(10, 10, 10, 0.28), inset 0 -2px 0 rgba(0, 0, 0, 0.35);
 
   /* ── GLOW EFFECTS ── */
   --glow-accent:            rgba(255, 106, 0, 0.1);

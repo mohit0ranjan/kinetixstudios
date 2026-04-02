@@ -38,7 +38,7 @@ export default function Footer() {
               <span className="text-text-inverse">Kinetix Studios</span>
               <span className="text-brand text-5xl leading-none">.</span>
             </Link>
-            <p className="text-text-inverse/55 max-w-sm text-base md:text-lg leading-relaxed font-medium mb-8">
+            <p className="text-text-inverse/75 max-w-sm text-base md:text-lg leading-relaxed font-medium mb-8">
               The premier digital agency helping local businesses in India scale through modern marketing.
             </p>
             <div className="inline-flex items-center gap-3 bg-white/5 border border-white/8 px-5 py-3 rounded-xl cursor-pointer hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
@@ -65,7 +65,7 @@ export default function Footer() {
                 { label: "Contact", href: "/contact" },
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-text-inverse/55 hover:text-brand transition-colors flex items-center gap-1 group w-max">
+                  <Link href={item.href} className="text-text-inverse/75 hover:text-brand transition-colors flex items-center gap-1 group w-max">
                     {item.label}
                     <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                   </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
             <h4 className="text-text-inverse font-bold mb-6 text-lg">Get in Touch</h4>
             <div className="space-y-6">
               <div>
-                <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
+                <p className="text-text-inverse/55 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
                   <Mail size={12} /> New Business
                 </p>
                 <button type="button" onClick={handleCopyEmail} className="flex items-center gap-3 text-base md:text-lg text-text-inverse hover:text-brand transition-colors cursor-pointer group w-max" aria-label="Copy email address">
@@ -97,14 +97,14 @@ export default function Footer() {
                 </button>
               </div>
               <div>
-                <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
+                <p className="text-text-inverse/55 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
                   <MapPin size={12} /> Location
                 </p>
-                <p className="text-text-inverse/60 text-sm">Punjab, India</p>
+                <p className="text-text-inverse/75 text-sm">Punjab, India</p>
               </div>
               <div>
-                <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
-                <div className="flex gap-4 text-text-inverse/55">
+                <p className="text-text-inverse/55 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
+                <div className="flex gap-4 text-text-inverse/75">
                   <a href="https://wa.me/919057680262" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors" aria-label="Open WhatsApp">WhatsApp</a>
                   <a href="https://instagram.com/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors" aria-label="Open Instagram">Instagram</a>
                   <a href="https://linkedin.com/company/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors" aria-label="Open LinkedIn">LinkedIn</a>
@@ -116,12 +116,12 @@ export default function Footer() {
         </div>
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-text-inverse/35 text-sm">
+          <p className="text-text-inverse/60 text-sm">
             © {new Date().getFullYear()} Kinetix Studios. Building legacies since 2024.
           </p>
           <div className="flex gap-8 text-sm">
-            <Link href="/privacy" className="text-text-inverse/35 hover:text-text-inverse/65 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-text-inverse/35 hover:text-text-inverse/65 transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-text-inverse/60 hover:text-text-inverse transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-text-inverse/60 hover:text-text-inverse transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
