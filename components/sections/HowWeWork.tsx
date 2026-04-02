@@ -48,13 +48,13 @@ export default function HowWeWork() {
   return (
     <section
       id="how-we-work"
-      className="py-24 md:py-40 relative bg-white overflow-hidden"
+      className="py-20 md:py-32 relative bg-white overflow-hidden"
     >
       {/* Subtle animated background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Animated gradient orbs */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "2s" }} />
+        <div className="absolute -top-24 -right-24 w-72 h-72 md:w-96 md:h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-[80px] md:blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 md:w-96 md:h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-[80px] md:blur-3xl opacity-20 animate-pulse" style={{ animationDelay: "2s" }} />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
@@ -64,18 +64,18 @@ export default function HowWeWork() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="text-center mb-24 max-w-4xl mx-auto relative z-20"
+          className="text-center mb-16 md:mb-20 max-w-4xl mx-auto relative z-20"
         >
           <div className="inline-block mb-6">
             <SectionEyebrow label="Work Process" center />
           </div>
           
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
+          <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-black text-gray-900 tracking-tight leading-[1.08] mb-5 md:mb-6">
             Our Solution Process
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-orange-500 via-orange-400 to-transparent mx-auto mb-8 rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-orange-500 via-orange-400 to-transparent mx-auto mb-6 md:mb-8 rounded-full" />
           
-          <p className="text-lg md:text-xl text-gray-600 font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-gray-600 font-medium max-w-2xl mx-auto leading-relaxed">
             From Discovery to Dominance. A proven 4-step framework that transforms struggling local businesses into undeniable market leaders.
           </p>
         </motion.div>
@@ -83,7 +83,7 @@ export default function HowWeWork() {
         {/* Main Process Display */}
         <div className="relative">
           {/* Central Hub */}
-          <div className="flex justify-center mb-16 md:mb-20 relative z-20">
+          <div className="flex justify-center mb-12 md:mb-16 relative z-20">
             <motion.div
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -96,8 +96,8 @@ export default function HowWeWork() {
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* Main Button */}
-                <div className="relative bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl px-12 py-7 shadow-2xl hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
-                  <span className="font-black text-white text-xl tracking-wider uppercase drop-shadow-lg">
+                <div className="relative bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl px-8 md:px-12 py-5 md:py-7 shadow-2xl hover:shadow-3xl transition-all duration-300 group-hover:scale-105">
+                  <span className="font-black text-white text-lg md:text-xl tracking-wider uppercase drop-shadow-lg">
                     Kinetix Approach
                   </span>
                 </div>
@@ -137,7 +137,7 @@ export default function HowWeWork() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5 relative z-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-5 relative z-20">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
@@ -155,21 +155,21 @@ export default function HowWeWork() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10" />
                   
-                  <div className="relative flex flex-col h-full bg-white rounded-2xl p-8 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+                  <div className="relative flex flex-col h-full bg-white rounded-2xl p-6 md:p-8 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
                     
                     {/* Gradient accent bar on hover */}
                     <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${step.gradient} transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500`} />
                     
                     {/* Step Number Badge */}
-                    <div className="inline-flex items-center justify-center mb-6">
-                      <div className={`relative w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br ${step.gradient} text-white font-black text-lg shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                    <div className="inline-flex items-center justify-center mb-5 md:mb-6">
+                      <div className={`relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-gradient-to-br ${step.gradient} text-white font-black text-base md:text-lg shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
                         <span>{step.number}</span>
                         <div className="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                       </div>
                     </div>
 
                     {/* Icon Container */}
-                    <div className="mb-6 inline-flex">
+                    <div className="mb-5 md:mb-6 inline-flex">
                       <div className="p-3 rounded-lg bg-gray-100 group-hover:bg-gray-200 transition-colors duration-300">
                         <Icon className="w-6 h-6 text-gray-700 group-hover:text-gray-900 transition-colors duration-300" strokeWidth={2} />
                       </div>
@@ -181,7 +181,7 @@ export default function HowWeWork() {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-base leading-relaxed font-medium flex-grow group-hover:text-gray-700 transition-colors duration-300">
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed font-medium flex-grow group-hover:text-gray-700 transition-colors duration-300">
                       {step.description}
                     </p>
 

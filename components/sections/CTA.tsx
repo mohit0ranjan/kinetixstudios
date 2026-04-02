@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MessageCircle, Calendar, ShieldCheck, Zap, Target, X, CheckCircle2, Phone } from "lucide-react";
-import { fadeUp, viewportOnce, buttonPress, ease } from "@/lib/motion";
+import { motion } from "framer-motion";
+import { MessageCircle, ShieldCheck, Target, Phone } from "lucide-react";
+import { fadeUp, viewportOnce, buttonPress } from "@/lib/motion";
 
 export default function CTA() {
   const whatsappLink = "https://wa.me/919057680262";

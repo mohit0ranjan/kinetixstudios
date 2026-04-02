@@ -10,8 +10,6 @@ import {
   scaleFade,
   staggerContainer,
   viewportOnce,
-  viewportOnceLoose,
-  ease,
 } from "@/lib/motion";
 
 const projects = [

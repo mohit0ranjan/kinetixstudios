@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
-import { fadeUp, viewportOnce, ease } from "@/lib/motion";
+import { fadeUp, viewportOnce } from "@/lib/motion";
 
 const projects = [
   {

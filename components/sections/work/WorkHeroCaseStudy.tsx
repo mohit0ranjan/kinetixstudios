@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
-import { fadeUp, viewportOnce, ease, buttonPress } from "@/lib/motion";
+import { fadeUp, ease, buttonPress } from "@/lib/motion";
 
 export default function WorkHeroCaseStudy() {
   return (

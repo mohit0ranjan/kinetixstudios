@@ -41,7 +41,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="section-padding relative bg-surface-0 overflow-hidden">
+    <section className="py-16 md:py-24 relative bg-surface-0 overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-black/5 rounded-full blur-[120px] pointer-events-none" />
@@ -56,8 +56,8 @@ export default function Testimonials() {
           className="text-center mb-16 md:mb-24 flex flex-col items-center"
         >
           <SectionEyebrow label="Client Success Stories" center />
-          <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-extrabold text-text-primary tracking-tight leading-[1.1] max-w-2xl mt-4">
-            Trusted by Punjab's top local businesses.
+          <h2 className="text-[clamp(2.2rem,4vw,3.8rem)] font-extrabold text-text-primary tracking-tight leading-[1.08] max-w-2xl mt-4">
+            Trusted by Punjab&apos;s top local businesses.
           </h2>
         </motion.div>
 
@@ -71,9 +71,9 @@ export default function Testimonials() {
         >
           {testimonials.map((testimonial, idx) => (
             <motion.div
-              key={idx}
+              key={testimonial.name}
               variants={fadeUp}
-              className="bg-white rounded-2xl p-8 border border-black/[0.04] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-out group relative overflow-hidden"
+              className="bg-white rounded-2xl p-6 md:p-8 border border-black/[0.05] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-lg)] hover:-translate-y-1 transition-all duration-300 ease-out group relative overflow-hidden"
             >
               {/* Subtle gradient hover effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-brand/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -87,8 +87,8 @@ export default function Testimonials() {
                 </div>
 
                 {/* Review Text */}
-                <p className="text-text-secondary text-lg leading-[1.6] mb-8 font-medium">
-                  "{testimonial.review}"
+                <p className="text-text-secondary text-base md:text-lg leading-[1.65] mb-7 md:mb-8 font-medium">
+                  &ldquo;{testimonial.review}&rdquo;
                 </p>
 
                 {/* Client Info */}
@@ -100,6 +100,7 @@ export default function Testimonials() {
                       fill
                       className="object-cover"
                       sizes="48px"
+                      loading={idx < 2 ? "eager" : "lazy"}
                     />
                   </div>
                   <div>

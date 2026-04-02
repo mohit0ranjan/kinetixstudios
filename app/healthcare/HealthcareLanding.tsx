@@ -212,9 +212,9 @@ function HeroSection() {
         background: `radial-gradient(ellipse 60% 50% at 75% 20%, rgba(255,106,0,0.05), transparent), radial-gradient(ellipse 50% 40% at 15% 75%, rgba(59,130,246,0.04), transparent)`,
       }} />
       <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.12, 0.22, 0.12] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-8%] right-[10%] w-[500px] h-[500px] bg-brand/8 rounded-full blur-[120px] pointer-events-none" />
-      <div className="section-container relative z-10 py-24 md:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        className="absolute top-[-8%] right-[10%] w-[360px] h-[360px] md:w-[500px] md:h-[500px] bg-brand/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
+      <div className="section-container relative z-10 py-20 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
           <motion.div variants={staggerContainer(0.12, 0.1)} initial="hidden" animate="visible" className="max-w-xl">
             <motion.div variants={fadeUp} className="mb-6">
               <span className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/5">

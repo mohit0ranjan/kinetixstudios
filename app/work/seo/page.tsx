@@ -122,12 +122,12 @@ export default function SEOSystemsPage() {
             SEO Systems Built for Rankings & Revenue
           </h1>
           <p className="mt-5 text-base md:text-lg font-medium text-slate-600 leading-relaxed max-w-2xl mx-auto">
-            Proven page frameworks that rank for high-intent keywords and convert traffic into qualified leads, bookings, and sales. Documentation on every system we've deployed.
+            Proven page frameworks that rank for high-intent keywords and convert traffic into qualified leads, bookings, and sales. Documentation on every system we&apos;ve deployed.
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-4">
-          {seoSystems.map((item, idx) => (
+          {seoSystems.map((item) => (
             <article key={item.title} className="group rounded-3xl border border-slate-200 bg-white shadow-[0_10px_30px_-24px_rgba(15,23,42,0.22)] hover:shadow-[0_24px_48px_-24px_rgba(15,23,42,0.32)] transition-all duration-300 hover:-translate-y-0.5">
               <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-start md:gap-8">
                 {/* Left Content */}
@@ -199,7 +199,7 @@ export default function SEOSystemsPage() {
 
         <div className="mt-16 rounded-3xl border border-slate-200 bg-gradient-to-br from-emerald-50 to-teal-50 p-8 md:p-10">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900">Ready to build your SEO system?</h2>
-          <p className="mt-3 text-base text-slate-600 font-medium">Pick an industry above or talk to us about your specific business model. We'll design a custom SEO framework built for your keywords and revenue type.</p>
+          <p className="mt-3 text-base text-slate-600 font-medium">Pick an industry above or talk to us about your specific business model. We&apos;ll design a custom SEO framework built for your keywords and revenue type.</p>
           <Link href="/contact?service=seo" className="mt-5 inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-5 py-3 font-bold text-white hover:bg-emerald-700 transition-colors">
             Start Your SEO Project
             <ArrowUpRight className="h-5 w-5" />

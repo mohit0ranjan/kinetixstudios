@@ -17,7 +17,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-surface-dark pt-16 md:pt-20 pb-28 md:pb-10 relative overflow-hidden">
+    <footer className="bg-surface-dark pt-16 md:pt-20 pb-24 md:pb-10 relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-brand/5 blur-[150px] rounded-full pointer-events-none" />
       {/* Top border gradient */}
@@ -38,12 +38,12 @@ export default function Footer() {
               <span className="text-text-inverse">Kinetix Studios</span>
               <span className="text-brand text-5xl leading-none">.</span>
             </Link>
-            <p className="text-text-inverse/40 max-w-sm text-lg leading-relaxed font-light mb-8">
+            <p className="text-text-inverse/55 max-w-sm text-base md:text-lg leading-relaxed font-medium mb-8">
               The premier digital agency helping local businesses in India scale through modern marketing.
             </p>
             <div className="inline-flex items-center gap-3 bg-white/5 border border-white/8 px-5 py-3 rounded-xl cursor-pointer hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
               <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-sm font-semibold text-text-inverse/70">Available for new projects</span>
+              <span className="text-sm font-semibold text-text-inverse/80">Available for new projects</span>
             </div>
           </motion.div>
           
@@ -65,7 +65,7 @@ export default function Footer() {
                 { label: "Contact", href: "/contact" },
               ].map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="text-text-inverse/40 hover:text-brand transition-colors flex items-center gap-1 group w-max">
+                  <Link href={item.href} className="text-text-inverse/55 hover:text-brand transition-colors flex items-center gap-1 group w-max">
                     {item.label}
                     <ArrowUpRight size={14} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                   </Link>
@@ -87,12 +87,12 @@ export default function Footer() {
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
                   <Mail size={12} /> New Business
                 </p>
-                <button onClick={handleCopyEmail} className="flex items-center gap-3 text-lg text-text-inverse hover:text-brand transition-colors cursor-pointer group w-max">
+                <button type="button" onClick={handleCopyEmail} className="flex items-center gap-3 text-base md:text-lg text-text-inverse hover:text-brand transition-colors cursor-pointer group w-max" aria-label="Copy email address">
                   hello@kinetixstudios.in
                   {copied ? (
                     <Check size={16} className="text-green-400 transition-colors" />
                   ) : (
-                    <Copy size={16} className="text-text-inverse/20 group-hover:text-brand transition-colors" />
+                    <Copy size={16} className="text-text-inverse/40 group-hover:text-brand transition-colors" />
                   )}
                 </button>
               </div>
@@ -100,14 +100,14 @@ export default function Footer() {
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2 flex items-center gap-2">
                   <MapPin size={12} /> Location
                 </p>
-                <p className="text-text-inverse/50 text-sm">Punjab, India</p>
+                <p className="text-text-inverse/60 text-sm">Punjab, India</p>
               </div>
               <div>
                 <p className="text-text-inverse/30 uppercase tracking-widest text-xs font-semibold mb-2">Socials</p>
-                <div className="flex gap-4 text-text-inverse/40">
-                  <a href="https://wa.me/919057680262" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors">WhatsApp</a>
-                  <a href="https://instagram.com/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors">Instagram</a>
-                  <a href="https://linkedin.com/company/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors">LinkedIn</a>
+                <div className="flex gap-4 text-text-inverse/55">
+                  <a href="https://wa.me/919057680262" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors" aria-label="Open WhatsApp">WhatsApp</a>
+                  <a href="https://instagram.com/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors" aria-label="Open Instagram">Instagram</a>
+                  <a href="https://linkedin.com/company/kinetixstudios" target="_blank" rel="noreferrer" className="hover:text-brand transition-colors" aria-label="Open LinkedIn">LinkedIn</a>
                 </div>
               </div>
             </div>
@@ -116,12 +116,12 @@ export default function Footer() {
         </div>
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-text-inverse/25 text-sm">
+          <p className="text-text-inverse/35 text-sm">
             © {new Date().getFullYear()} Kinetix Studios. Building legacies since 2024.
           </p>
           <div className="flex gap-8 text-sm">
-            <Link href="/privacy" className="text-text-inverse/25 hover:text-text-inverse/50 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-text-inverse/25 hover:text-text-inverse/50 transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-text-inverse/35 hover:text-text-inverse/65 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-text-inverse/35 hover:text-text-inverse/65 transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

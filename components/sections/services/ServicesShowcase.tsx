@@ -224,7 +224,7 @@ export default function ServicesShowcase() {
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 md:mb-4">Ready to Dominate?</h2>
             <p className="text-sm sm:text-base md:text-xl text-gray-300 mb-6 md:mb-8 font-medium max-w-2xl mx-auto">
-              Let's build your custom growth strategy. Book a free consultation with our team.
+              Let&apos;s build your custom growth strategy. Book a free consultation with our team.
             </p>
             <Link
               href="/contact"

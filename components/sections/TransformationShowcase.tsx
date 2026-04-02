@@ -14,11 +14,9 @@ import {
 import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import {
   fadeUp,
-  staggerContainer,
   scaleFade,
   viewportOnce,
   ease,
-  duration,
 } from "@/lib/motion";
 
 // ── Industry Data ──────────────────────────────────────────
@@ -144,11 +142,9 @@ function IndustryTabs({
 function ComparisonColumn({
   type,
   items,
-  index,
 }: {
   type: "problem" | "solution";
   items: string[];
-  index: number;
 }) {
   const isProblem = type === "problem";
 
@@ -288,7 +284,6 @@ export default function TransformationShowcase() {
                   <ComparisonColumn
                     type="problem"
                     items={currentIndustry.problems}
-                    index={active}
                   />
                 </div>
 
@@ -303,7 +298,6 @@ export default function TransformationShowcase() {
                   <ComparisonColumn
                     type="solution"
                     items={currentIndustry.solutions}
-                    index={active}
                   />
                 </div>
               </div>

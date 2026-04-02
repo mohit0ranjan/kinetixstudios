@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -89,6 +89,7 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const prefersReducedMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth < 768 : false
   );
@@ -105,7 +106,7 @@ export default function Hero() {
   const py = useSpring(useTransform(mouseY, [-0.5, 0.5], [-10, 10]), springConfig);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (isMobile || !containerRef.current) return;
+    if (isMobile || prefersReducedMotion || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
     mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -131,31 +132,31 @@ export default function Hero() {
 
       {/* Animated orbs */}
       <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.18, 0.3, 0.18] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-8%] right-[10%] w-[400px] h-[400px] md:w-[550px] md:h-[550px] bg-brand/10 rounded-full blur-[120px] pointer-events-none"
+        animate={prefersReducedMotion ? { opacity: 0.16 } : { scale: [1, 1.2, 1], opacity: [0.18, 0.3, 0.18] }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[-6%] right-[8%] w-[300px] h-[300px] md:w-[550px] md:h-[550px] bg-brand/10 rounded-full blur-[90px] md:blur-[120px] pointer-events-none"
       />
       <motion.div
-        animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.15, 0.08] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-        className="absolute bottom-[5%] left-[-5%] w-[250px] h-[250px] bg-indigo-400/8 rounded-full blur-[100px] pointer-events-none"
+        animate={prefersReducedMotion ? { opacity: 0.08 } : { scale: [1, 1.1, 1], opacity: [0.08, 0.15, 0.08] }}
+        transition={prefersReducedMotion ? { duration: 0 } : { duration: 16, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+        className="absolute bottom-[4%] left-[-6%] w-[220px] h-[220px] md:w-[250px] md:h-[250px] bg-indigo-400/8 rounded-full blur-[80px] md:blur-[100px] pointer-events-none"
       />
 
       {/* ─── Main content ─── */}
-      <div className="section-container relative z-10 flex-grow flex items-center pt-20 md:pt-24 pb-8 md:pb-16">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="section-container relative z-10 flex-grow flex items-center pt-16 md:pt-24 pb-6 md:pb-16">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
 
           {/* ── Left: Content ── */}
           <motion.div
             variants={heroContainer}
             initial="hidden"
             animate="visible"
-            className="max-w-xl"
+            className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left"
           >
             {/* Eyebrow */}
             <motion.div
               variants={heroItem}
-              className="inline-flex items-center gap-2.5 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/5 mb-7 md:mb-8"
+              className="inline-flex items-center gap-2.5 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/5 mb-6 md:mb-8"
             >
               <span className="flex h-2 w-2 rounded-full bg-brand animate-pulse" />
               <span className="text-[11px] font-bold text-text-secondary tracking-widest uppercase">
@@ -168,7 +169,7 @@ export default function Hero() {
               variants={heroWordReveal}
               initial="hidden"
               animate="visible"
-              className="text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] font-sans font-black text-text-primary mb-6"
+              className="text-[clamp(2.25rem,5.2vw,4.5rem)] leading-[1.03] tracking-[-0.03em] font-sans font-black text-text-primary mb-5 md:mb-6"
             >
               <motion.span variants={heroWord} className="inline-block mr-[0.25em]">Great</motion.span>
               <motion.span variants={heroWord} className="inline-block mr-[0.25em]">offline.</motion.span>
@@ -196,7 +197,7 @@ export default function Hero() {
             {/* Subtext */}
             <motion.p
               variants={heroItem}
-              className="text-base md:text-lg font-medium text-text-secondary max-w-md mb-8 md:mb-10 leading-relaxed"
+              className="text-base md:text-lg font-medium text-text-secondary max-w-md mx-auto lg:mx-0 mb-7 md:mb-10 leading-relaxed"
             >
               We help local businesses grow with high-converting websites, ads, and SEO systems that bring{" "}
               <span className="text-text-primary font-bold">real customers</span>.
@@ -205,7 +206,7 @@ export default function Hero() {
             {/* CTA row */}
             <motion.div
               variants={heroItem}
-              className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-4"
+              className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4 mb-4"
             >
               <motion.a
                 href="/contact"
@@ -230,7 +231,7 @@ export default function Hero() {
             {/* Trust badge */}
             <motion.div
               variants={heroItem}
-              className="mt-8 flex items-center justify-center sm:justify-start gap-5"
+              className="mt-8 flex items-center justify-center lg:justify-start gap-5"
             >
               <div className="flex -space-x-3">
                 {['A', 'S', 'P', 'G'].map((initial, i) => (
@@ -252,7 +253,7 @@ export default function Hero() {
           </motion.div>
 
           {/* ── Right: Floating Cards Fan (desktop only) ── */}
-          <div className="hidden lg:block relative h-[500px] xl:h-[560px]">
+          <div className="hidden lg:block relative h-[460px] xl:h-[540px]">
             {floatingCards.map((card, idx) => (
               <motion.div
                 key={card.title}

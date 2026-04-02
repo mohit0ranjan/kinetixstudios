@@ -149,7 +149,7 @@ export default function GraphicDesignWorkPage() {
         {/* CTA Section */}
         <div className="mt-16 rounded-3xl border border-slate-200 bg-gradient-to-br from-fuchsia-50 to-pink-50 p-8 md:p-10 text-center">
           <h2 className="text-2xl md:text-3xl font-black text-slate-900">Ready to get designs like these?</h2>
-          <p className="mt-3 text-base text-slate-600 font-medium max-w-2xl mx-auto">Browse our gallery above and tell us which design direction resonates with your brand. We'll create custom assets for your business.</p>
+          <p className="mt-3 text-base text-slate-600 font-medium max-w-2xl mx-auto">Browse our gallery above and tell us which design direction resonates with your brand. We&apos;ll create custom assets for your business.</p>
           <Link href="/contact?service=graphic-design" className="mt-5 inline-flex items-center gap-2.5 rounded-xl bg-fuchsia-600 px-5 py-3 font-bold text-white hover:bg-fuchsia-700 transition-colors">
             Start Your Design Project
             <ArrowUpRight className="h-5 w-5" />

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight, MapPin, CheckCircle2 } from "lucide-react";
-import { fadeUp, viewportOnce, ease } from "@/lib/motion";
+import { viewportOnce, ease } from "@/lib/motion";
 
 const conceptStudies = [
   {

@@ -56,10 +56,10 @@ export default function Pricing({
   return (
     <section
       id="pricing"
-      className="py-20 md:py-32 relative bg-surface-0 overflow-hidden font-sans border-t border-black/5"
+      className="py-16 md:py-28 relative bg-surface-0 overflow-hidden font-sans border-t border-black/5"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[60rem] h-[24rem] bg-gradient-to-r from-brand/15 via-brand-light/10 to-transparent blur-[80px]" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[42rem] md:w-[60rem] h-[18rem] md:h-[24rem] bg-gradient-to-r from-brand/15 via-brand-light/10 to-transparent blur-[60px] md:blur-[80px]" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-surface-1/80 to-transparent" />
       </div>
 
@@ -70,26 +70,26 @@ export default function Pricing({
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="text-center mb-14 md:mb-20"
+            className="text-center mb-12 md:mb-20"
           >
             <div className="flex justify-center mb-5">
               <span className="inline-flex items-center gap-2 bg-white border border-black/10 px-4 py-2 rounded-full text-[11px] font-bold text-text-primary uppercase tracking-[0.2em] shadow-sm">
                 <Sparkles size={14} className="text-brand" /> Pricing Blueprint
               </span>
             </div>
-            <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-black text-text-primary tracking-tight leading-[1.05] mb-6">
+            <h2 className="text-[clamp(2rem,4vw,3.25rem)] font-black text-text-primary tracking-tight leading-[1.05] mb-5 md:mb-6">
               Pick Your Growth <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-light font-display italic pr-2">
                 Flight Path.
               </span>
             </h2>
-            <p className="text-text-secondary text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+            <p className="text-text-secondary text-base md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
               Three execution modes. One outcome: predictable revenue growth backed by weekly execution.
             </p>
           </motion.div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7 max-w-6xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 lg:gap-7 max-w-6xl mx-auto items-stretch">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -103,11 +103,11 @@ export default function Pricing({
               }}
               className={`relative rounded-2xl overflow-hidden flex flex-col transition-all duration-500 ${
                 plan.highlight
-                  ? "bg-surface-dark border border-brand/40 shadow-[0_25px_70px_-20px_rgba(255,106,0,0.35)] md:-translate-y-3"
-                  : "bg-white border border-black/8 shadow-[0_14px_40px_-22px_rgba(0,0,0,0.25)] hover:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] hover:-translate-y-1"
+                  ? "bg-surface-dark border border-brand/40 shadow-[0_20px_56px_-18px_rgba(255,106,0,0.32)] md:-translate-y-3"
+                  : "bg-white border border-black/8 shadow-[0_12px_34px_-20px_rgba(0,0,0,0.22)] hover:shadow-[0_18px_50px_-20px_rgba(0,0,0,0.18)] hover:-translate-y-1"
               }`}
             >
-              <div className={`absolute top-0 right-0 w-28 h-28 rounded-full blur-2xl pointer-events-none ${plan.highlight ? "bg-brand/30" : "bg-brand/12"}`} />
+              <div className={`absolute top-0 right-0 w-24 h-24 md:w-28 md:h-28 rounded-full blur-2xl pointer-events-none ${plan.highlight ? "bg-brand/30" : "bg-brand/12"}`} />
 
               {plan.highlight && (
                 <div className="bg-gradient-to-r from-brand to-brand-light py-2 text-center text-[10px] font-black text-white uppercase tracking-[0.2em]">
@@ -115,7 +115,7 @@ export default function Pricing({
                 </div>
               )}
 
-              <div className={`p-7 lg:p-8 flex-1 flex flex-col ${plan.highlight ? "" : "pt-7 lg:pt-8"}`}>
+              <div className={`p-6 md:p-7 lg:p-8 flex-1 flex flex-col ${plan.highlight ? "" : "pt-6 md:pt-7 lg:pt-8"}`}>
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>
                     <p className={`text-[11px] uppercase tracking-[0.18em] font-bold mb-2 ${plan.highlight ? "text-text-inverse/50" : "text-text-tertiary"}`}>
@@ -133,12 +133,12 @@ export default function Pricing({
                   </div>
                 </div>
 
-                <div className={`border rounded-xl px-4 py-3.5 mb-6 ${plan.highlight ? "bg-brand/10 border-brand/20" : "bg-surface-1 border-black/5"}`}>
+                <div className={`border rounded-xl px-4 py-3.5 mb-5 md:mb-6 ${plan.highlight ? "bg-brand/10 border-brand/20" : "bg-surface-1 border-black/5"}`}>
                   <span className="text-[10px] uppercase tracking-wider font-bold text-brand block mb-0.5">Expected Outcome</span>
                   <p className={`text-sm font-bold leading-snug ${plan.highlight ? "text-text-inverse" : "text-text-primary"}`}>{plan.outcome}</p>
                 </div>
 
-                <ul className="space-y-3.5 flex-1 mb-8">
+                <ul className="space-y-3.5 flex-1 mb-7 md:mb-8">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2.5">
                       <CheckCircle2
@@ -193,7 +193,7 @@ export default function Pricing({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.35, duration: 0.5 }}
-          className="max-w-4xl mx-auto mt-14 md:mt-20"
+          className="max-w-4xl mx-auto mt-12 md:mt-20"
         >
           <div className="rounded-2xl border border-black/8 bg-white px-5 py-5 md:px-8 md:py-6 shadow-[0_12px_30px_-18px_rgba(0,0,0,0.18)]">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
